@@ -9,7 +9,6 @@ import {getFirestore} from 'redux-firestore'
 import {getFirebase} from 'react-redux-firebase'
 
 const store = createStore(counter);
-const fippel = createStore()
 const render = () => ReactDOM.render(
   <App
     value={store.getState()}
