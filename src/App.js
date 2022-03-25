@@ -7,6 +7,9 @@ class App extends Component {
   }
   render() {
     const { value, onIncrement, onDecrement } = this.props;
+
+    console.log(value)
+
     return (
       <div className="App">
       <h1>A React aspp</h1>
