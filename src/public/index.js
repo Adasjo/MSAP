@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
-import './index.css';
+import './styles/index.css';
 import App from './App';
 import counter from './counter';
 
