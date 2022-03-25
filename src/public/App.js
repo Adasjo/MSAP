@@ -9,7 +9,7 @@ class App extends Component {
     const { value, onIncrement, onDecrement } = this.props;
     return (
       <div className="App">
-      <h1>A React app</h1>
+      <h1>A React aspp</h1>
       <p>
       Clicked: {value} times
       {' '}

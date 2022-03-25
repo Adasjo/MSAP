@@ -4,9 +4,12 @@ import { createStore } from 'redux';
 import './styles/index.css';
 import App from './App';
 import counter from './counter';
+import firebase from "firebase/app";
+import {getFirestore} from 'redux-firestore'
+import {getFirebase} from 'react-redux-firebase'
 
 const store = createStore(counter);
-
+const fippel = createStore()
 const render = () => ReactDOM.render(
   <App
     value={store.getState()}
