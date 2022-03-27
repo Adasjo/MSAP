@@ -7,6 +7,11 @@ import rootReducer from './reducers/root';
 import firebase from "firebase/app";
 import {getFirestore} from 'redux-firestore'
 import {getFirebase} from 'react-redux-firebase'
+import config from "./config/fbConfig"
+
+require("./config/fbConfig")
+
+
 
 const store = createStore(rootReducer);
 
