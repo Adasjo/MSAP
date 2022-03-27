@@ -1,32 +1,12 @@
 import React, { Component } from 'react';
 import './styles/App.css';
+import SignIn from './components/signIn';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    const { value, onIncrement, onDecrement } = this.props;
-
-    console.log(value)
-
-    return (
-      <div className="App">
-      <h1>A React aspp</h1>
-      <p>
-      Clicked: {value} times
-      {' '}
-      <button onClick={onIncrement}>
-      +
-      </button>
-      {' '}
-      <button onClick={onDecrement}>
-      -
-      </button></p>
-      </div>
-      );
-    }
-  }
+function App(props) {
+  return <div>
+    <SignIn store={props.store}></SignIn>
+  </div>
+}
   
-  export default App;
+export default App;
   

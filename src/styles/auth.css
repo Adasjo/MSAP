@@ -1,0 +1,13 @@
+.authForm {
+    position: absolute;
+    height: 100vh;
+    width: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.formField {
+    margin: 8px;
+}

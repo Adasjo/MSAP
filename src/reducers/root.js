@@ -5,7 +5,9 @@ import {firebaseReducer} from 'react-redux-firebase'
 import userReducer from "./userInfo"
 
 
-export default rootReducer = combineReducers({
+const rootReducer = combineReducers({
     firebase: firebaseReducer,
     userInfo: userReducer
 })
+
+export default rootReducer  
