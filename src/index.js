@@ -1,24 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 import './styles/index.css';
 import App from './App';
 import rootReducer from './reducers/root';
-import firebase from "firebase/app";
-import {getFirestore} from 'redux-firestore'
-import {getFirebase} from 'react-redux-firebase'
-import config from "./config/fbConfig"
 
 require("./config/fbConfig")
 
-
+window.location.hash = "#"
 
 const store = createStore(rootReducer);
 
 const render = () => ReactDOM.render(
-  <App
-    store = {store}
-  />,
+  <Provider store={store}>
+    <App/>
+  </Provider>,
   document.getElementById('root')
 );
 
