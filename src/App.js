@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 function App() {
   const userInfo = useSelector(state => state.userInfo)
-  //console.log(id)
+  
   return <div>
     {!userInfo.id ? <SignIn/> : <></>}
   </div>

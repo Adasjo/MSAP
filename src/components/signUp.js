@@ -1,6 +1,6 @@
 import React from "react"
 import {useSelector, useDispatch} from "react-redux"
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
+import { firebase_signUp } from "../utilities/auth"
 import "../styles/auth.css"
 
 function SignUp() {
@@ -12,13 +12,7 @@ function SignUp() {
     }
 
     function onSubmit() {
-        const auth = getAuth()
-        createUserWithEmailAndPassword(auth, userInfo.email, userInfo.password)
-            .then(userCred => {
-                dispatch({type: "updateID", payload: userCred.user.uid})
-                window.location.href = "getting-started"
-            })
-            .catch(error => console.log(error.message))
+        firebase_signUp(userInfo.email, userInfo.password)
     }
 
     return <div className="authPage">
