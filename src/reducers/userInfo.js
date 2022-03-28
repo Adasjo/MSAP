@@ -15,6 +15,8 @@ export default function userReducer(state = init, action) {
             return {...state, email: action.payload}
         case "updatePassword":
             return {...state, password: action.payload}
+        case "signOut":
+            return init
     }
     return state
 }

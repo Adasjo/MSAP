@@ -1,6 +1,7 @@
 import React from "react"
 import {useSelector, useDispatch} from "react-redux"
 import { firebase_signUp } from "../utilities/auth"
+import { Link } from "react-router-dom"
 import "../styles/auth.css"
 
 function SignUp() {
@@ -27,6 +28,10 @@ function SignUp() {
                 <input className="formField" type="password" id="pw" onChange={e => onChange("updatePassword", e)}></input>
             </div>
             <div className="formFieldDiv"><button className="formButton" onClick={onSubmit}>Register</button></div>
+            <div className="formFieldDiv">
+                <span>Have an existing account? </span>
+                <Link to="/sign-in">Sign-in</Link>
+            </div>
         </div>
     </div>
 }

@@ -8,7 +8,7 @@ import rootReducer from './reducers/root';
 
 require("./config/fbConfig")
 
-window.location.hash = "#"
+//window.location.pathname = "sign-in"
 
 const store = createStore(rootReducer);
 

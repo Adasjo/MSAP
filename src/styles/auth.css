@@ -13,13 +13,13 @@
     padding: 8px;
     width: 300px;
     border-radius: 6px;
-    background-color: rgb(95, 97, 99);
+    background-color: rgb(64, 66, 68);
     color: white;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    box-shadow: grey 3px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.575) 3px 3px 8px;
 }
 
 .formFieldDiv {
@@ -30,9 +30,10 @@
 .formField, .formButton {
     width: 98%;
     height: 2em;
-    border: 1px rgb(45, 47, 48) solid;
+    margin: 4px;
+    border: 1px rgba(0, 0, 0, 0.24) solid;
     border-radius: 4px;
-    background-color: rgb(68, 70, 71);
+    background-color: rgb(50, 52, 54);
     color: white;
 }
 
@@ -44,10 +45,11 @@
     width: 100%;
     height: 2.5em;
     border: none;
-    background-color: rgb(77, 133, 185);
+    background-color: rgb(50, 110, 165);
     cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.116) 1px 1px 8px;
 }
 
 .formButton:active {
-    background-color: rgb(76, 121, 163);
+    background-color: rgb(60, 103, 146);
 }

@@ -1,7 +1,8 @@
 import React from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { firebase_signIn } from "../utilities/auth"
-import "../styles/auth.css"
+import { Link } from "react-router-dom";
+import "../styles/auth.css" 
 
 function SignIn() {
     const userInfo = useSelector(state => state.userInfo)
@@ -26,12 +27,12 @@ function SignIn() {
             <div className="formFieldDiv">
                 <label htmlFor="pw">Password</label>
                 <input className="formField" type="password" id={"pw"} onChange={e => onChange("updatePassword", e)}></input>
-                <a href="reset">Forgot password?</a>
+                <Link to="/reset">Forgot password?</Link>
             </div>
-            <div className="formFieldDiv"><button className="formButton" onClick={onSubmit}>Sign in</button></div>
+            <div className="formFieldDiv"><button className="formButton" onClick={onSubmit}>Sign-in</button></div>
             <div className="formFieldDiv">
                 <span>Need an account? </span>
-                <a href="register">Register</a>
+                <Link to="/register">Register</Link>
             </div>
         </div>
     </div>
