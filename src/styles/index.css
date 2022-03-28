@@ -26,6 +26,18 @@ hr {
   overflow: visible; 
 }
 
+a {
+  color: blue;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 pre {
   font-family: monospace, monospace; 
   font-size: 1em; 

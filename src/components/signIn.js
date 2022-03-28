@@ -4,8 +4,9 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 import "../styles/auth.css"
 
 function SignIn() {
-    const {_name, _id, email, password} = useSelector(state => state.userInfo)
+    const userInfo = useSelector(state => state.userInfo)
     const dispatch = useDispatch()
+
 
     function onChange(actionType, e) {
         dispatch({type: actionType, payload: e.target.value})
@@ -13,19 +14,32 @@ function SignIn() {
 
     function onSubmit() {
         const auth = getAuth()
-        signInWithEmailAndPassword(auth, email, password)
+        signInWithEmailAndPassword(auth, userInfo.email, userInfo.password)
             .then(userCred => {
                 dispatch({type: "updateID", payload: userCred.user.uid})
-                window.location.hash = "#signed-in"
+                window.location.href = "home"
             })
             .catch(error => console.log(error))
     }
 
-    return <div className="authForm">
-        <h2>Sign in</h2>
-        <input className="formField" type="email" id={"email"} onChange={e => onChange("updateEmail", e)}></input>
-        <input className="formField" type="password" id={"pw"} onChange={e => onChange("updatePassword", e)}></input>
-        <button onClick={onSubmit}>Sign in</button>
+    return <div className="authPage">
+        <div className="authBox">
+            <h3>Welcome back!</h3>
+            <div className="formFieldDiv">
+                <label htmlFor="email">Email</label><br></br>
+                <input className="formField" type="email" id={"email"} onChange={e => onChange("updateEmail", e)}></input>
+            </div>
+            <div className="formFieldDiv">
+                <label htmlFor="pw">Password</label>
+                <input className="formField" type="password" id={"pw"} onChange={e => onChange("updatePassword", e)}></input>
+                <a href="reset">Forgot password?</a>
+            </div>
+            <div className="formFieldDiv"><button className="formButton" onClick={onSubmit}>Sign in</button></div>
+            <div className="formFieldDiv">
+                <span>Need an account? </span>
+                <a href="register">Register</a>
+            </div>
+        </div>
     </div>
 }
 

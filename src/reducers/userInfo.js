@@ -1,16 +1,18 @@
 const init = {
-    userName: "",
-    userID: "",
+    name: "",
+    id: "",
     email: "",
     password: ""
 }
 
 export default function userReducer(state = init, action) {
+    console.log(action)
     switch (action.type) {
         case "updateName":
-            return {...state, userName: action.payload}
+            return {...state, name: action.payload}
         case "updateID":
-            return {...state, userID: action.payload}
+            console.log("Updating ID")
+            return {...state, id: action.payload}
         case "updateEmail":
             return {...state, email: action.payload}
         case "updatePassword":

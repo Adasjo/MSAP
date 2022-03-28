@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import './styles/App.css';
 import SignIn from './components/signIn';
 import SignUp from './components/signUp';
+import { useSelector } from 'react-redux';
 
-function App(props) {
+function App() {
+  const userInfo = useSelector(state => state.userInfo)
+  //console.log(id)
   return <div>
-    <SignUp/>
+    {!userInfo.id ? <SignIn/> : <></>}
   </div>
 }
   
