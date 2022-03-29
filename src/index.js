@@ -27,7 +27,6 @@ const rrfProps = {
   config: rrfConfig,
   dispatch: store.dispatch,
   initializeAuth: true
-  // createFirestoreInstance // <- needed if using firestore
 }
 
 //window.location.pathname = "sign-in"
