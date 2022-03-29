@@ -1,12 +1,12 @@
 import React from "react"
 import {useSelector, useDispatch} from "react-redux"
 import { Link } from "react-router-dom"
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
-import { firebase } from "../config/fbConfig"
 import "../styles/auth.css"
+import { useFirebase } from "react-redux-firebase"
 
 function SignUp() {
-    const userInfo = useSelector(state => state.userInfo)
+    const {email: email, password: password} = useSelector(state => state.userInfo)
+    const firebase = useFirebase()
     const dispatch = useDispatch()
 
     function onChange(actionType, e) {
@@ -14,11 +14,11 @@ function SignUp() {
     }
 
     function onSubmit() {
-        const auth = getAuth(firebase)
-        createUserWithEmailAndPassword(auth, userInfo.email, userInfo.password)
-            .then(userCred => {
+        firebase.createUser({email: email, password: password})
+            .then(userInfo => {
                 // Sign-up successful
-                dispatch({type: "updateID", payload: userCred.user.uid})
+                console.log(userInfo)
+                dispatch({type: "updateID", payload: userInfo.uid})
                 window.location.href = "getting-started"
             })
             .catch(error => console.log(error))

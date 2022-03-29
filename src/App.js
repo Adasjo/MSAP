@@ -4,8 +4,15 @@ import './styles/App.css'
 import SignIn from './components/signIn'
 import SignUp from './components/signUp'
 import NoPage from './components/noPage'
+import { useSelector } from 'react-redux'
+import { useFirebase } from 'react-redux-firebase'
 
 function App() {
+  const firebase = useFirebase()
+  const auth = useSelector(state => state.firebase.auth)
+
+  console.log(firebase)
+
   return <Router>
     <Routes>
       <Route path="/">

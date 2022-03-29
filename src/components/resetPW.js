@@ -1,12 +1,12 @@
 import React from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
+import {getAuth, sendPasswordResetEmail} from "firebase/auth"
+import { firebase } from "../config/fbConfig"
 import "../styles/auth.css" 
-import { useFirebase } from "react-redux-firebase"
 
 function SignIn() {
-    const {email: email, password: password} = useSelector(state => state.userInfo)
-    const firebase = useFirebase()
+    const userInfo = useSelector(state => state.userInfo)
     const dispatch = useDispatch()
 
 
@@ -15,7 +15,8 @@ function SignIn() {
     }
 
     function onSubmit() {
-        firebase.login({email: email, password: password})
+        const auth = getAuth(firebase)
+        sendPasswordResetEmail(auth, userInfo.email)
             .then(userCred => {
                 // Sign-in successful
                 dispatch({type: "updateID", payload: userCred.user.uid})
