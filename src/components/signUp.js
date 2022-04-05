@@ -8,9 +8,9 @@ function SignUp() {
     const {email: email, password: password} = useSelector(state => state.userInfo)
     const firebase = useFirebase()
     const dispatch = useDispatch()
-
+    
     function onChange(actionType, e) {
-        dispatch({type: actionType, payload: e.target.value})
+        dispatch({type: "userInfo/" + actionType, payload: e.target.value})
     }
 
     function onSubmit() {

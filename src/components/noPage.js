@@ -1,4 +1,5 @@
 import React from "react"
+import { useSelector } from "react-redux"
 
 function NoPage() {
     return <div style={{height: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>

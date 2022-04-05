@@ -9,12 +9,12 @@ function SignIn() {
     const firebase = useFirebase()
     const dispatch = useDispatch()
 
-
     function onChange(actionType, e) {
-        dispatch({type: actionType, payload: e.target.value})
+        dispatch({type: "userInfo/" + actionType, payload: e.target.value})
     }
 
     function onSubmit() {
+        console.log(email + ", " + password)
         firebase.login({email: email, password: password})
             .then(userCred => {
                 // Sign-in successful
