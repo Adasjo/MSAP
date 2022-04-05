@@ -19,7 +19,8 @@ function SignIn() {
             .then(userCred => {
                 // Sign-in successful
                 dispatch({type: "updateID", payload: userCred.user.uid})
-                window.location.href = "home"
+                console.log("Sign-in successful")
+                window.location.pathname = "spotify"
             })
             .catch(error => console.log(error))
     }
