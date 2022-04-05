@@ -2,12 +2,12 @@ import React from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { handleRedirect, spotifyAuthorize, spotifyGet } from "../utilities/apiUtils"
 
-function Spotify(props) {
+function Spotify() {
     const spotify = useSelector(state => state.spotify)
     const dispatch = useDispatch()
-    console.log(spotify)
+
     if (spotify.accessToken) {
-        console.log("Trying to fetch data")
+        console.log("Trying to fetch some data")
         spotifyGet("/me/playlists", spotify.accessToken).then(res => console.log(res)).catch(e => console.log(e))
     }
 
