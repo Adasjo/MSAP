@@ -8,9 +8,10 @@ const spotifyApiHeaders = {
 /*
 *   Make a fetch call from the given endpoint with optionally specified options and search parameters
 */
-function apiCall(endpoint, options = {}, params = {}) {
+async function apiCall(endpoint, options = {}, params = {}) {
     const URL = BASE_URL + endpoint + new URLSearchParams(params)
-    return fetch(URL, options).then(treatHTTPResponseACB)
+    const response = await fetch(URL, options)
+    return treatHTTPResponseACB(response)
 }
 
 /*
@@ -78,24 +79,26 @@ function refreshToken(refresh_token) {
 /*
 *   Handle the redirect back from Spotify's authentification page
 */
-function handleRedirect() {
+async function handleRedirect() {
     //console.log("Handle redirect!")
     const code = getSearchParam("code")
     //window.history.replaceState({}, document.title, "/" + "spotify")
-    return getAccessToken(code).then(res => ({accessToken: res.access_token, refreshToken: res.refresh_token}))
+    const res = await getAccessToken(code)
+    return ({ accessToken: res.access_token, refreshToken: res.refresh_token })
 }
 
 /*
 *   Retrieve data from a specified Spotify endpoint with the given access token
 */
-function spotifyGet(endpoint, token) {
+async function spotifyGet(endpoint, token) {
     const options = {
         method: "GET",
         headers: {
             "Authorization": "Bearer " + token
         }
     }
-    return fetch("https://api.spotify.com/v1" + endpoint, options).then(res => res.json())
+    const res = await fetch("https://api.spotify.com/v1" + endpoint, options)
+    return await res.json()
 }
 
 export {spotifyAuthorize, handleRedirect, spotifyGet}
