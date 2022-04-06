@@ -6,6 +6,7 @@ import SignIn from './components/signIn'
 import SignUp from './components/signUp'
 import Spotify from './components/spotify'
 import NoPage from './components/noPage'
+import SearchBar from './components/searchbar'
 import GettingStarted from './components/gettingStarted'
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="sign-in" element={<SignIn/>}/>
         <Route path="register" element={<SignUp/>}/>
         <Route path="spotify" element={<Spotify/>}/>
+        <Route path="searchbar" element={<SearchBar/>}/>
         <Route path="getting-started" element={<GettingStarted/>}/>
         <Route path="*" element={<NoPage/>}/>
       </Route>

@@ -8,7 +8,7 @@ function GettingStarted() {
     console.log(spotify)
     return <div>
         <div>
-            Hi, we see that this is your first time using MSAP! To get started link your MSAP account to one of the available streaming plattforms bellow:
+            Hi, we see that this is your first time using MSAP! To get started link your MSAP account to one of the available streaming plattforms below:
         </div>
         <button onClick={spotifyAuthorize} disabled={!spotify}>Spotify</button>
     </div>

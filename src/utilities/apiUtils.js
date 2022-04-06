@@ -30,7 +30,7 @@ function treatHTTPResponseACB(response) {
 *   Redirect the user to Spotify's authorization page
 */
 function spotifyAuthorize() {
-    window.location.href = BASE_URL + "/authorize?" + new URLSearchParams({
+    window.location.href = BASE_URL + "authorize?" + new URLSearchParams({
         client_id,
         response_type: "code",
         redirect_uri,
