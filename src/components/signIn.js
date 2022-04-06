@@ -14,9 +14,9 @@ function SignIn() {
     }
 
     function onSubmit() {
-        console.log(email + ", " + password)
         firebase.login({email: email, password: password})
-            .then(userCred => {
+            .then(user => {
+                console.log(user)
                 window.location.href = "home"
             })
             .catch(error => console.log(error))

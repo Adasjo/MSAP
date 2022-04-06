@@ -12,7 +12,7 @@ function Spotify() {
     }
 
     if (window.location.search.length > 10) {
-        handleRedirect().then(res => dispatch({type: "updateTokens", payload: res}))
+        handleRedirect().then(res => dispatch({type: "spotify/updateTokens", payload: res}))
         return <div>
                 <div>Request processed</div>
                 <div>{JSON.stringify(spotify)}</div>
