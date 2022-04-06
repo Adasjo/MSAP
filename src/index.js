@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime' // Weird thing to get async working
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';

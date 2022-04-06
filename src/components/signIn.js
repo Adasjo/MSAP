@@ -17,7 +17,6 @@ function SignIn() {
         console.log(email + ", " + password)
         firebase.login({email: email, password: password})
             .then(userCred => {
-                // Sign-in successful
                 window.location.href = "home"
             })
             .catch(error => console.log(error))
