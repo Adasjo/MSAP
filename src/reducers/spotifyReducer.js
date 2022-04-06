@@ -9,7 +9,10 @@ export const spotifySlice = createSlice({
     name: "spotify",
     initialState,
     reducers: {
-        updateTokens: (state, action) => {state = action.payload}
+        updateTokens: (state, action) => {
+            state.accessToken = action.payload.accessToken
+            state.refreshToken = action.payload.refreshToken
+        }
     }
 })
 

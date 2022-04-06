@@ -1,10 +1,13 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import { handleRedirect, spotifyAuthorize, spotifyGet } from "../utilities/apiUtils"
 
 function Spotify() {
     const spotify = useSelector(state => state.spotify)
     const dispatch = useDispatch()
+    const nav = useNavigate()
+    console.log(spotify)
 
     if (spotify.accessToken) {
         console.log("Trying to fetch some data")
@@ -12,7 +15,9 @@ function Spotify() {
     }
 
     if (window.location.search.length > 10) {
-        handleRedirect().then(res => dispatch({type: "spotify/updateTokens", payload: res}))
+        handleRedirect().then(res => {
+            console.log(res)
+            dispatch({type: "spotify/updateTokens", payload: res})})
         return <div>
                 <div>Request processed</div>
                 <div>{JSON.stringify(spotify)}</div>

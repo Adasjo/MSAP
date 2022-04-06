@@ -15,9 +15,9 @@ function SignUp() {
 
     function onSubmit() {
         firebase.createUser({email: email, password: password})
-            .then(userInfo => {
+            .then(_ => {
                 // Sign-up successful
-                console.log(userInfo)
+                //console.log(userInfo)
                 window.location.href = "getting-started"
             })
             .catch(error => console.log(error))
