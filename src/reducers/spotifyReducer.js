@@ -1,13 +1,18 @@
 
 // Handle stores related to Spotify authentification
 
-const init = {}
+import { createSlice } from "@reduxjs/toolkit"
 
-export default function spotifyReducer(state = init, action) {
-    switch (action.type) {
-        case "updateTokens":
-            return {...state, ...action.payload}
-        default:
-            return state
+const initialState = {}
+
+export const spotifySlice = createSlice({
+    name: "spotify",
+    initialState,
+    reducers: {
+        updateTokens: (state, action) => {state = action.payload}
     }
-}
+})
+
+export const { updateTokens } = spotifySlice.actions
+
+export default spotifySlice.reducer
