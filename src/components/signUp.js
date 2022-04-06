@@ -18,7 +18,6 @@ function SignUp() {
             .then(userInfo => {
                 // Sign-up successful
                 console.log(userInfo)
-                dispatch({type: "updateID", payload: userInfo.uid})
                 window.location.href = "getting-started"
             })
             .catch(error => console.log(error))

@@ -18,7 +18,6 @@ function SignIn() {
         firebase.login({email: email, password: password})
             .then(userCred => {
                 // Sign-in successful
-                dispatch({type: "updateID", payload: userCred.user.uid})
                 window.location.href = "home"
             })
             .catch(error => console.log(error))
