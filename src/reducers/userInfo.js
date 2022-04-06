@@ -1,22 +1,19 @@
-const init = {
-    name: "",
-    id: "",
+import { createSlice } from "@reduxjs/toolkit"
+
+const initialState = {
     email: "",
     password: ""
 }
 
-export default function userReducer(state = init, action) {
-    switch (action.type) {
-        case "updateName":
-            return {...state, name: action.payload}
-        case "updateID":
-            return {...state, id: action.payload}
-        case "updateEmail":
-            return {...state, email: action.payload}
-        case "updatePassword":
-            return {...state, password: action.payload}
-        case "signOut":
-            return init
+export const userSlice = createSlice({
+    name: "userInfo",
+    initialState,
+    reducers: {
+        updateEmail: (state, action) => {state.email = action.payload},
+        updatePassword: (state, action) => {state.password = action.payload}
     }
-    return state
-}
+})
+
+export const { updateEmail, updatePassword } = userSlice.actions
+
+export default userSlice.reducer

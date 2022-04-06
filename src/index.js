@@ -7,7 +7,7 @@ import { ReactReduxFirebaseProvider as FirebaseProvider } from 'react-redux-fire
 import './styles/index.css';
 import App from './App';
 import rootReducer from './reducers/root';
-import fbConfig from "./config/fbConfig"
+import { fbConfig, rrfConfig } from "./config/fbConfig"
 import firebase from 'firebase/app';
 import "firebase/auth"
 import "firebase/database"
@@ -16,13 +16,6 @@ const store = createStore(rootReducer);
 
 firebase.initializeApp(fbConfig)
 
-// react-redux-firebase config
-const rrfConfig = {
-  userProfile: 'users'
-  // useFirestoreForProfile: true // Firestore for Profile instead of Realtime DB
-  // enableClaims: true // Get custom claims along with the profile
-}
-
 const rrfProps = {
   firebase,
   config: rrfConfig,
@@ -30,7 +23,6 @@ const rrfProps = {
   initializeAuth: true
 }
 
-//window.location.pathname = "sign-in"
 
 const render = () => ReactDOM.render(
   <Provider store={store}>
@@ -42,4 +34,4 @@ const render = () => ReactDOM.render(
 );
 
 render();
-store.subscribe(render);
+//store.subscribe(render);
