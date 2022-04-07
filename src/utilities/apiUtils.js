@@ -80,11 +80,8 @@ function refreshToken(refresh_token) {
 *   Handle the redirect back from Spotify's authentification page
 */
 async function handleRedirect(dispatch, firebase, navigate) {
-    //console.log("Handle redirect!")
     const code = getSearchParam("code")
-    //window.history.replaceState({}, document.title, "/" + "spotify")
     const res = await getAccessToken(code)
-    //return ({ accessToken: res.access_token, refreshToken: res.refresh_token })
     dispatch({type: "spotify/updateTokens", payload: res})
     const uid = firebase.auth().currentUser.uid
     firebase.database().ref("users/" + uid + "/refreshToken").set(res.refresh_token)

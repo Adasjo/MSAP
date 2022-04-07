@@ -25,22 +25,55 @@ to import playlists from other sources we will have to handle this data as well.
 Finally if we want the user to be able to search for artists, albums etc, we will have to
 handle these types of data from the API:s
 
-
-
-
-
-
-
 -------------------------
-- Sign in/up with google using firebase.
 
-**Home screen**
-- If not setup connection between services. -> Getting started page. 
-- If connection between serveces. -> The "real" homescreen will be shown. 
+## What we have done:
 
-**Set up the Spotify API**
-- Connect 
-TO:DO
-- Set up firebase
-- Fix a login view
-- 
+- Set up basic project structure with react redux
+- Email login/registration + authentification via firebase
+- Authentification via Spotify
+- Very basic site layout with login/registration, getting started page, home page, and a search page
+
+
+## What we plan to do:
+
+**Components**
+- Add a music player component
+- Add a sidebar component
+- Add an options page
+- Add a playlist viewer/component
+- Integrate components into the home page
+
+**Misc**
+- Aestethics with css
+- Add persistence to a users Spotify access token
+- Add persistence to redux using some package like `redux-persist`
+- Try to add another API (if time allows)
+
+## Project Structure
+```
+📦src
+ ┣ 📂components --  Components for the web app
+ ┃ ┣ 📜gettingStarted.js    --  Introduce the user to the website
+ ┃ ┣ 📜home.js              --  Home screen
+ ┃ ┣ 📜noPage.js            --  404 page
+ ┃ ┣ 📜searchbar.js         --  Component for searching tracks
+ ┃ ┣ 📜signIn.js            --  Login page
+ ┃ ┣ 📜signUp.js            --  Register page
+ ┃ ┗ 📜spotify.js           --  Compononent that handles Spotify authentification. (Will probably be removed)
+ ┣ 📂reducers   --  Redux reducers for modifying the state
+ ┃ ┣ 📜root.js              --  The root reducer that merges all reducers
+ ┃ ┣ 📜spotifyReducer.js    --  Reducer for spotify authentification
+ ┃ ┗ 📜userInfo.js          --  Reducer for user information
+ ┣ 📂styles     --  CSS files for styling
+ ┃ ┣ 📜App.css              --  CSS for the App component
+ ┃ ┣ 📜auth.css             --  CSS for login/register
+ ┃ ┗ 📜index.css            --  Default CSS
+ ┣ 📂utilities  --  Miscellaneous utilities
+ ┃ ┗ 📜apiUtils.js          --  Various api autilities 
+ ┣ 📜.eslintignore
+ ┣ 📜App.js                 --  The root component
+ ┣ 📜index.html
+ ┣ 📜index.js
+ ┗ 📜store.js               --  Initializes and exports the redux store
+ ```
