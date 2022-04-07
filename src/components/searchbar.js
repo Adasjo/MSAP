@@ -1,8 +1,7 @@
 import React from "react"
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import { useSelector } from "react-redux"
-import { spotifySlice } from "../reducers/spotifyReducer.js";
-import '../utilities/apiUtils.js'
+import {spotifyGet} from '../utilities/apiUtils.js'
 const response = {
     "tracks": {
       "href": "https://api.spotify.com/v1/search?query=Vart+jag+mig+i+v%C3%A4rlden+v%C3%A4nder&type=track&market=SE&locale=sv-SE%2Csv%3Bq%3D0.9%2Cen-US%3Bq%3D0.8%2Cen%3Bq%3D0.7&offset=0&limit=20",
@@ -1585,12 +1584,18 @@ const response = {
       "total": 73
     }
   }
-
+function setup(){
+    const types = ["album", "artist", "playlist", "track", "show", "episode"];
+}
 
 function SearchBar() {
-    const types = ["album", "artist", "playlist", "track", "show", "episode"];
-    const [search, setSearch] = useState("");
-    const [searchString, setSearchString] = useState("");
+    const accesstoken = useSelector(state => state.spotify.accessToken)
+    const [search, setSearch] = useState(() => "");
+    const searcher = search.replace(" ", "%20");
+    const searchString = "/search?q=$" + searcher + "&type=track&limit=10" 
+    //console.log(searchString)
+    const fippel = spotifyGet(searchString, accesstoken);
+    console.log(fippel);
     //const {searchString: searchString, searchType: searchType} = useSelector(state => state.searchinfo);
     //function onChange(actionType, e) {
     //    dispatch({type: "searchinfo/" + actionType, payload: e.target.value})
@@ -1600,8 +1605,11 @@ function SearchBar() {
     //setSearchString("/search?" + "type=" + types.join() + search);
     //console.log(searchString);
     //const response = spotifyGet(searchString, token)
-    console.log(search);
-    console.log(response.tracks.items);
+    
+    
+
+    //console.log(search);
+    //console.log(response.tracks.items);
     const trackmap = response.tracks.items.map(trackRes => 
         <li key={trackRes.id}>{trackRes.name}</li>);
 
