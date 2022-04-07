@@ -10,3 +10,5 @@ function Home() {
             Temporary home screen!
         </div>
 }
+
+export default Home
