@@ -11,16 +11,11 @@ function Spotify() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    if (!uid)
+    if (spotify.accessToken || !uid)
         return null
 
     if (!spotify.accessToken && window.location.search.length > 10) {
-        handleRedirect().then(res => {
-            if (!spotify.accessToken) 
-                dispatch({type: "spotify/updateTokens", payload: res})
-                firebase.database().ref("users/" + uid + "/refreshToken").set(res.refreshToken)
-                navigate("../home", {replace: true})
-        }).catch(e => console.log(e))
+        handleRedirect(dispatch, firebase, navigate).catch(e => console.log(e))
         return <div>
                 <div>Request processed</div>
                 <div>{JSON.stringify(spotify)}</div>
