@@ -3,7 +3,10 @@
 
 import { createSlice } from "@reduxjs/toolkit"
 
-const initialState = {}
+const initialState = {
+    accessToken: "",
+    refreshToken: ""
+}
 
 export const spotifySlice = createSlice({
     name: "spotify",

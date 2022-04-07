@@ -1,6 +1,6 @@
 import React from "react"
 import {useSelector, useDispatch} from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import "../styles/auth.css"
 import { useFirebase } from "react-redux-firebase"
 
@@ -8,6 +8,7 @@ function SignUp() {
     const {email: email, password: password} = useSelector(state => state.userInfo)
     const firebase = useFirebase()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     
     function onChange(actionType, e) {
         dispatch({type: "userInfo/" + actionType, payload: e.target.value})
@@ -17,8 +18,7 @@ function SignUp() {
         firebase.createUser({email: email, password: password})
             .then(_ => {
                 // Sign-up successful
-                //console.log(userInfo)
-                window.location.href = "getting-started"
+                navigate("../getting-started", {replace: true})
             })
             .catch(error => console.log(error))
     }
