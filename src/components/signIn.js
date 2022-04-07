@@ -16,9 +16,8 @@ function SignIn() {
 
     function onSubmit() {
         firebase.login({email: email, password: password})
-            .then(user => {
-                console.log(user)
-                navigate("../getting-started", {replace: true})
+            .then(_ => {
+                navigate("../home", {replace: true})
             })
             .catch(error => console.log(error))
     }
