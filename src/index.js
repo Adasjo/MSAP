@@ -20,7 +20,6 @@ const rrfProps = {
   initializeAuth: true
 }
 
-
 const render = () => ReactDOM.render(
   <Provider store={store}>
     <FirebaseProvider {...rrfProps}>
