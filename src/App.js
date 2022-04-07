@@ -7,7 +7,7 @@ import SignIn from './components/signIn'
 import SignUp from './components/signUp'
 import Spotify from './components/spotify'
 import NoPage from './components/noPage'
-import SearchBar from './components/searchbar'
+import SearchBar from './components/searchBar'
 import GettingStarted from './components/gettingStarted'
 
 function App() {
