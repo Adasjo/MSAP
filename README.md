@@ -46,6 +46,7 @@ handle these types of data from the API:s
 
 **Misc**
 - Aestethics with css
+- Add authentification checks
 - Add persistence to a users Spotify access token
 - Add persistence to redux using some package like `redux-persist`
 - Try to add another API (if time allows)
