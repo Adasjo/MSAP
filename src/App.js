@@ -9,19 +9,20 @@ import Spotify from './components/spotify'
 import NoPage from './components/noPage'
 import SearchBar from './components/searchBar'
 import GettingStarted from './components/gettingStarted'
+import AuthLock from './components/authLock'
 
 function App() {
   return <Router>
     <Routes>
-      <Route path="/">
-        <Route path="home" element={<Home/>}/>
-        <Route path="sign-in" element={<SignIn/>}/>
-        <Route path="register" element={<SignUp/>}/>
-        <Route path="spotify" element={<Spotify/>}/>
+      <Route path="/sign-in" element={<SignIn/>}/>
+      <Route path="/register" element={<SignUp/>}/>
+      <Route path="/spotify" element={<Spotify/>}/>
+      <Route path="/" element={<AuthLock/>}>
+        <Route path="home" element={<Home/>}/>   
         <Route path="searchbar" element={<SearchBar/>}/>
         <Route path="getting-started" element={<GettingStarted/>}/>
-        <Route path="*" element={<NoPage/>}/>
       </Route>
+      <Route path="*" element={<NoPage/>}/>
     </Routes>
   </Router>
 }
