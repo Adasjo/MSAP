@@ -1,4 +1,3 @@
-import { useFirebase } from "react-redux-firebase"
 import {BASE_URL, client_id, client_secret, redirect_uri, scope} from "../config/spotifyConfig"
 
 const spotifyApiHeaders = {
