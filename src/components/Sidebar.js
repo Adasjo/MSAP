@@ -7,7 +7,7 @@ import { spotifyGet } from "../utilities/apiUtils"
 
 const initData = {items: []}
 
-function SideBar() {
+function Sidebar() {
     const navigate = useNavigate()
     const accessToken = useSelector(state => state.spotify.accessToken)
     const [data, setData] = useState(() => initData)
@@ -26,4 +26,4 @@ function SideBar() {
     </div>
 }
 
-export default SideBar
+export default Sidebar
