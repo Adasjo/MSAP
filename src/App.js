@@ -7,7 +7,6 @@ import SignIn from './components/signIn'
 import SignUp from './components/signUp'
 import Spotify from './components/spotify'
 import NoPage from './components/noPage'
-import SearchBar from './components/searchBar'
 import GettingStarted from './components/gettingStarted'
 import AuthLock from './components/authLock'
 
@@ -19,7 +18,6 @@ function App() {
       <Route path="/spotify" element={<Spotify/>}/>
       <Route path="/" element={<AuthLock/>}>
         <Route path="home" element={<Home/>}/>   
-        <Route path="searchbar" element={<SearchBar/>}/>
         <Route path="getting-started" element={<GettingStarted/>}/>
       </Route>
       <Route path="*" element={<NoPage/>}/>

@@ -1,12 +1,22 @@
 import React from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { Navigate } from "react-router-dom"
+import { getNewToken } from "../utilities/apiUtils"
 import SearchBar from "./searchBar"
 import Sidebar from "./Sidebar"
 
 function Home() {
-    const state = useSelector(state => state)
+    const dispatch = useDispatch()
+    const spotify = useSelector(state => state.spotify)
 
-    console.log(state)
+    // Check whether there is a Spotify access token in the state. 
+    // If not present, try fetch from firebase
+    if (!spotify.accessToken && !spotify.triedLoad) {
+        dispatch(getNewToken())
+        return null
+    } else if (!spotify.accessToken) {
+        return <Navigate to={"/getting-started"}/>
+    }
 
     return <div>
             Temporary home screen!

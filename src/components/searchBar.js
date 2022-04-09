@@ -27,7 +27,6 @@ function SearchBar() {
                     </audio>
                 </div>
         </li>);
-        console.log(trackmap);
     return <div style={{ height: "auto", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
         <h1 style={{margin: "1em"}}>Search for a track:</h1>
         <input style={{margin: "1em"}} id="searchText" type="text" placeholder="Search here" onChange={e => setSearch(e.target.value)}/>

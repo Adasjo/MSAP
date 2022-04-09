@@ -91,10 +91,17 @@ function getNewToken() {
         if (!token) {
             const res = await firebase.database().ref("users/" + uid + "/refreshToken").get()
             token = res.val()
+            if (!token) {
+                return dispatch({type: "spotify/setLoadStatus"})
+            }
         }
-        const res = await refreshToken(token)
+        let res = await refreshToken(token)
+        if (!res.refresh_token) {
+            res.refresh_token = token
+        } else {
+            firebase.database().ref("users/" + uid + "/refreshToken").set(res.refresh_token)
+        }
         dispatch({type: "spotify/updateTokens", payload: res})
-        firebase.database().ref("users/" + uid + "/refreshToken").set(res.refresh_token)
     }
 }
 
@@ -127,4 +134,4 @@ async function spotifyGet(endpoint, token) {
     return await res.json()
 }
 
-export {spotifyAuthorize, handleRedirect, spotifyGet}
+export {spotifyAuthorize, handleRedirect, spotifyGet, getNewToken}

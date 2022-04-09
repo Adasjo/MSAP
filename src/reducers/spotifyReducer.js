@@ -13,6 +13,10 @@ export const spotifySlice = createSlice({
         updateTokens: (state, action) => {
             state.accessToken = action.payload.access_token
             state.refreshToken = action.payload.refresh_token
+            state.triedLoad = true
+        },
+        setLoadStatus: state => {
+            state.triedLoad = true
         }
     }
 })
