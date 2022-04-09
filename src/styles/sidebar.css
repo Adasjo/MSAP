@@ -1,0 +1,16 @@
+.sidebar {
+    width: 18rem;
+    padding: 0.7rem;
+}
+
+.sidebarButton {
+    width: 100%;
+}
+
+.sidebarList {
+    width: 100%;
+    border-top: solid black 1px;
+    margin-top: 0.7rem;
+    padding-top: 0.7rem;
+    overflow: scroll;
+}
