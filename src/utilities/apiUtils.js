@@ -77,15 +77,18 @@ function refreshToken(refresh_token) {
 }
 
 /*
-*   Handle the redirect back from Spotify's authentification page
+*   Redux thunk for handeling the redirect back from Spotify's authentification page
 */
-async function handleRedirect(dispatch, firebase, navigate) {
-    const code = getSearchParam("code")
-    const res = await getAccessToken(code)
-    dispatch({type: "spotify/updateTokens", payload: res})
-    const uid = firebase.auth().currentUser.uid
-    firebase.database().ref("users/" + uid + "/refreshToken").set(res.refresh_token)
-    navigate("../home", {replace: true})
+function handleRedirect(navigate) {
+    return async (dispatch, _getState, getFirebase) => {
+        const code = getSearchParam("code")
+        const res = await getAccessToken(code)
+        dispatch({type: "spotify/updateTokens", payload: res})
+        const firebase = getFirebase()
+        const uid = firebase.auth().currentUser.uid
+        getFirebase().database().ref("users/" + uid + "/refreshToken").set(res.refresh_token)
+        navigate("../home", {replace: true})
+    } 
 }
 
 /*
