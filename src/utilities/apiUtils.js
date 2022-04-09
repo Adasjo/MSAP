@@ -1,3 +1,4 @@
+import { useFirebase } from "react-redux-firebase"
 import {BASE_URL, client_id, client_secret, redirect_uri, scope} from "../config/spotifyConfig"
 
 const spotifyApiHeaders = {
@@ -77,6 +78,28 @@ function refreshToken(refresh_token) {
 }
 
 /*
+*   Redux thunk for geting a new access token. It primarily tries to use the refresh token from the redux state, 
+*   but falls back on fetching from firebase if no refresh token is loaded in the state. 
+*
+*   This function should be dispatched if a user is logged in but doesn't have a loaded spotify access token. 
+*   It should also be dispatched if an API call returns an error due to a faulty access token.
+*/
+function getNewToken() {
+    return async (dispatch, getState, getFirebase) => {
+        const firebase = getFirebase()
+        const uid = firebase.auth().currentUser.uid
+        let token = getState().spotify.refreshToken
+        if (!token) {
+            const res = await firebase.database().ref("users/" + uid + "/refreshToken").get()
+            token = res.val()
+        }
+        const res = await refreshToken(token)
+        dispatch({type: "spotify/updateTokens", payload: res})
+        firebase.database().ref("users/" + uid + "/refreshToken").set(res.refresh_token)
+    }
+}
+
+/*
 *   Redux thunk for handeling the redirect back from Spotify's authentification page
 */
 function handleRedirect(navigate) {
@@ -86,7 +109,7 @@ function handleRedirect(navigate) {
         dispatch({type: "spotify/updateTokens", payload: res})
         const firebase = getFirebase()
         const uid = firebase.auth().currentUser.uid
-        getFirebase().database().ref("users/" + uid + "/refreshToken").set(res.refresh_token)
+        firebase.database().ref("users/" + uid + "/refreshToken").set(res.refresh_token)
         navigate("../home", {replace: true})
     } 
 }

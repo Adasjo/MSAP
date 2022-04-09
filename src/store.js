@@ -4,9 +4,9 @@ import { composeWithDevTools } from "redux-devtools-extension"
 import rootReducer from "./reducers/root"
 import { getFirebase } from "react-redux-firebase"
 
-const middleware = [thunk]
+const middleware = [thunk.withExtraArgument(getFirebase)]
 
-const enhancer = applyMiddleware(thunk.withExtraArgument(getFirebase))
+const enhancer = composeWithDevTools(applyMiddleware(...middleware))
 
 const store = createStore(rootReducer, enhancer)
 
