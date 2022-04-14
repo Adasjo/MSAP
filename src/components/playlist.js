@@ -16,10 +16,8 @@ function Playlist() {
     const [searchParams, _setSearchParams] = useSearchParams()
 
     useEffect(() => spotifyGet("/playlists/" + searchParams.get("id"), token).then(setPlaylist).catch(console.log), [searchParams])
-    
-    console.log(playlist)
 
-    const tracks = playlist.tracks.items.map(trackRes => trackRes.track).map(track =>
+    const trackList = playlist.tracks.items.map(trackRes => trackRes.track).map(track =>
         <li key={track.id}>
             <div style={{margin: "30px", minWidth: "30px", minHeight: "30px", display: "flex", justifyContent: "left"}}>
                 <img src={track.album.images[2].url}></img>
@@ -30,9 +28,9 @@ function Playlist() {
                 </div>
         </li>);
 
-    return <div style={{ height: "auto", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+    return <div>
         <h1 style={{margin: "1em"}}>{playlist.name}</h1>
-        <div><ol>{tracks}</ol></div>
+        <div><ol>{trackList}</ol></div>
     </div>
 }
 
