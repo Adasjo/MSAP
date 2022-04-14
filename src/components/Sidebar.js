@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { spotifyGet } from "../utilities/apiUtils"
 
 import "../styles/sidebar.css"
-import { spotifyGet } from "../utilities/apiUtils"
 
 const initData = {items: []}
 
@@ -19,7 +19,7 @@ function Sidebar() {
         <div className="sidebarList">
             {data.items.map(playlist => {
                 return <div key={playlist.id}>
-                    <a href={playlist.href}>{playlist.name}</a><br></br>
+                    <button onClick={() => navigate("/playlist?id=" + playlist.id)}>{playlist.name}</button><br></br>
                 </div>
             })}
         </div>
