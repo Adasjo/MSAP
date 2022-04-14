@@ -14,3 +14,14 @@
     padding-top: 0.7rem;
     overflow: scroll;
 }
+
+.playlistButton {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+}
+
+.playlistButton:hover {
+    background: lightblue;
+}
