@@ -19,7 +19,7 @@ function Sidebar() {
         <div className="sidebarList">
             {data.items.map(playlist => {
                 return <div key={playlist.id}>
-                    <button onClick={() => navigate("/playlist?id=" + playlist.id)}>{playlist.name}</button><br></br>
+                    <button className="playlistButton" onClick={() => navigate("/playlist?id=" + playlist.id)}>{playlist.name}</button><br></br>
                 </div>
             })}
         </div>

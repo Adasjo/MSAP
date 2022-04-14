@@ -3,35 +3,29 @@ import {useState} from "react"
 import { useSelector } from "react-redux"
 import {spotifyGet} from '../utilities/apiUtils.js'
 
+import TrackList from "./trackList.js"
+
+import "../styles/search.css"
 
 const initRes = {tracks: {items: []}}
 
 
 function SearchBar() {
-    const [response, setResponse] = useState(() => initRes);
+    const [searchResult, setSearchResult] = useState(() => initRes);
     const accesstoken = useSelector(state => state.spotify.accessToken)
-    const [search, setSearch] = useState(() => "");
+    const [searchText, setSearchText] = useState(() => "");
 
     function searchCB (){
-        const searcher = search.replace(" ", "%20");
+        const searcher = searchText.replace(" ", "%20");
         const searchString = "/search?q=$" + searcher + "&type=track&limit=10" 
-        spotifyGet(searchString, accesstoken).then(setResponse);
+        spotifyGet(searchString, accesstoken).then(setSearchResult);
     }
     
-    const trackmap = response.tracks.items.map(trackRes => 
-        <li key={trackRes.id}>
-            <div style={{margin: "30px", minWidth: "30px", minHeight: "30px", display: "flex", justifyContent: "left"}}><img src={trackRes.album.images[2].url}></img>
-                {trackRes.name}
-                    <audio style={{alignItems: "center", padding: "10px"}} controls name="media">
-                        <source src={trackRes.preview_url} type="audio/mpeg"/>
-                    </audio>
-                </div>
-        </li>);
-    return <div style={{ height: "auto", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-        <h1 style={{margin: "1em"}}>Search for a track:</h1>
-        <input style={{margin: "1em"}} id="searchText" type="text" placeholder="Search here" onChange={e => setSearch(e.target.value)}/>
-        <div><ol>{trackmap}</ol></div>
-        <button style={{minWidth: "30px", minHeight: "30px", display: "flex", justifyContent: "center"}}onClick={searchCB}>Search</button>
+    return <div className="searchComponent">
+        <h1>Search for a track:</h1>
+        <input className="searchBar" type="text" placeholder="Search..." onChange={e => setSearchText(e.target.value)}/>
+        <button className="searchButton" onClick={searchCB}>Search</button>
+        <TrackList tracks={searchResult.tracks.items}/>
     </div>
 }
 

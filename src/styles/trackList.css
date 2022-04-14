@@ -1,0 +1,32 @@
+.track {
+    height: 3rem;
+    margin: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.trackImage {
+    margin-right: 1rem;
+}
+
+.nameAndImage {
+    min-width: 18rem;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.trackPreview {
+    align-items: center;
+    padding: 10px;
+}
+
+.trackTitle {
+    font-size: medium;
+}   
+
+.trackArtists {
+    font-size: small;
+    color: rgb(88, 88, 88);
+}
