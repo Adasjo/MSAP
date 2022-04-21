@@ -1,4 +1,7 @@
+import Spotify from "../components/spotify"
 import {BASE_URL, client_id, client_secret, redirect_uri, scope} from "../config/spotifyConfig"
+
+const API_URL = "https://api.spotify.com/v1"
 
 const spotifyApiHeaders = {
     "Authorization": "Basic " + (Buffer.from(client_id + ":" + client_secret)).toString("base64"),
@@ -130,8 +133,44 @@ async function spotifyGet(endpoint, token) {
             "Authorization": "Bearer " + token
         }
     }
-    const res = await fetch("https://api.spotify.com/v1" + endpoint, options)
+    const res = await fetch(API_URL + endpoint, options)
     return await res.json()
 }
 
-export {spotifyAuthorize, handleRedirect, spotifyGet, getNewToken}
+function spotifyTransferPlayBack(accessToken, id) {
+    const options = {
+        method: "PUT",
+        headers: {
+            "Authorization": "Bearer " + accessToken,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "device_ids": [id]
+        })
+    }
+    fetch(API_URL + "/me/player", options)
+}
+
+function initSpotifyPlayerSDK() {
+    return async (dispatch, getState) => {
+        const script = document.createElement("script")
+        script.src = "https://sdk.scdn.co/spotify-player.js"
+        script.async = true
+
+        document.body.appendChild(script)
+        
+        const accessToken = getState().spotify.accessToken
+
+        window.onSpotifyWebPlaybackSDKReady = () => {
+            const player = new window.Spotify.Player({
+                name: "MSAP Web Player",
+                getOAuthToken: cb => {cb(accessToken)},
+                volume: 0.5
+            })
+            
+            dispatch({type: "spotify/addPlayer", payload: player})
+        }
+    }
+}
+
+export {spotifyAuthorize, handleRedirect, spotifyGet, getNewToken, initSpotifyPlayerSDK, spotifyTransferPlayBack}
