@@ -59,6 +59,7 @@ function Player() {
         return null
     }
 
+    // Seek in the current track
     function seek(proc) {
         const newPos = proc / 100 * state.duration 
         player.seek(newPos)
@@ -76,7 +77,7 @@ function Player() {
         </div>
         <div className="center">
             <div className="centerContainer">
-                <button className="playerButton" onClick={() => {console.log("prev");player.previousTrack()}}>Prev</button>
+                <button className="playerButton" onClick={() => player.previousTrack()}>Prev</button>
                 {state.paused ? 
                     <button className="playerButton" onClick={() => player.togglePlay()} disabled={!ready}>Play</button> :
                     <button className="playerButton" onClick={() => player.togglePlay()} disabled={!ready}>Pause</button> 
