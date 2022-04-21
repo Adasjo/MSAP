@@ -5,7 +5,6 @@ import { spotifyAuthorize } from "../utilities/apiUtils"
 
 function GettingStarted() {
     const state = useSelector(state => state)
-    console.log(state)
     return <div>
         <div>
             Hi, we see that this is your first time using MSAP! To get started link your MSAP account to one of the available streaming plattforms below:

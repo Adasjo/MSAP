@@ -17,7 +17,11 @@ function Playlist() {
     const token = useSelector(state => state.spotify.accessToken)
     const [searchParams, _setSearchParams] = useSearchParams()
 
-    useEffect(() => spotifyGet("/playlists/" + searchParams.get("id"), token).then(setPlaylist).catch(console.log), [searchParams])
+    useEffect(() => 
+        spotifyGet("/playlists/" + searchParams.get("id"), token)
+            .then(setPlaylist)
+            .catch(console.log)
+        , [searchParams])
 
     return <div>
         <h1 style={{margin: "1em"}}>{playlist.name}</h1>
