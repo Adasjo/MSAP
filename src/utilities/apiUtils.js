@@ -137,6 +137,9 @@ async function spotifyGet(endpoint, token) {
     return await res.json()
 }
 
+/*
+*   Transfer the users playback to the web app 
+*/
 function spotifyTransferPlayBack(accessToken, id) {
     const options = {
         method: "PUT",
@@ -151,6 +154,10 @@ function spotifyTransferPlayBack(accessToken, id) {
     fetch(API_URL + "/me/player", options)
 }
 
+/*
+*   Redux thunk for initializing the Spotify playback SDK.
+*   The thunk will dispatch the initialized `Spotify.Player` component to the redux state
+*/
 function initSpotifyPlayerSDK() {
     return async (dispatch, getState) => {
         const script = document.createElement("script")
