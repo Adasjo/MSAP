@@ -1,0 +1,39 @@
+.player {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    padding: 1em;;
+}
+
+.center {
+    justify-self: center;
+    display: grid;
+    grid-template-rows: auto auto;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.centerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.playbarContainer {
+    margin: 0.5em;
+    height: 10px;
+    width: 100%;
+}
+
+.playbar {
+    align-self: center;
+    border-radius: 6px;
+}
+
+.playerButton {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}

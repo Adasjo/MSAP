@@ -17,6 +17,9 @@ export const spotifySlice = createSlice({
         },
         setLoadStatus: state => {
             state.triedLoad = true
+        },
+        addPlayer: (state, action) => {
+            state.player = action.payload
         }
     }
 })

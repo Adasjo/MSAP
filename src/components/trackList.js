@@ -1,13 +1,13 @@
 import React from "react"
 import "../styles/trackList.css"
 
+function renderArtists(track) {
+    const names = track.artists.map(artist => artist.name)
+    return names.join(", ")
+}
+
 function TrackList(props) {
     const tracks = props.tracks
-
-    function renderArtists(track) {
-        const names = track.artists.map(artist => artist.name)
-        return names.join(", ")
-    }
 
     function renderTrack(track) {
         return <li key={track.id}>
@@ -32,3 +32,5 @@ function TrackList(props) {
 }
 
 export default TrackList
+
+export {renderArtists}

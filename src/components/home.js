@@ -2,6 +2,7 @@ import React from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Navigate } from "react-router-dom"
 import { getNewToken } from "../utilities/apiUtils"
+import Player from "./player"
 import SearchBar from "./searchBar"
 import Sidebar from "./Sidebar"
 
@@ -22,6 +23,7 @@ function Home() {
             Temporary home screen!
             <Sidebar/>
             <SearchBar/>
+            <Player/>
         </div>
 }
 

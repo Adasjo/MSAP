@@ -26,7 +26,8 @@
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
     "redux-firestore": "^1.0.0",
-    "regenerator-runtime": "^0.13.9"
+    "regenerator-runtime": "^0.13.9",
+    "spotify-playback-sdk-node": "^1.0.2"
   },
   "devDependencies": {
     "eslint": "^8.11.0",
