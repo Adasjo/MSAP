@@ -21,6 +21,7 @@ function Player() {
     const player = useSelector(state => state.spotify.player)
     const [ready, setReady] = useState()
     const [state, setState] = useState()
+    const [volume, setVolume] = useState(() => 0.5)
 
     // Initialize a new spotify Web SDK player
     useEffect(() => {
@@ -60,9 +61,16 @@ function Player() {
     }
 
     // Seek in the current track
-    function seek(proc) {
+    function seek(e) {
+        const proc = e.target.value
         const newPos = proc / 100 * state.duration 
         player.seek(newPos)
+    }
+
+    function changeVolume(e) {
+        const proc = e.target.value
+        player.setVolume(proc/100)
+        setVolume(proc)
     }
 
     const track = state.track_window.current_track
@@ -86,13 +94,18 @@ function Player() {
             </div>
             <div className="centerContainer">
                 <div>{position}</div>
-                <div className="playbarContainer">
-                    <input className="playbar" type="range" min="0" max="100" value={Math.round(state.position / state.duration * 100)} onChange={e => seek(e.target.value)}/>
+                <div className="sliderContainer">
+                    <input className="slider" type="range" min="0" max="100" value={Math.round(state.position / state.duration * 100)} onChange={seek}/>
                 </div>
                 <span>{duration}</span>
             </div>
         </div>
-        
+        <div className="right">
+            <span>Volume</span>
+            <div className="sliderContainer">
+                <input className="slider" type="range" min="0" max="100" value={volume} onChange={changeVolume} />
+            </div>
+        </div>
     </div>
 }
 
