@@ -12,16 +12,18 @@ function TrackList(props) {
     function renderTrack(track) {
         return <li key={track.id}>
             <div className="track">
-                <div className="nameAndImage">
-                    <img className="trackImage" src={track.album.images[2].url}/>
+                <div className="nameAndImage" onClick={console.log}>
+                    <img className="trackImage" src={track.album.images.slice(-1)[0].url}/>
                     <span>
                         <span className="trackName">{track.name}</span><br/>
                         <span className="trackArtists">{renderArtists(track)}</span>
                     </span>
                 </div>
-                <audio className="trackPreview" controls name="media">
-                    <source src={track.preview_url} type="audio/mpeg"/>
-                </audio>
+                <div className="contextButton" onClick={console.log}>
+                    <div className="buttonDot"/>
+                    <div className="buttonDot"/>
+                    <div className="buttonDot"/>
+                </div>
             </div>
         </li>
     }

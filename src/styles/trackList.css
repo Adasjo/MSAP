@@ -6,6 +6,7 @@
     height: 3rem;
     margin: 2rem;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
@@ -15,22 +16,32 @@
 }
 
 .nameAndImage {
-    min-width: 18rem;
+    min-width: 5rem;
     display: flex;
     justify-content: left;
     align-items: center;
 }
 
-.trackPreview {
-    align-items: center;
-    padding: 10px;
-}
-
-.trackTitle {
+.trackName {
     font-size: medium;
 }   
 
 .trackArtists {
     font-size: small;
     color: rgb(88, 88, 88);
+}
+
+.contextButton {
+    background: none;
+    border: none;
+    margin: 1rem;
+}
+
+.buttonDot {
+    background-color: rgb(87, 87, 87);
+    border: none;
+    height: 0.28rem;
+    width: 0.28rem;
+    border-radius: 50%;
+    margin: 0.1rem;
 }

@@ -1,7 +1,9 @@
 .player {
     display: grid;
     grid-template-columns: 33% 33% 33%;
-    padding: 1em;;
+    align-items: center;
+    padding: 1rem;
+    background-color: white;
 }
 
 .center {
