@@ -27,9 +27,14 @@
     font-size: medium;
 }   
 
-.trackArtists {
+.trackArtist {
+    cursor: pointer;
     font-size: small;
     color: rgb(88, 88, 88);
+}
+
+.trackArtist:hover {
+    color: black;
 }
 
 .contextButton {

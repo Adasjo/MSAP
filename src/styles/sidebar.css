@@ -9,10 +9,6 @@
     border-right: 1px solid lightgrey;
 }
 
-.sidebarButton {
-    width: 100%;
-}
-
 .sidebarList {
     width: 100%;
     border-top: solid black 1px;
@@ -21,14 +17,21 @@
     overflow-y: scroll;
 }
 
-.playlistButton {
+.playlistButton, .sidebarButton {
     width: 100%;
-    text-align: left;
     background: none;
     border: none;
 }
 
-.playlistButton:hover {
+.sidebarButton {
+    margin-bottom: 0.5rem;
+}
+
+.playlistButton {
+    text-align: left;
+}
+
+.playlistButton:hover, .sidebarButton:hover {
     background: lightblue;
 }
 
