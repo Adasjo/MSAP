@@ -1,6 +1,11 @@
 .sidebar {
+    height: 100%;
     width: 18rem;
     padding: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .sidebarButton {
@@ -12,7 +17,7 @@
     border-top: solid black 1px;
     margin-top: 0.7rem;
     padding-top: 0.7rem;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .playlistButton {
@@ -24,4 +29,10 @@
 
 .playlistButton:hover {
     background: lightblue;
+}
+
+.currentlyPlaying {
+    width: 100%;
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
 }

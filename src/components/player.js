@@ -20,8 +20,8 @@ function Player() {
     const accessToken = useSelector(state => state.spotify.accessToken)
     const player = useSelector(state => state.spotify.player)
     const [ready, setReady] = useState()
-    const [state, setState] = useState()
     const [volume, setVolume] = useState(() => 0.5)
+    const [state, setState] = useState()
 
     // Initialize a new spotify Web SDK player
     useEffect(() => {
@@ -41,7 +41,10 @@ function Player() {
                 setReady(false)
             })
 
-            player.addListener("player_state_changed", newState => setState({...newState}))
+            player.addListener("player_state_changed", newState => {
+                dispatch({type: "spotify/updateState", payload: newState})
+                setState({...newState})
+            })
             
             player.connect()
         }

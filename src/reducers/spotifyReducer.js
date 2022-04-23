@@ -20,6 +20,9 @@ export const spotifySlice = createSlice({
         },
         addPlayer: (state, action) => {
             state.player = action.payload
+        },
+        updateState: (state, action) => {
+            state.currentState = {...action.payload}
         }
     }
 })
