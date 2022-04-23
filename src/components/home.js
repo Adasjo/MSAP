@@ -1,10 +1,14 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Navigate } from "react-router-dom"
+import { Route, Routes } from 'react-router-dom'
 import { getNewToken } from "../utilities/apiUtils"
 import Player from "./player"
 import SearchBar from "./searchBar"
+import Playlist from "./playlist"
 import Sidebar from "./Sidebar"
+import NoPage from "./noPage"
+
+import "../styles/home.css"
 
 function Home() {
     const dispatch = useDispatch()
@@ -19,12 +23,17 @@ function Home() {
         return <Navigate to={"/getting-started"}/>
     }
 
-    return <div>
-            Temporary home screen!
-            <Sidebar/>
-            <SearchBar/>
-            <Player/>
+    return <div className="homeGrid">
+        <div className="sidebarContainer"><Sidebar/></div>
+        <div className="mainContent">
+            <Routes>
+                <Route path="/search" element={<SearchBar/>}/>
+                <Route path="/playlist" element={<Playlist/>}/>
+                <Route path="*" element={<SearchBar/>}/>
+            </Routes>
         </div>
+        <div className="playerContainer"><Player/></div>
+    </div>
 }
 
 export default Home

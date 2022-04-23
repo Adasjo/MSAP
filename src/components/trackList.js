@@ -26,7 +26,7 @@ function TrackList(props) {
         </li>
     }
     
-    return <div>
+    return <div className="trackList">
         <ol>{tracks.map(renderTrack)}</ol>
     </div>
 }

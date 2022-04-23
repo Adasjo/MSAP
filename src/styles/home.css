@@ -1,0 +1,24 @@
+.homeGrid {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-areas: 
+        "a b b b"
+        "a b b b"
+        "a b b b"
+        "c c c c";
+}
+
+.sidebarContainer {
+    grid-area: a;
+}
+
+.mainContent {
+    grid-area: b;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.playerContainer {
+    grid-area: c;
+}

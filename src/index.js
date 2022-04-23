@@ -10,6 +10,7 @@ import firebase from 'firebase/app'
 import "firebase/auth"
 import "firebase/database"
 import store from "./store"
+import { BrowserRouter } from 'react-router-dom'
 
 firebase.initializeApp(fbConfig)
 
@@ -23,7 +24,9 @@ const rrfProps = {
 const render = () => ReactDOM.render(
   <Provider store={store}>
     <FirebaseProvider {...rrfProps}>
-      <App/>
+      <BrowserRouter>
+        <App/>
+      </BrowserRouter>
     </FirebaseProvider>
   </Provider>,
   document.getElementById('root')
