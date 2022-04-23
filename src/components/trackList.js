@@ -11,10 +11,16 @@ function renderArtists(track, onClick) {
     </div>
 }
 
+function ContextButton() {
+    return <div className="contextButton" onClick={console.log}>
+        <div className="buttonDot"/>
+        <div className="buttonDot"/>
+        <div className="buttonDot"/>
+    </div>
+}
+
 function TrackList(props) {
     const tracks = props.tracks
-
-
 
     function renderTrack(track) {
         return <li key={track.id}>
@@ -26,11 +32,7 @@ function TrackList(props) {
                         {renderArtists(track, props.onClick)}
                     </span>
                 </div>
-                <div className="contextButton" onClick={console.log}>
-                    <div className="buttonDot"/>
-                    <div className="buttonDot"/>
-                    <div className="buttonDot"/>
-                </div>
+                <ContextButton/>
             </div>
         </li>
     }

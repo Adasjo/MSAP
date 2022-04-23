@@ -84,7 +84,7 @@ function Player() {
     return <div className="player">
         <div>
             <span className="trackName">{track.name}</span><br/>
-            <span className="trackArtists">{renderArtists(track)}</span>
+            {renderArtists(track)}
         </div>
         <div className="center">
             <div className="centerContainer">
