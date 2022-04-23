@@ -20,7 +20,7 @@ function Player() {
     const accessToken = useSelector(state => state.spotify.accessToken)
     const player = useSelector(state => state.spotify.player)
     const [ready, setReady] = useState()
-    const [volume, setVolume] = useState(() => 0.5)
+    const [volume, setVolume] = useState(50)
     const [state, setState] = useState()
 
     // Initialize a new spotify Web SDK player
