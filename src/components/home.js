@@ -24,15 +24,15 @@ function Home() {
     }
 
     return <div className="homeGrid">
-        <div className="sidebarContainer"><Sidebar/></div>
         <div className="mainContent">
+            <Sidebar/>
             <Routes>
                 <Route path="/search" element={<SearchBar/>}/>
                 <Route path="/playlist" element={<Playlist/>}/>
                 <Route path="*" element={<SearchBar/>}/>
             </Routes>
         </div>
-        <div className="playerContainer"><Player/></div>
+        <div className="footer"><Player/></div>
     </div>
 }
 

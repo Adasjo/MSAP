@@ -22,9 +22,10 @@ function SearchBar() {
     }
     
     return <div className="searchComponent">
-        <h1>Search for a track:</h1>
-        <input className="searchBar" type="text" placeholder="Search..." onChange={e => setSearchText(e.target.value)}/>
-        <button className="searchButton" onClick={searchCB}>Search</button>
+        <div className="searchHeader">
+            <input className="searchBar" type="text" placeholder="Search..." onChange={e => setSearchText(e.target.value)}/>
+            <button className="searchButton" onClick={searchCB}>Search</button>
+        </div>
         <TrackList tracks={searchResult.tracks.items}/>
     </div>
 }

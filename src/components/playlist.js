@@ -5,6 +5,8 @@ import { spotifyGet } from "../utilities/apiUtils"
 
 import TrackList from "./trackList"
 
+import "../styles/playlist.css"
+
 const emptyPlaylist = {
     name: "",
     tracks: {
@@ -23,8 +25,8 @@ function Playlist() {
             .catch(console.log)
         , [searchParams])
 
-    return <div>
-        <h1 style={{margin: "1em"}}>{playlist.name}</h1>
+    return <div className="playlist">
+        <h1 className="playlistHeader">{playlist.name}</h1>
         <TrackList tracks={playlist.tracks.items.map(trackRes => trackRes.track)}/>
     </div>
 }

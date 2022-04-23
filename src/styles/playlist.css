@@ -1,0 +1,11 @@
+.playlist {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.playlistHeader {
+    position: sticky;
+    top: 0;
+    margin: 1rem;
+    background-color: white;
+}

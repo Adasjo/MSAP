@@ -1,8 +1,17 @@
 .searchComponent {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.searchHeader {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: white;
 }
 
 .searchBar {
-    margin: 2rem;
+    margin: 0.7rem; 
 }
 
 .searchButton {
