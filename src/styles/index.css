@@ -128,3 +128,28 @@ progress {
 [hidden] {
   display: none;
 }
+
+::-webkit-scrollbar {
+  appearance: none;
+  width: 0.7rem;
+}
+
+::-webkit-scrollbar-track {
+  appearance: none;
+  background: rgb(233, 233, 233);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-button {
+  appearance: none;
+  
+}
+
+::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(9, 172, 58);
+}
