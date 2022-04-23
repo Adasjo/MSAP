@@ -7,6 +7,8 @@
 .playlistHeader {
     position: sticky;
     top: 0;
+    padding: 1rem;
     margin: 1rem;
     background-color: white;
+    border-bottom: 1px solid lightgrey;
 }
