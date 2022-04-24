@@ -1,11 +1,42 @@
-import {BASE_URL, client_id, client_secret, redirect_uri, scope} from "../config/spotifyConfig"
+import {client_id, client_secret} from "../config/spotifyConfig"
 
+const BASE_URL = "https://accounts.spotify.com"
 const API_URL = "https://api.spotify.com/v1"
 
 const spotifyApiHeaders = {
     "Authorization": "Basic " + (Buffer.from(client_id + ":" + client_secret)).toString("base64"),
     "Content-Type": "application/x-www-form-urlencoded"
 }
+
+const redirect_uri = "http://localhost:8080/spotify"
+//const redirect_uri = "https://msap-429e1.web.app/spotify"
+
+// Scopes for Spotify authorization 
+const scope = [
+    //Spotify Connect
+    "user-modify-playback-state",
+    "user-read-playback-state",
+    "user-read-currently-playing",
+
+    //Listening History
+    "user-read-recently-played",
+    "user-read-playback-position",
+
+    //Playlists
+    "playlist-read-collaborative",
+    "playlist-read-private",
+
+    //Playback
+    "app-remote-control",
+    "streaming",
+
+    //Users
+    "user-read-email",
+    "user-read-private",
+
+    //Library
+    "user-library-read"
+].join(" ")
 
 /*
 *   Make a fetch call from the given endpoint with optionally specified options and search parameters
