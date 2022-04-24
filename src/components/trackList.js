@@ -1,12 +1,12 @@
 import React from "react"
 import "../styles/trackList.css"
 
-function renderArtists(track, onClick) {
-    const renderArtist = artist => 
-        <span className="trackArtist" key={artist.name} onClick={() => onClick(artist.name)}>{artist.name + ", "}</span>
+function renderArtists(track, redirect) {
+    const renderArtist = (artist, opt="") => 
+        <span className="trackArtist" key={artist.name} onClick={() => redirect(artist.name)}>{artist.name + opt}</span>
 
     return <div>
-        {track.artists.slice(0, -1).map(renderArtist)}
+        {track.artists.slice(0, -1).map(artist => renderArtist(artist, ", "))}
         {renderArtist(track.artists.slice(-1)[0])}
     </div>
 }
@@ -29,7 +29,7 @@ function TrackList(props) {
                     <img className="trackImage" src={track.album.images.slice(-1)[0].url}/>
                     <span>
                         <span className="trackName">{track.name}</span><br/>
-                        {renderArtists(track, props.onClick)}
+                        {renderArtists(track, props.artistRedirect)}
                     </span>
                 </div>
                 <ContextButton/>

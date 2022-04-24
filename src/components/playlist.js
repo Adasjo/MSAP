@@ -36,7 +36,7 @@ function Playlist() {
 
     return <div className="playlist">
         <h1 className="playlistHeader">{playlist.name}</h1>
-        <TrackList tracks={tracks} onClick={artistRedirect}/>
+        <TrackList tracks={tracks} artistRedirect={artistRedirect}/>
     </div>
 }
 

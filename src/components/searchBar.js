@@ -37,7 +37,7 @@ function SearchBar() {
             <input className="searchBar" type="text" placeholder="Search..." onChange={e => updateSearchText(e.target.value)}/>
             <button className="searchButton" onClick={search}>Search</button>
         </div>
-        <TrackList tracks={searchResult.tracks.items} onClick={updateSearchText}/>
+        <TrackList tracks={searchResult.tracks.items} artistRedirect={updateSearchText}/>
     </div>
 }
 
