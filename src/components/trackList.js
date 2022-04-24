@@ -1,6 +1,10 @@
 import React from "react"
 import "../styles/trackList.css"
 
+/*
+*   Render the artists of a track. 
+*   The redirect argument should be a function that when called, redirects the user to the artist.
+*/
 function renderArtists(track, redirect) {
     const renderArtist = (artist, opt="") => 
         <span className="trackArtist" key={artist.name} onClick={() => redirect(artist.name)}>{artist.name + opt}</span>
@@ -11,6 +15,10 @@ function renderArtists(track, redirect) {
     </div>
 }
 
+/*
+*   Context button.
+*   This should probably be moved to its own file if expanded upon.
+*/
 function ContextButton() {
     return <div className="contextButton" onClick={console.log}>
         <div className="buttonDot"/>
@@ -25,10 +33,10 @@ function TrackList(props) {
     function renderTrack(track) {
         return <li key={track.id}>
             <div className="track">
-                <div className="nameAndImage" onClick={console.log}>
-                    <img className="trackImage" src={track.album.images.slice(-1)[0].url}/>
+                <div className="nameAndImage">
+                    <img className="trackImage" src={track.album.images.slice(-1)[0].url} onClick={() => props.playTrack(track)}/>
                     <span>
-                        <span className="trackName">{track.name}</span><br/>
+                        <span className="trackName" onClick={() => props.playTrack(track)}>{track.name}</span><br/>
                         {renderArtists(track, props.artistRedirect)}
                     </span>
                 </div>

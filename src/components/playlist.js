@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useSearchParams } from "react-router-dom"
-import { spotifyGet } from "../utilities/apiUtils"
+import { spotifyGet, spotifyPlayTrack } from "../utilities/apiUtils"
 
 import TrackList from "./trackList"
 
@@ -17,7 +17,7 @@ const emptyPlaylist = {
 function Playlist() {
     const [playlist, setPlaylist] = useState(() => emptyPlaylist)
     const token = useSelector(state => state.spotify.accessToken)
-    const [searchParams, setSearchParams] = useSearchParams()
+    const [searchParams, _] = useSearchParams()
     const navigate = useNavigate()
 
     useEffect(() => 
@@ -27,8 +27,8 @@ function Playlist() {
         , [searchParams])
 
     function artistRedirect(artist) {
-        setSearchParams(new URLSearchParams({search: artist}))
-        navigate("/home?search=" + artist.replace(" ", "%20"))
+        const params = new URLSearchParams({search: artist})
+        navigate("/home?" + params) 
     }
 
     const tracks = playlist.tracks.items.map(trackRes => trackRes.track)
@@ -36,7 +36,7 @@ function Playlist() {
 
     return <div className="playlist">
         <h1 className="playlistHeader">{playlist.name}</h1>
-        <TrackList tracks={tracks} artistRedirect={artistRedirect}/>
+        <TrackList tracks={tracks} artistRedirect={artistRedirect} playTrack={track => spotifyPlayTrack(token, track.uri)}/>
     </div>
 }
 

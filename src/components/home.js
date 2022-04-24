@@ -1,12 +1,11 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, Navigate } from 'react-router-dom'
 import { getNewToken } from "../utilities/apiUtils"
 import Player from "./player"
 import SearchBar from "./searchBar"
 import Playlist from "./playlist"
 import Sidebar from "./Sidebar"
-import NoPage from "./noPage"
 
 import "../styles/home.css"
 
@@ -27,7 +26,6 @@ function Home() {
         <div className="mainContent">
             <Sidebar/>
             <Routes>
-                <Route path="/search" element={<SearchBar/>}/>
                 <Route path="/playlist" element={<Playlist/>}/>
                 <Route path="*" element={<SearchBar/>}/>
             </Routes>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { initSpotifyPlayerSDK, spotifyTransferPlayBack } from "../utilities/apiUtils"
+import { initSpotifyPlayerSDK, isActive, spotifyTransferPlayBack } from "../utilities/apiUtils"
 import { renderArtists } from "./trackList"
 
 import "../styles/player.css"
@@ -45,14 +45,14 @@ function Player() {
                 dispatch({type: "spotify/updateState", payload: newState})
                 setState({...newState})
             })
-            
+
             player.connect()
         }
     }, [player])
 
     // Update player every second
     useEffect(async () => {
-        if (player && state) {
+        if (player && state && ready) {
             await new Promise(r => setTimeout(r, 1000))
             const state = await player.getCurrentState()
             setState({...state})
