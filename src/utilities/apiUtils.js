@@ -181,7 +181,38 @@ function spotifyTransferPlayBack(accessToken, id) {
             "device_ids": [id]
         })
     }
-    fetch(API_URL + "/me/player", options)
+    fetch(API_URL + "/me/player", options).then(console.log)
+}
+
+function spotifyQueueTrack(accessToken, uri) {
+    const options = {
+        method: "POST",
+        headers: {
+            "Authorization": "Bearer " + accessToken,
+            "Content-Type": "application/json"
+        }
+    }
+    return fetch(API_URL + "/me/player/queue?uri=" + uri, options)
+}
+
+function spotifyPlayTrack(track) {
+    return async (_dispatch, getState) => {
+        const accessToken = getState().spotify.accessToken
+        const player = getState().spotify.player
+        await spotifyQueueTrack(accessToken, track.uri)
+        let count = 0
+        while (true) {
+            await player.nextTrack()
+            const state = await player.getCurrentState()
+            const current = state.track_window.next_tracks[0]
+            console.log(current.uri)
+            console.log(track.uri)
+            if (current.uri == track.uri || count >= 3) {
+                break
+            }
+            count++
+        }
+    } 
 }
 
 /*
@@ -210,4 +241,4 @@ function initSpotifyPlayerSDK() {
     }
 }
 
-export {spotifyAuthorize, handleRedirect, spotifyGet, getNewToken, initSpotifyPlayerSDK, spotifyTransferPlayBack}
+export {spotifyAuthorize, handleRedirect, spotifyGet, getNewToken, initSpotifyPlayerSDK, spotifyTransferPlayBack, spotifyQueueTrack, spotifyPlayTrack}

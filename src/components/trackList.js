@@ -33,10 +33,10 @@ function TrackList(props) {
     function renderTrack(track) {
         return <li key={track.id}>
             <div className="track">
-                <div className="nameAndImage" onClick={console.log}>
-                    <img className="trackImage" src={track.album.images.slice(-1)[0].url}/>
+                <div className="nameAndImage">
+                    <img className="trackImage" src={track.album.images.slice(-1)[0].url} onClick={() => props.playTrack(track)}/>
                     <span>
-                        <span className="trackName">{track.name}</span><br/>
+                        <span className="trackName" onClick={() => props.playTrack(track)}>{track.name}</span><br/>
                         {renderArtists(track, props.artistRedirect)}
                     </span>
                 </div>

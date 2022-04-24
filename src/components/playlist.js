@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useSearchParams } from "react-router-dom"
-import { spotifyGet } from "../utilities/apiUtils"
+import { spotifyGet, spotifyPlayTrack } from "../utilities/apiUtils"
 
 import TrackList from "./trackList"
 
@@ -18,6 +18,7 @@ function Playlist() {
     const [playlist, setPlaylist] = useState(() => emptyPlaylist)
     const token = useSelector(state => state.spotify.accessToken)
     const [searchParams, _] = useSearchParams()
+    const dispatch = useDispatch()
     const navigate = useNavigate()
 
     useEffect(() => 
@@ -36,7 +37,7 @@ function Playlist() {
 
     return <div className="playlist">
         <h1 className="playlistHeader">{playlist.name}</h1>
-        <TrackList tracks={tracks} artistRedirect={artistRedirect}/>
+        <TrackList tracks={tracks} artistRedirect={artistRedirect} playTrack={track => dispatch(spotifyPlayTrack(track))}/>
     </div>
 }
 

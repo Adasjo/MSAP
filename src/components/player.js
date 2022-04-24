@@ -45,14 +45,14 @@ function Player() {
                 dispatch({type: "spotify/updateState", payload: newState})
                 setState({...newState})
             })
-            
-            player.connect()
+
+            player.connect().then(console.log)
         }
     }, [player])
 
     // Update player every second
     useEffect(async () => {
-        if (player && state) {
+        if (player && state && ready) {
             await new Promise(r => setTimeout(r, 1000))
             const state = await player.getCurrentState()
             setState({...state})
