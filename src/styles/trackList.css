@@ -12,10 +12,6 @@
     align-items: center;
 }
 
-.trackImage {
-    margin-right: 1rem;
-}
-
 .nameAndImage {
     min-width: 5rem;
     display: flex;
@@ -23,14 +19,28 @@
     align-items: center;
 }
 
+.trackImage {
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.trackImage:disabled {
+    filter: grayscale(100%);
+}
+
 .trackName {
     font-size: medium;
+    cursor: pointer;
 }   
+
+.trackName:hover, .trackName:disabled {
+    color: grey;
+}
 
 .trackArtist {
     cursor: pointer;
     font-size: small;
-    color: rgb(88, 88, 88);
+    color: rgb(59, 59, 59);
 }
 
 .trackArtist:hover {
@@ -38,16 +48,21 @@
 }
 
 .contextButton {
+    cursor: pointer;
     background: none;
     border: none;
     margin: 1rem;
 }
 
 .buttonDot {
-    background-color: rgb(87, 87, 87);
+    background-color: rgb(99, 99, 99);
     border: none;
     height: 0.28rem;
     width: 0.28rem;
     border-radius: 50%;
     margin: 0.1rem;
+}
+
+.contextButton:hover > .buttonDot {
+    background-color: rgb(41, 160, 57);
 }
