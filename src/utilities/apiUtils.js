@@ -39,6 +39,23 @@ const scope = [
 ].join(" ")
 
 /*
+*   Helper funciton to construct options for some Spotify fetch requests
+*/
+function fetchOptions(method, accessToken, body=undefined) {
+    let options = {
+        method,
+        headers: {
+            "Authorization": "Bearer " + accessToken,
+            "Content-Type": "application/json"
+        }
+    }
+    if (body) {
+        options.body = JSON.stringify(body)
+    }
+    return options
+}
+
+/*
 *   Make a fetch call from the given endpoint with optionally specified options and search parameters
 */
 async function apiCall(endpoint, options = {}, params = {}) {
@@ -171,48 +188,24 @@ async function spotifyGet(endpoint, token) {
 *   Transfer the users playback to the web app 
 */
 function spotifyTransferPlayBack(accessToken, id) {
-    const options = {
-        method: "PUT",
-        headers: {
-            "Authorization": "Bearer " + accessToken,
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            "device_ids": [id]
-        })
-    }
-    fetch(API_URL + "/me/player", options).then(console.log)
+    const options = fetchOptions("PUT", accessToken, {device_ids: [id]})
+    fetch(API_URL + "/me/player", options)
 }
 
+/*
+*   Add a track to the end of the users queue
+*/
 function spotifyQueueTrack(accessToken, uri) {
-    const options = {
-        method: "POST",
-        headers: {
-            "Authorization": "Bearer " + accessToken,
-            "Content-Type": "application/json"
-        }
-    }
+    const options = fetchOptions("POST", accessToken)
     return fetch(API_URL + "/me/player/queue?uri=" + uri, options)
 }
 
-function spotifyPlayTrack(track) {
-    return async (_dispatch, getState) => {
-        const accessToken = getState().spotify.accessToken
-        const player = getState().spotify.player
-        await spotifyQueueTrack(accessToken, track.uri)
-        let count = 0
-        while (true) {
-            await player.nextTrack()
-            const state = await player.getCurrentState()
-            const current = state.track_window.next_tracks[0]
-            console.log(current.uri)
-            console.log(track.uri)
-            if (current.uri == track.uri || count >= 3) {
-                break
-            }
-            count++
-        }
-    } 
+/*
+*   Play a track
+*/
+function spotifyPlayTrack(accessToken, uri) {
+    const options = fetchOptions("PUT", accessToken, {uris: [uri]})
+    fetch(API_URL + "/me/player/play", options)
 }
 
 /*
@@ -228,10 +221,13 @@ function initSpotifyPlayerSDK() {
         document.body.appendChild(script)
         
         const accessToken = getState().spotify.accessToken
+        if (!accessToken) {
+            console.log("Accesstoken not found!")
+        }
 
         window.onSpotifyWebPlaybackSDKReady = () => {
             const player = new window.Spotify.Player({
-                name: "MSAP Web Player",
+                name: "Test",
                 getOAuthToken: cb => {cb(accessToken)},
                 volume: 0.5
             })
@@ -241,4 +237,28 @@ function initSpotifyPlayerSDK() {
     }
 }
 
-export {spotifyAuthorize, handleRedirect, spotifyGet, getNewToken, initSpotifyPlayerSDK, spotifyTransferPlayBack, spotifyQueueTrack, spotifyPlayTrack}
+/*
+*   Check if a specified device is active
+*   Probably
+*/
+async function isActive(accessToken, id) {
+    const options = fetchOptions("GET", accessToken)
+    const data = await fetch(API_URL + "/me/player/devices", options).then(treatHTTPResponseACB)
+    const device = data.devices.find(device => device.id == id)
+    if (device && device.is_active) {
+        return true
+    }
+    return false
+}
+
+export {
+    spotifyAuthorize, 
+    handleRedirect, 
+    spotifyGet, 
+    getNewToken, 
+    initSpotifyPlayerSDK, 
+    spotifyTransferPlayBack, 
+    spotifyQueueTrack, 
+    spotifyPlayTrack, 
+    isActive
+}

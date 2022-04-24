@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { initSpotifyPlayerSDK, spotifyTransferPlayBack } from "../utilities/apiUtils"
+import { initSpotifyPlayerSDK, isActive, spotifyTransferPlayBack } from "../utilities/apiUtils"
 import { renderArtists } from "./trackList"
 
 import "../styles/player.css"
@@ -46,7 +46,7 @@ function Player() {
                 setState({...newState})
             })
 
-            player.connect().then(console.log)
+            player.connect()
         }
     }, [player])
 

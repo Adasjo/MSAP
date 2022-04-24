@@ -18,7 +18,6 @@ function Playlist() {
     const [playlist, setPlaylist] = useState(() => emptyPlaylist)
     const token = useSelector(state => state.spotify.accessToken)
     const [searchParams, _] = useSearchParams()
-    const dispatch = useDispatch()
     const navigate = useNavigate()
 
     useEffect(() => 
@@ -37,7 +36,7 @@ function Playlist() {
 
     return <div className="playlist">
         <h1 className="playlistHeader">{playlist.name}</h1>
-        <TrackList tracks={tracks} artistRedirect={artistRedirect} playTrack={track => dispatch(spotifyPlayTrack(track))}/>
+        <TrackList tracks={tracks} artistRedirect={artistRedirect} playTrack={track => spotifyPlayTrack(token, track.uri)}/>
     </div>
 }
 
