@@ -1,4 +1,3 @@
-import Spotify from "../components/spotify"
 import {BASE_URL, client_id, client_secret, redirect_uri, scope} from "../config/spotifyConfig"
 
 const API_URL = "https://api.spotify.com/v1"

@@ -14,8 +14,6 @@ function AuthLock() {
         return <div>Loading...</div>
     }
     
-
-    console.log("Blocked by auth-lock")
     return <Navigate to={"/sign-in"}/>  
 }
 

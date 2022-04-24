@@ -17,7 +17,7 @@ const emptyPlaylist = {
 function Playlist() {
     const [playlist, setPlaylist] = useState(() => emptyPlaylist)
     const token = useSelector(state => state.spotify.accessToken)
-    const [searchParams, setSearchParams] = useSearchParams()
+    const [searchParams, _] = useSearchParams()
     const navigate = useNavigate()
 
     useEffect(() => 
@@ -27,8 +27,8 @@ function Playlist() {
         , [searchParams])
 
     function artistRedirect(artist) {
-        setSearchParams(new URLSearchParams({search: artist}))
-        navigate("/home?search=" + artist.replace(" ", "%20"))
+        const params = new URLSearchParams({search: artist})
+        navigate("/home?" + params) 
     }
 
     const tracks = playlist.tracks.items.map(trackRes => trackRes.track)

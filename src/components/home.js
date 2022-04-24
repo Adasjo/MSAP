@@ -6,7 +6,6 @@ import Player from "./player"
 import SearchBar from "./searchBar"
 import Playlist from "./playlist"
 import Sidebar from "./Sidebar"
-import NoPage from "./noPage"
 
 import "../styles/home.css"
 
@@ -27,7 +26,6 @@ function Home() {
         <div className="mainContent">
             <Sidebar/>
             <Routes>
-                <Route path="/search" element={<SearchBar/>}/>
                 <Route path="/playlist" element={<Playlist/>}/>
                 <Route path="*" element={<SearchBar/>}/>
             </Routes>
