@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import {useState} from "react"
 import { useSelector } from "react-redux"
-import {spotifyGet} from '../utilities/apiUtils.js'
+import {spotifyGet, spotifyPlayTrack} from '../utilities/apiUtils.js'
 
 import TrackList from "./trackList.js"
 
@@ -37,7 +37,7 @@ function SearchBar() {
             <input className="searchBar" type="text" placeholder="Search..." onChange={e => updateSearchText(e.target.value)}/>
             <button className="searchButton" onClick={search}>Search</button>
         </div>
-        <TrackList tracks={searchResult.tracks.items} artistRedirect={updateSearchText}/>
+        <TrackList tracks={searchResult.tracks.items} artistRedirect={updateSearchText} playTrack={track => spotifyPlayTrack(accesstoken, track.uri)}/>
     </div>
 }
 
