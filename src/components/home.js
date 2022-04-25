@@ -11,17 +11,19 @@ import "../styles/home.css"
 
 function Home() {
     const dispatch = useDispatch()
-    const spotify = useSelector(state => state.spotify)
+    const accessToken = useSelector(state => state.spotify.accessToken)
+    const triedLoad = useSelector(state => state.spotify.triedLoad)
 
     // Check whether there is a Spotify access token in the state. 
     // If not present, try fetch from firebase
-    if (!spotify.accessToken && !spotify.triedLoad) {
+    if (!accessToken && !triedLoad) {
         dispatch(getNewToken())
         return null
-    } else if (!spotify.accessToken) {
+    } else if (!accessToken) {
         return <Navigate to={"/getting-started"}/>
     }
-
+                     
+    console.log("Render home")
     return <div className="homeGrid">
         <div className="mainContent">
             <Sidebar/>
