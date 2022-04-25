@@ -23,7 +23,6 @@ function Home() {
         return <Navigate to={"/getting-started"}/>
     }
                      
-    console.log("Render home")
     return <div className="homeGrid">
         <div className="mainContent">
             <Sidebar/>
