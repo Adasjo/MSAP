@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import {useState} from "react"
 import { useSelector } from "react-redux"
-import {spotifyGet, spotifyPlayTrack} from '../utilities/apiUtils.js'
+import {spotifyGet, spotifyPlayTrack, spotifyQueueTrack} from '../utilities/apiUtils.js'
 
 import TrackList from "./trackList.js"
 
@@ -16,14 +16,14 @@ const searchInit = new URLSearchParams({
 function SearchBar() {
     const [searchResult, setSearchResult] = useState()
     const [error, setError] = useState()
-    const accesstoken = useSelector(state => state.spotify.accessToken)
+    const accessToken = useSelector(state => state.spotify.accessToken)
     const [searchParams, setSearchParams] = useSearchParams(searchInit)
 
     let searchText = searchParams.get("search")
 
     function search() {
         const searchString = "/search?q=$" + searchText.replace(" ", "%20") + searchOptions
-        spotifyGet(searchString, accesstoken).then(setSearchResult).catch(setError)
+        spotifyGet(searchString, accessToken).then(setSearchResult).catch(setError)
     }
 
     function updateSearchText(string) {
@@ -50,7 +50,7 @@ function SearchBar() {
             <button className="searchButton" onClick={search}>Search</button>
         </div>
         {promiseNoData() ||
-        <TrackList tracks={searchResult.tracks.items} artistRedirect={updateSearchText} playTrack={track => spotifyPlayTrack(accesstoken, track.uri)}/>
+        <TrackList tracks={searchResult.tracks.items} artistRedirect={updateSearchText} playTrack={track => spotifyPlayTrack(accessToken, track.uri)} addToQueue={uri => spotifyQueueTrack(accessToken, uri)}/>
         }
     </div>
 }

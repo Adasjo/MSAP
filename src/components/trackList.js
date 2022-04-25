@@ -1,5 +1,6 @@
 import React from "react"
 import "../styles/trackList.css"
+import { spotifyQueueTrack } from "../utilities/apiUtils"
 
 /*
 *   Render the artists of a track. 
@@ -19,12 +20,16 @@ function renderArtists(track, redirect) {
 *   Context button.
 *   This should probably be moved to its own file if expanded upon.
 */
-function ContextButton() {
-    return <div className="contextButton" onClick={console.log}>
+function ContextButton(props) {
+    return <label className="contextButton">
+        <input type="checkbox"/>
+        <div className="dropdown">
+            <button onClick={props.addToQueue}>Add to queue</button>
+        </div>
         <div className="buttonDot"/>
         <div className="buttonDot"/>
         <div className="buttonDot"/>
-    </div>
+    </label>
 }
 
 function TrackList(props) {
@@ -40,7 +45,7 @@ function TrackList(props) {
                         {renderArtists(track, props.artistRedirect)}
                     </span>
                 </div>
-                <ContextButton/>
+                <button onClick={() => props.addToQueue(track.uri)}>Add To Queue</button>
             </div>
         </li>
     }

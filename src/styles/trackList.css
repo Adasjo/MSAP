@@ -11,7 +11,11 @@
     justify-content: space-between;
     align-items: center;
 }
-
+/*
+.track:hover {
+    background: rgb(250, 250, 250);
+}
+*/
 .nameAndImage {
     min-width: 5rem;
     display: flex;
@@ -56,6 +60,12 @@
     margin: 1rem;
 }
 
+.contextButton input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
 .buttonDot {
     background-color: rgb(99, 99, 99);
     border: none;
@@ -67,4 +77,54 @@
 
 .contextButton:hover > .buttonDot {
     background-color: rgb(41, 160, 57);
+}
+
+input:checked ~ .buttonDot {
+    display: none;
+}
+
+.dropdown {
+    display: none;
+}
+
+input:checked + .dropdown {
+    display: block;
+    background: rgb(0, 0, 0);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.contextButton button {
+    background: none;
+    border: none;
+    color: rgb(238, 238, 238);
+    opacity: 1;
+}
+
+.contextButton button:hover {
+    color: white;
+    background-color: rgb(44, 44, 44);
+}
+
+.track > button {
+    background: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+    transition: .1s;
+    -webkit-transition: .1s;
+}
+
+.track > button:hover {
+    /*background: rgb(205, 236, 215);*/
+    color: rgb(46, 173, 95);
+}
+
+.track > button:active {
+    /*background: rgb(205, 236, 215);*/
+    color: rgb(23, 100, 52);
+}
+
+.track:hover > button {
+    opacity: 1;
 }
