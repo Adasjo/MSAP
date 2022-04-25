@@ -36,10 +36,12 @@ function Playlist() {
         
     }
 
+    const tracks = playlist.tracks.items.map(trackRes => trackRes.track).filter(track => track.track)
+
     return <div className="playlist">
         <h1 className="playlistHeader">{playlist.name}</h1>
         <TrackList 
-            tracks={playlist.tracks.items.map(trackRes => trackRes.track)} 
+            tracks={tracks} 
             artistRedirect={artistRedirect} 
             playTrack={track => spotifyPlayTrack(token, track.uri)}
             addToQueue={uri => spotifyQueueTrack(token, uri)}
