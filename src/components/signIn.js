@@ -7,15 +7,17 @@ import "../styles/auth.css"
 function SignIn() {
     const [email, setEmail] = useState()
     const [password, setPW] = useState()
+    const [error, setError] = useState()
     const firebase = useFirebase()
     const navigate = useNavigate()
 
     function onSubmit() {
         firebase.login({email, password})
-            .then(_ => {
-                navigate("/home", {replace: true})
+            .then(_ => navigate("/home", {replace: true}))
+            .catch(e => {
+                setError(e)
+                firebase.initializeAuth()
             })
-            .catch(error => console.log(error))
     }
 
     return <div className="authPage">
@@ -23,12 +25,13 @@ function SignIn() {
             <h3>Welcome back!</h3>
             <div className="formFieldDiv">
                 <label htmlFor="email">Email</label><br></br>
-                <input className="formField" type="email" id={"email"} onChange={e => setEmail(e.target.value)}></input>
+                <input className="formField" type="email" onChange={e => setEmail(e.target.value)}></input>
             </div>
             <div className="formFieldDiv">
                 <label htmlFor="pw">Password</label>
-                <input className="formField" type="password" id={"pw"} onChange={e => setPW(e.target.value)}></input>
+                <input className="formField" type="password" onChange={e => setPW(e.target.value)}></input>
                 <Link to="/reset">Forgot password?</Link>
+                {error ? <div className="error">Incorrect email or password</div> : ""}
             </div>
             <div className="formFieldDiv"><button className="formButton" onClick={onSubmit}>Sign-in</button></div>
             <div className="formFieldDiv">

@@ -22,13 +22,13 @@ const rrfProps = {
 }
 
 const render = () => ReactDOM.render(
-  <Provider store={store}>
-    <FirebaseProvider {...rrfProps}>
-      <BrowserRouter>
+  <BrowserRouter>
+    <Provider store={store}>
+      <FirebaseProvider {...rrfProps}>
         <App/>
-      </BrowserRouter>
-    </FirebaseProvider>
-  </Provider>,
+      </FirebaseProvider>
+    </Provider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

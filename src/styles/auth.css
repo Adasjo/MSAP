@@ -53,3 +53,7 @@
 .formButton:active {
     background-color: rgb(60, 103, 146);
 }
+
+.error {
+    color: red;
+}

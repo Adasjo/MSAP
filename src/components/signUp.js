@@ -23,11 +23,11 @@ function SignUp() {
             <h3>Register account</h3>
             <div className="formFieldDiv">
                 <label htmlFor="email">Email</label>
-                <input className="formField" type="email" id="email" onChange={e => setEmail(e.target.value)}></input>
+                <input className="formField" type="email" onChange={e => setEmail(e.target.value)}></input>
             </div>
             <div className="formFieldDiv">
                 <label htmlFor="pw">Password</label>
-                <input className="formField" type="password" id="pw" onChange={e => setPW(e.target.value)}></input>
+                <input className="formField" type="password" onChange={e => setPW(e.target.value)}></input>
             </div>
             <div className="formFieldDiv"><button className="formButton" onClick={onSubmit}>Register</button></div>
             <div className="formFieldDiv">
