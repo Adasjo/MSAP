@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { initSpotifyPlayerSDK, isActive, spotifyTransferPlayBack } from "../utilities/apiUtils"
+import { initSpotifyPlayerSDK, spotifyPlayTrack, spotifyTransferPlayBack } from "../utilities/apiUtils"
 import { renderArtists } from "./trackList"
 
 import "../styles/player.css"
-import "../styles/trackList.css"
 
 /*
 *   Helper function to convert milliseconds to "minutes:seconds" format
@@ -58,7 +57,7 @@ function Player() {
             setState({...state})
         }
     }, [state])
-
+    
     if (!player || !state) {
         return null
     }
@@ -83,8 +82,8 @@ function Player() {
     
     return <div className="player">
         <div>
-            <span className="trackName">{track.name}</span><br/>
-            {renderArtists(track)}
+            <span>{track.name}</span><br/>
+            {renderArtists(track, track => spotifyPlayTrack(accessToken, track.uri))}
         </div>
         <div className="center">
             <div className="centerContainer">
