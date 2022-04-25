@@ -21,6 +21,7 @@
     width: 100%;
     background: none;
     border: none;
+    cursor: pointer;
 }
 
 .sidebarButton {
@@ -32,7 +33,12 @@
 }
 
 .playlistButton:hover, .sidebarButton:hover {
-    background: rgb(205, 236, 215);
+    /*background: rgb(205, 236, 215);*/
+    color: grey;
+}
+
+.playlistButton:active, .sidebarButton:active {
+    color: black;
 }
 
 .currentlyPlaying {
