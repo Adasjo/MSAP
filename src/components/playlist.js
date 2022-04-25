@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { spotifyGet, spotifyPlayTrack } from "../utilities/apiUtils"
 
@@ -7,37 +7,39 @@ import TrackList from "./trackList"
 
 import "../styles/playlist.css"
 
-const emptyPlaylist = {
-    name: "",
-    tracks: {
-        items: []
-    }
-}
-
 function Playlist() {
-    const [playlist, setPlaylist] = useState(() => emptyPlaylist)
+    const [playlist, setPlaylist] = useState()
+    const [error, setError] = useState()
     const token = useSelector(state => state.spotify.accessToken)
     const [searchParams, _] = useSearchParams()
     const navigate = useNavigate()
 
-    useEffect(() => 
+    useEffect(() => {
         spotifyGet("/playlists/" + searchParams.get("id"), token)
             .then(setPlaylist)
-            .catch(console.log)
-        , [searchParams])
+            .catch(setError)
+    }, [searchParams])
 
     function artistRedirect(artist) {
         const params = new URLSearchParams({search: artist})
         navigate("/home?" + params) 
     }
 
-    const tracks = playlist.tracks.items.map(trackRes => trackRes.track)
-
+    if (!playlist) {
+        if (searchParams.get("id") && !error) {
+            return <div>Loading...</div>
+        } else if (error) {
+            return <div>{error}</div>
+        } else {
+            return <div>No data</div>
+        }
+        
+    }
 
     return <div className="playlist">
         <h1 className="playlistHeader">{playlist.name}</h1>
-        <TrackList tracks={tracks} artistRedirect={artistRedirect} playTrack={track => spotifyPlayTrack(token, track.uri)}/>
-    </div>
+        <TrackList tracks={playlist.tracks.items.map(trackRes => trackRes.track)} artistRedirect={artistRedirect} playTrack={track => spotifyPlayTrack(token, track.uri)}/>
+    </div> 
 }
 
 export default Playlist
