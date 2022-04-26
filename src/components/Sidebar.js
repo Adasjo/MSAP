@@ -23,8 +23,10 @@ function Sidebar() {
 
     return <div className="sidebar">
         <div>
-            <button className="sidebarButton" onClick={() => navigate("/home")}>Home</button>
-            <button className="sidebarButton" onClick={() => navigate("/home/search")}>Search</button>
+            <div className="sidebarHeader">
+                <button className="sidebarButton" onClick={() => navigate("/home")}>Home</button>
+                <button className="sidebarButton" onClick={() => navigate("/home/search")}>Search</button>
+            </div>
             <div className="sidebarList">
                 {data.items.map(playlist => {
                     return <div key={playlist.id}>
@@ -33,7 +35,6 @@ function Sidebar() {
                 })}
             </div>
         </div>
-        
         {image ? <img className="currentlyPlaying" src={image}/> : ""}
     </div>
 }
