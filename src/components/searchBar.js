@@ -30,6 +30,11 @@ function SearchBar() {
         setSearchParams(new URLSearchParams({search: string}))
     }
     
+    function artistRedirect(e, artist) {
+        updateSearchText(artist)
+        e.stopPropagation()
+    }
+
     useEffect(search, [searchParams])
 
 
@@ -50,7 +55,7 @@ function SearchBar() {
             <button className="searchButton" onClick={search}>Search</button>
         </div>
         {promiseNoData() ||
-        <TrackList tracks={searchResult.tracks.items} artistRedirect={updateSearchText} playTrack={track => spotifyPlayTrack(accessToken, track.uri)} addToQueue={uri => spotifyQueueTrack(accessToken, uri)}/>
+        <TrackList tracks={searchResult.tracks.items} artistRedirect={artistRedirect} playTrack={track => spotifyPlayTrack(accessToken, track.uri)} addToQueue={uri => spotifyQueueTrack(accessToken, uri)}/>
         }
     </div>
 }

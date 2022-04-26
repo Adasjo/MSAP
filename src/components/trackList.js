@@ -1,6 +1,5 @@
 import React from "react"
 import "../styles/trackList.css"
-import { spotifyQueueTrack } from "../utilities/apiUtils"
 
 /*
 *   Render the artists of a track. 
@@ -8,7 +7,7 @@ import { spotifyQueueTrack } from "../utilities/apiUtils"
 */
 function renderArtists(track, redirect) {
     const renderArtist = (artist, opt="") => 
-        <span className="trackArtist" key={artist.name} onClick={() => redirect(artist.name)}>{artist.name + opt}</span>
+        <span className="trackArtist" key={artist.name} onClick={e => redirect(e, artist.name)}>{artist.name + opt}</span>
 
     return <div>
         {track.artists.slice(0, -1).map(artist => renderArtist(artist, ", "))}
@@ -37,12 +36,12 @@ function TrackList(props) {
 
     function renderTrack(track, i) {
         return <li key={track.id}>
-            <div className="track">
+            <div className="track" onClick={() => props.playTrack(track)}>
                 <div className="nameAndImage">
                     <span className="resultNo">{i}</span>
-                    <img className="trackImage" src={track.album.images.slice(-1)[0].url} onClick={() => props.playTrack(track)}/>
+                    <img className="trackImage" src={track.album.images.slice(-1)[0].url}/>
                     <span>
-                        <span className="trackName" onClick={() => props.playTrack(track)}>{track.name}</span><br/>
+                        <span className="trackName">{track.name}</span><br/>
                         {renderArtists(track, props.artistRedirect)}
                     </span>
                 </div>

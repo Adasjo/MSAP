@@ -20,9 +20,10 @@ function Playlist() {
             .catch(setError)
     }, [searchParams])
 
-    function artistRedirect(artist) {
+    function artistRedirect(e, artist) {
         const params = new URLSearchParams({search: artist})
         navigate("/home?" + params) 
+        e.stopPropagation()
     }
 
     if (!playlist) {
