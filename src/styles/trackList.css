@@ -27,8 +27,9 @@
 
 .trackPlayIcon {
     grid-area: a;
-    width: 2.5rem;
+    width: 1rem;
     opacity: 0;
+    transform: translateX(0.6rem);
 } 
 
 .track:hover .trackPlayIcon {

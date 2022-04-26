@@ -5,6 +5,11 @@ import { renderArtists } from "./trackList"
 
 import "../styles/player.css"
 
+const playButton = require("../assets/play.svg")
+const pauseButton = require("../assets/pause.svg")
+const nextButton = require("../assets/next.svg")
+const prevButton = require("../assets/prev.svg")
+
 /*
 *   Helper function to convert milliseconds to "minutes:seconds" format
 */
@@ -87,12 +92,12 @@ function Player() {
         </div>
         <div className="center">
             <div className="centerContainer">
-                <button className="playerButton" onClick={() => player.previousTrack()}>Prev</button>
+                <img className="playerButton" onClick={() => player.previousTrack()} src={prevButton} style={{height: "1rem"}}/>
                 {state.paused ? 
-                    <button className="playerButton" onClick={() => player.togglePlay()} disabled={!ready}>Play</button> :
-                    <button className="playerButton" onClick={() => player.togglePlay()} disabled={!ready}>Pause</button> 
+                    <img className="playerButton" onClick={() => player.togglePlay()} disabled={!ready} src={playButton}/> :
+                    <img className="playerButton" onClick={() => player.togglePlay()} disabled={!ready} src={pauseButton}/>
                 }
-                <button className="playerButton" onClick={() => player.nextTrack()}>Next</button>
+                <img className="playerButton" onClick={() => player.nextTrack()} src={nextButton} style={{height: "1rem"}}/>
             </div>
             <div className="centerContainer">
                 <span>{position}</span>
