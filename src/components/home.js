@@ -22,7 +22,7 @@ function Home() {
     } else if (!accessToken) {
         return <Navigate to={"/getting-started"}/>
     }
-                     
+
     return <div className="homeGrid">
         <div className="mainContent">
             <Sidebar/>
@@ -31,7 +31,7 @@ function Home() {
                 <Route path="*" element={<SearchBar/>}/>
             </Routes>
         </div>
-        <div className="footer"><Player/></div>
+        <Player/>
     </div>
 }
 

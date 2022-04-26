@@ -1,18 +1,12 @@
 .homeGrid {
-    height: 95vh;
+    height: 100vh;
     display: grid;
-    grid-template-rows: 95% 5%;
+    grid-template-rows: auto auto;
 }
 
-.mainContent { 
-    height: auto;
+.mainContent {
     display: flex;
     flex-direction: row;
-    justify-content: left;
-    padding-top: 0.5rem;
-}
-
-.footer {
-    border-top: 1px solid lightgrey;
-    width: 100%;
+    justify-content: stretch;
+    overflow-y: hidden;
 }

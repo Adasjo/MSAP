@@ -1,10 +1,12 @@
 .player {
+    border-top: 1px solid lightgrey;
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 30% 40% 30%;
     align-items: center;
     padding: 1rem;
     background-color: white;
     height: 4rem;
+    min-width: 30rem;
 }
 
 .player span {
