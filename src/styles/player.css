@@ -6,6 +6,10 @@
     background-color: white;
 }
 
+.player span {
+    cursor: default;
+}
+
 .center {
     justify-self: center;
     display: grid;
@@ -43,7 +47,3 @@
     margin-left: 0.5em;
     margin-right: 0.5em;
 }
-
-.trackName {
-    font-size: medium;
-}   

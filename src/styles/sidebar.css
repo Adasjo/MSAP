@@ -1,12 +1,16 @@
 .sidebar {
     height: 100%;
     width: 18rem;
+    min-width: 11rem;
+    max-width: 22rem;
     margin-top: 0.7rem;
+    resize: horizontal;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
     border-right: 1px solid lightgrey;
+    overflow: hidden;
 }
 
 .sidebarList {

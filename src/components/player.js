@@ -95,7 +95,7 @@ function Player() {
                 <button className="playerButton" onClick={() => player.nextTrack()}>Next</button>
             </div>
             <div className="centerContainer">
-                <div>{position}</div>
+                <span>{position}</span>
                 <div className="sliderContainer">
                     <input className="slider" type="range" min="0" max="100" value={Math.round(state.position / state.duration * 100)} onChange={seek}/>
                 </div>
