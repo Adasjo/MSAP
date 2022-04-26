@@ -7,11 +7,32 @@
     list-style-type: none;
 }
 
+.trackPrefix {
+    display: grid;
+    align-items: center;
+    grid-template-areas: "a";
+}
+
 .resultNo {
+    grid-area: a;
     margin: 1rem;
     color: grey;
     font-size: large;
     cursor: default;
+}
+
+.track:hover .resultNo {
+    color: rgba(0, 0, 0, 0);
+}
+
+.trackPlayIcon {
+    grid-area: a;
+    width: 2.5rem;
+    opacity: 0;
+} 
+
+.track:hover .trackPlayIcon {
+    opacity: 0.8;
 }
 
 .track {
@@ -38,22 +59,22 @@
 
 .trackImage {
     height: 100%;
+    display: block;
     margin-right: 1rem;
-    cursor: pointer;
-}
-
-.trackImage:disabled {
-    filter: grayscale(100%);
+    /*cursor: pointer;*/
 }
 
 .trackName {
     font-size: medium;
-    cursor: pointer;
+    /*cursor: pointer;*/
+    cursor: default;
 }   
 
+/*
 .trackName:hover, .trackName:disabled {
     color: grey;
 }
+*/
 
 .trackArtist {
     cursor: pointer;

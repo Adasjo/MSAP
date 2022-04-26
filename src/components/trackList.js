@@ -38,7 +38,10 @@ function TrackList(props) {
         return <li key={track.id}>
             <div className="track" onClick={() => props.playTrack(track)}>
                 <div className="nameAndImage">
-                    <span className="resultNo">{i}</span>
+                    <div className="trackPrefix">
+                        <span className="resultNo">{i}</span>
+                        <img className="trackPlayIcon" src={require("../assets/play.svg")}/>
+                    </div>
                     <img className="trackImage" src={track.album.images.slice(-1)[0].url}/>
                     <span>
                         <span className="trackName">{track.name}</span><br/>
