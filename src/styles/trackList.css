@@ -8,14 +8,16 @@
 }
 
 .trackPrefix {
+    width: 4rem;
     display: grid;
+    justify-items: right;
     align-items: center;
-    grid-template-areas: "a";
+    grid-template: "a";
 }
 
 .resultNo {
     grid-area: a;
-    margin: 1rem;
+    margin-right: 1.5rem;
     color: grey;
     font-size: large;
     cursor: default;
@@ -29,7 +31,7 @@
     grid-area: a;
     width: 1rem;
     opacity: 0;
-    transform: translateX(0.6rem);
+    transform: translateX(-1.5rem);
 } 
 
 .track:hover .trackPlayIcon {
