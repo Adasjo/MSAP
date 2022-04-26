@@ -3,11 +3,22 @@
     padding-bottom: 1rem;
 }
 
+.trackList > ul {
+    list-style-type: none;
+}
+
+.resultNo {
+    margin: 1rem;
+    color: grey;
+    font-size: large;
+    cursor: default;
+}
+
 .track {
     height: auto;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    padding: 0.5rem;
     padding-right: 2rem;
+    border-radius: 8px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -15,7 +26,7 @@
 }
 
 .track:hover {
-    background: rgb(243, 243, 243);
+    background: rgba(207, 207, 207, 0.185);
 }
 
 .nameAndImage {

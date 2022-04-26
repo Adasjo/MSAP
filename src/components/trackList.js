@@ -35,10 +35,11 @@ function ContextButton(props) {
 function TrackList(props) {
     const tracks = props.tracks
 
-    function renderTrack(track) {
+    function renderTrack(track, i) {
         return <li key={track.id}>
             <div className="track">
                 <div className="nameAndImage">
+                    <span className="resultNo">{i}</span>
                     <img className="trackImage" src={track.album.images.slice(-1)[0].url} onClick={() => props.playTrack(track)}/>
                     <span>
                         <span className="trackName" onClick={() => props.playTrack(track)}>{track.name}</span><br/>
@@ -51,7 +52,7 @@ function TrackList(props) {
     }
     
     return <div className="trackList">
-        <ol>{tracks.map(renderTrack)}</ol>
+        <ul>{tracks.map(renderTrack)}</ul>
     </div>
 }
 
