@@ -7,12 +7,13 @@ import Home from './components/home'
 //import SignUp from './components/signUp'
 import Spotify from './components/spotify'
 import NoPage from './components/noPage'
-import GettingStarted from './components/gettingStarted'
+//import GettingStarted from './components/gettingStarted'
 import AuthLock from './components/authLock'
 
 
 const SignUp = require('./components/presenters/signUpPresenter.js').default;
 const SignIn = require('./components/presenters/signInPresenter.js').default;
+const GettingStarted = require('./components/presenters/gettingStartedPresenter.js').default;
 
 
 function App() {
