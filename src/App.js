@@ -4,11 +4,15 @@ import './styles/App.css'
 
 import Home from './components/home'
 import SignIn from './components/signIn'
-import SignUp from './components/signUp'
+//import SignUp from './components/signUp'
 import Spotify from './components/spotify'
 import NoPage from './components/noPage'
 import GettingStarted from './components/gettingStarted'
 import AuthLock from './components/authLock'
+
+
+const SignUp = require('./components/presenters/signUpPresenter.js').default;
+
 
 function App() {
   return <Routes>
