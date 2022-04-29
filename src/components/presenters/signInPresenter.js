@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useFirebase } from "react-redux-firebase"
 import SignInView from "../views/signInView"
 
@@ -16,7 +16,7 @@ function SignInPresenter() {
     function onSubmit() {
         firebase.login({email, password})
             .then(_ => navigate("/home", {replace: true}))
-            .catch(er => {
+            .catch(_ => {
                 setError("Incorrect email or password")
                 firebase.initializeAuth()
             })
@@ -30,7 +30,6 @@ function SignInPresenter() {
         setError()        
         try {
             const res = await firebase.auth().fetchSignInMethodsForEmail(email)
-
             // If the length of res is 0, the user is not registered
             if (res.length == 0 || await firebase.auth().sendPasswordResetEmail(email)) {
                 setMessage("Password reset email sent")
@@ -41,13 +40,11 @@ function SignInPresenter() {
     }
 
     return <SignInView         
-        email={email}
-        password={password}
         error = {error}
         message = {message}
         setEmail = {setEmail}
         setPW = {setPW}
-        reset = {reset}
+        resetPW = {reset}
         onSubmit = {onSubmit}/>
 
 }
