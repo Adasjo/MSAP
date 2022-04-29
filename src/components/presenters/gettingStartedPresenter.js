@@ -4,9 +4,9 @@ import { spotifyAuthorize } from "../../utilities/apiUtils"
 import GettingStartedView from "../views/gettingStartedView"
 
 function GettingStartedPresenter() {
-    const state = useSelector(state => state)
+    const accessToken = useSelector(state => state.spotify.accessToken)
     return <GettingStartedView 
-            state = {state} 
+            accessToken = {accessToken} 
             autorize = {spotifyAuthorize}/>
 }
 export default GettingStartedPresenter
