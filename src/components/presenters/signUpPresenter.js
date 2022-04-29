@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
-//import "../../styles/auth.css"
 import { useFirebase } from "react-redux-firebase"
 
 import SignUpView from "../views/signUpView"
@@ -21,8 +20,6 @@ function SignUpPresenter() {
     }
 
     return <SignUpView 
-        email={email}
-        password={password}
         setEmail = {setEmail}
         setPW = {setPW}
         onSubmit = {onSubmit}/>
