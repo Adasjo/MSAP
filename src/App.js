@@ -3,18 +3,12 @@ import { Routes, Route } from 'react-router-dom'
 import './styles/App.css'
 
 import Home from './components/home'
-//import SignIn from './components/signIn'
-//import SignUp from './components/signUp'
+import SignIn from './components/presenters/signInPresenter'
+import SignUp from './components/presenters/signUpPresenter'
 import Spotify from './components/spotify'
 import NoPage from './components/noPage'
-//import GettingStarted from './components/gettingStarted'
+import GettingStarted from './components/presenters/gettingStartedPresenter'
 import AuthLock from './components/authLock'
-
-
-const SignUp = require('./components/presenters/signUpPresenter.js').default;
-const SignIn = require('./components/presenters/signInPresenter.js').default;
-const GettingStarted = require('./components/presenters/gettingStartedPresenter.js').default;
-
 
 function App() {
   return <Routes>
