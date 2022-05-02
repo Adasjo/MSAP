@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { initSpotifyPlayerSDK, spotifyPlayTrack, spotifyTransferPlayBack } from "../../utilities/apiUtils"
+import { initSpotifyPlayerSDK, spotifyTransferPlayBack } from "../../utilities/apiUtils"
 
 import PlayerView from "../views/playerView"
 
