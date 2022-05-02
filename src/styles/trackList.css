@@ -48,6 +48,9 @@
     justify-content: space-between;
     align-items: center;
 }
+.trackDiv{
+    width: 100%;
+}
 
 .track:hover {
     background: rgba(207, 207, 207, 0.185);

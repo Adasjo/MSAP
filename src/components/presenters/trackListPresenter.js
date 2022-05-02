@@ -36,10 +36,9 @@ function TrackListPresenter(props){
     const tracksList = props.tracks
 
     function renderTrack(track, i) {
-        console.log(track);
         return <li key={track.id}>
             <div className="track">
-                <div  onClick={() => props.playTrack(track)}>
+                <div className="trackDiv" onClick={() => props.playTrack(track)}>
                     <div className="nameAndImage">
                         <div className="trackPrefix">
                             <span className="resultNo">{i+1}</span>
