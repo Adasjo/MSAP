@@ -7,7 +7,7 @@ import HomeView from "../views/homeView"
 
 import "../../styles/home.css"
 
-function Home() {
+function HomePresenter() {
     const dispatch = useDispatch()
     const accessToken = useSelector(state => state.spotify.accessToken)
     const triedLoad = useSelector(state => state.spotify.triedLoad)
@@ -24,4 +24,4 @@ function Home() {
     return <HomeView/>
 }
 
-export default Home
+export default HomePresenter

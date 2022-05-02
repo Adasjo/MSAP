@@ -17,7 +17,7 @@ function formatDuration(millis) {
     return date.getMinutes() + ":" + (seconds < 10 ? "0" : "") + seconds
 }
 
-function Player() {
+function PlayerPresenter() {
     const dispatch = useDispatch()
     const accessToken = useSelector(state => state.spotify.accessToken)
     const player = useSelector(state => state.spotify.player)
@@ -96,4 +96,4 @@ function Player() {
     />
 }
 
-export default Player
+export default PlayerPresenter
