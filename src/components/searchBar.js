@@ -3,7 +3,7 @@ import {useState} from "react"
 import { useSelector } from "react-redux"
 import {spotifyGet, spotifyPlayTrack, spotifyQueueTrack} from '../utilities/apiUtils.js'
 
-import TrackList from "./trackList.js"
+import TrackListPresenter from "./presenters/trackListPresenter"
 
 import "../styles/search.css"
 import { useSearchParams } from "react-router-dom"
@@ -55,7 +55,7 @@ function SearchBar() {
             <button className="searchButton" onClick={search}>Search</button>
         </div>
         {promiseNoData() ||
-        <TrackList tracks={searchResult.tracks.items} artistRedirect={artistRedirect} playTrack={track => spotifyPlayTrack(accessToken, track.uri)} addToQueue={uri => spotifyQueueTrack(accessToken, uri)}/>
+        <TrackListPresenter tracks={searchResult.tracks.items} artistRedirect={artistRedirect} playTrack={track => spotifyPlayTrack(accessToken, track.uri)} addToQueue={uri => spotifyQueueTrack(accessToken, uri)}/>
         }
     </div>
 }

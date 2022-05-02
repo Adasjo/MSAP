@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { initSpotifyPlayerSDK, spotifyPlayTrack, spotifyTransferPlayBack } from "../utilities/apiUtils"
-import { renderArtists } from "./trackList"
+import { renderArtists } from "./trackList" //This line need changes
 
 import "../styles/player.css"
 
