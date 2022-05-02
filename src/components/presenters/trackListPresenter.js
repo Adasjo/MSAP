@@ -38,7 +38,8 @@ function TrackListPresenter(props){
     function renderTrack(track, i) {
         console.log(track);
         return <li key={track.id}>
-            <div className="track" onClick={() => props.playTrack(track)}>
+            <div className="track">
+            <div  onClick={() => props.playTrack(track)}>
                 <div className="nameAndImage">
                     <div className="trackPrefix">
                         <span className="resultNo">{i+1}</span>
@@ -50,8 +51,10 @@ function TrackListPresenter(props){
                         {renderArtists(track, props.artistRedirect)}
                     </span>
                 </div>
+                </div >
                 <button onClick={() => props.addToQueue(track.uri)}>Add To Queue</button>
-            </div>
+                </div>
+            
         </li>
     }
     
