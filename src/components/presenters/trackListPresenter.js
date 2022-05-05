@@ -37,21 +37,19 @@ function TrackListPresenter(props){
 
     function renderTrack(track, i) {
         return <li key={track.id}>
-            <div className="track">
-                <div className="trackDiv" onClick={() => props.playTrack(track)}>
-                    <div className="nameAndImage">
-                        <div className="trackPrefix">
-                            <span className="resultNo">{i+1}</span>
-                            <img className="trackPlayIcon" src={require("../../assets/play.svg")}/>
-                        </div>
-                        <img className="trackImage" src={track.album.images.slice(-1)[0].url}/>
-                        <span>
-                            <span className="trackName">{track.name}</span><br/>
-                            {renderArtists(track, props.artistRedirect)}
-                        </span>
+            <div className="track" onClick={() => props.playTrack(track)}>
+                <div className="nameAndImage">
+                    <div className="trackPrefix">
+                        <span className="resultNo">{i+1}</span>
+                        <img className="trackPlayIcon" src={require("../../assets/play.svg")}/>
                     </div>
-                </div >
-                <button onClick={() => props.addToQueue(track.uri)}>Add To Queue</button>
+                    <img className="trackImage" src={track.album.images.slice(-1)[0].url}/>
+                    <span>
+                        <span className="trackName">{track.name}</span><br/>
+                        {renderArtists(track, props.artistRedirect)}
+                    </span>
+                </div>
+                <button onClick={e => { e.stopPropagation(); props.addToQueue(track.uri)}}>Add To Queue</button>
             </div>
             
         </li>

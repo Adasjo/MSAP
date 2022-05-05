@@ -9,6 +9,7 @@
 
 .trackPrefix {
     width: 4rem;
+    min-width: 4rem;
     display: grid;
     justify-items: right;
     align-items: center;
@@ -40,6 +41,7 @@
 
 .track {
     height: auto;
+    width: 100%;
     padding: 0.5rem;
     padding-right: 2rem;
     border-radius: 8px;
@@ -47,9 +49,6 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-}
-.trackDiv{
-    width: 100%;
 }
 
 .track:hover {
