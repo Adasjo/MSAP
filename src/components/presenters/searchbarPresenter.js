@@ -1,19 +1,20 @@
 import React, { useEffect } from "react"
 import {useState} from "react"
 import { useSelector } from "react-redux"
-import {spotifyGet, spotifyPlayTrack, spotifyQueueTrack} from '../utilities/apiUtils.js'
+import {spotifyGet } from '../utilities/apiUtils.js'
 
-import TrackListPresenter from "./presenters/trackListPresenter"
+import PlaylistView from "../views/searchbarView"
 
 import "../styles/search.css"
 import { useSearchParams } from "react-router-dom"
+import SearchbarView from "../views/searchbarView.js"
 
 const searchOptions = "&type=track&limit=20"
 const searchInit = new URLSearchParams({
     search: ""
 })
 
-function SearchBar() {
+function SearchbarPresenter() {
     const [searchResult, setSearchResult] = useState()
     const [error, setError] = useState()
     const accessToken = useSelector(state => state.spotify.accessToken)
@@ -49,16 +50,9 @@ function SearchBar() {
         return false
     }
 
-    return <div className="searchComponent">
-        <div className="searchHeader">
-            <input className="searchBar" type="text" placeholder="Search..." onChange={e => updateSearchText(e.target.value)}/>
-            <button className="searchButton" onClick={search}>Search</button>
-        </div>
-        {promiseNoData() ||
-        <TrackListPresenter tracks={searchResult.tracks.items} artistRedirect={artistRedirect} playTrack={track => spotifyPlayTrack(accessToken, track.uri)} addToQueue={uri => spotifyQueueTrack(accessToken, uri)}/>
-        }
-    </div>
+    return <SearchbarView
+    promiseNoData = {promiseNoData}/>
 }
 
 
-export default SearchBar
+export default SearchbarPresenter

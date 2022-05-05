@@ -2,11 +2,11 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import './styles/App.css'
 
-import Home from './components/home'
+import Home from './components/presenters/homePresenter'
 import SignIn from './components/presenters/signInPresenter'
 import SignUp from './components/presenters/signUpPresenter'
 import Spotify from './components/spotify'
-import NoPage from './components/noPage'
+import NoPage from './components/presenters/noPagePresenter'
 import GettingStarted from './components/presenters/gettingStartedPresenter'
 import AuthLock from './components/authLock'
 

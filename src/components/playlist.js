@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { spotifyGet, spotifyPlayTrack, spotifyQueueTrack } from "../utilities/apiUtils"
 
-import TrackList from "./trackList"
+import TrackListPresenter from "./presenters/trackListPresenter"
 
 import "../styles/playlist.css"
 
@@ -41,7 +41,7 @@ function Playlist() {
 
     return <div className="playlist">
         <h1 className="playlistHeader">{playlist.name}</h1>
-        <TrackList 
+        <TrackListPresenter 
             tracks={tracks} 
             artistRedirect={artistRedirect} 
             playTrack={track => spotifyPlayTrack(token, track.uri)}

@@ -1,9 +1,9 @@
 import React from "react"
 
-function NoPage() {
+function NoPageView() {
     return <div style={{height: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
         <h1>404: Page not found</h1>
     </div>
 }
 
-export default NoPage
+export default NoPageView
