@@ -5,6 +5,8 @@ import { initSpotifyPlayerSDK, spotifyTransferPlayBack } from "../../utilities/a
 import PlayerView from "../views/playerView"
 
 import "../../styles/player.css"
+import Queue from "./queuePresenter"
+import { useNavigate } from "react-router-dom"
 
 
 
@@ -24,6 +26,7 @@ function PlayerPresenter() {
     const [ready, setReady] = useState()
     const [volume, setVolume] = useState(50)
     const [state, setState] = useState()
+    const navigate = useNavigate()
 
     // Initialize a new spotify Web SDK player
     useEffect(() => {
@@ -46,7 +49,6 @@ function PlayerPresenter() {
             player.addListener("player_state_changed", newState => {
                 dispatch({type: "spotify/updateState", payload: newState})
                 setState({...newState})
-                
             })
             
             player.connect()
@@ -82,6 +84,8 @@ function PlayerPresenter() {
         setVolume(proc)
     }
     
+    
+
     const track = state.track_window.current_track
     const duration = formatDuration(state.duration)
     const position = formatDuration(state.position)
@@ -96,6 +100,7 @@ function PlayerPresenter() {
         state = {state}
         ready = {ready}
         player = {player}
+        onQueueClick = {window.location.pathname != "/home/queue" ? () => navigate("/home/queue") : null}
     />
 }
 

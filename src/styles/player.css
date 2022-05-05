@@ -25,6 +25,9 @@
 
 .right {
     justify-self: right;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .centerContainer {
@@ -59,4 +62,44 @@
 .playerButton:hover {
     transform: scale(1.2);
     opacity: 1;
+}
+
+.queueButton {
+    height: 1.6rem;
+    width: 1.1rem;
+    border: none;
+    background: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0.7rem;
+}
+
+.queueButton div {
+    border: none;
+    background: grey;
+    box-sizing: border-box;
+    height: 0.2rem;
+    width: inherit;
+    border-radius: 6px;
+}
+
+.queueButton div:first-child {
+    height: 0.4rem;
+    background: none;
+    border: 2px solid grey;
+}
+
+.queueButton:hover div {
+    background: rgb(32, 167, 72);
+    border: none;
+}
+
+.queueButton:disabled div {
+    background: rgb(167, 167, 167);
+}
+
+.queueButton:disabled div:first-child {
+    border: 2px solid rgb(167, 167, 167);
 }
