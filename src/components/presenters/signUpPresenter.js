@@ -7,6 +7,7 @@ import SignUpView from "../views/signUpView"
 function SignUpPresenter() {
     const [email, setEmail] = useState()
     const [password, setPW] = useState()
+    const [error, setError] = useState()
     const firebase = useFirebase()
     const navigate = useNavigate()
 
@@ -16,13 +17,14 @@ function SignUpPresenter() {
                 // Sign-up successful
                 navigate("../getting-started", {replace: true})
             })
-            .catch(console.log)
+            .catch(e => setError(e.message))
     }
 
     return <SignUpView 
         setEmail = {setEmail}
         setPW = {setPW}
-        onSubmit = {onSubmit}/>
+        onSubmit = {onSubmit}
+        error = {error}/>
 }
 
 export default SignUpPresenter
