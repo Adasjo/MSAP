@@ -34,7 +34,6 @@ function ContextButton(props) {
 
 function TrackListPresenter(props){
     const tracksList = props.tracks
-
     function renderTrack(track, i) {
         return <li key={track.id}>
             <div className="track" onClick={() => props.playTrack(track)}>
@@ -60,4 +59,5 @@ function TrackListPresenter(props){
             tracksList = {tracksList}/>
 }
 
-export default TrackListPresenter;
+export default TrackListPresenter
+export {ContextButton}

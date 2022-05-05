@@ -1,6 +1,6 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Route, Routes, Navigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { getNewToken } from "../../utilities/apiUtils"
 import HomeView from "../views/homeView"
 
