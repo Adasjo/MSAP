@@ -1,6 +1,7 @@
 .trackList {
     height: 100%;
     padding-bottom: 1rem;
+    padding-right: 1rem;
 }
 
 .trackList > ul {
