@@ -95,3 +95,11 @@
     background: rgb(32, 167, 72);
     border: none;
 }
+
+.queueButton:disabled div {
+    background: rgb(167, 167, 167);
+}
+
+.queueButton:disabled div:first-child {
+    border: 2px solid rgb(167, 167, 167);
+}

@@ -40,7 +40,7 @@ function PlayerView(props){
             </div>
         </div>
         <div className="right">
-            <button className="queueButton" onClick={props.onQueueClick}>
+            <button className="queueButton" disabled={!props.onQueueClick} onClick={props.onQueueClick}>
                 <div/>
                 <div/>
                 <div/>

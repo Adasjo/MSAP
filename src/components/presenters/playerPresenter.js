@@ -84,6 +84,8 @@ function PlayerPresenter() {
         setVolume(proc)
     }
     
+    
+
     const track = state.track_window.current_track
     const duration = formatDuration(state.duration)
     const position = formatDuration(state.position)
@@ -98,7 +100,7 @@ function PlayerPresenter() {
         state = {state}
         ready = {ready}
         player = {player}
-        onQueueClick = {() => navigate("/home/queue")}
+        onQueueClick = {window.location.pathname != "/home/queue" ? () => navigate("/home/queue") : null}
     />
 }
 
