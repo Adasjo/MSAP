@@ -7,6 +7,7 @@ const prevButton = require("../../assets/prev.svg")
 import "../../styles/player.css"
 
 function PlayerView(props){
+
     return <div className="player">
         <div>
             <span>{props.track.name}</span><br/>
