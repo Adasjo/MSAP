@@ -1,8 +1,7 @@
 import React from "react"
-
 import "../../styles/profile.css"
 
-const name = "Samuel Falk"
+const pencil = require("../../assets/pencil.svg")
 
 function ProfileView({username, email, photoURL, uploadImage, changeName}) {
     return <div className="profile">
@@ -16,7 +15,10 @@ function ProfileView({username, email, photoURL, uploadImage, changeName}) {
             </div>
             <div className="profileInfo">
                 <div>Profile</div>
-                <input defaultValue={username} onKeyDown={changeName}/>
+                <div>
+                    <input defaultValue={username} onBlur={changeName}/>
+                    <img src={pencil}/>
+                </div>
                 <div>{email}</div>
             </div>
         </div>

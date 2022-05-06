@@ -71,7 +71,19 @@
     margin-bottom: .3rem;
 }
 
-.profileInfo > input {
+.profileInfo input {
     border: none;
+    width: max-content;
     font-size: xx-large;
+}
+
+.profileInfo input + img {
+    margin-left: .5rem;
+    height: 1.5rem;
+    opacity: 0;
+    transition: .1s;
+}
+
+.profileInfo input:is(:hover, :focus) + img {
+    opacity: .8;
 }
