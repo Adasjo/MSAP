@@ -9,6 +9,7 @@ import { fbConfig, rrfConfig } from "./config/fbConfig"
 import firebase from 'firebase/app'
 import "firebase/auth"
 import "firebase/database"
+import "firebase/storage"
 import store from "./store"
 import { BrowserRouter } from 'react-router-dom'
 

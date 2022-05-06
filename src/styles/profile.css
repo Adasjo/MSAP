@@ -1,0 +1,77 @@
+.profile {
+    padding: 1rem;
+    padding-top: 5rem;
+    width: 100%;
+}
+
+.profileHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 1rem;
+}
+
+/*------Profile image---------------------------------------------*/
+.profileImage {
+    position: relative;
+    width: 10rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    display: grid;
+    grid-template-columns: auto;
+    align-items: center;
+}
+
+.profileImage img {
+    width: 100%;
+    border-radius: inherit;
+    transition: .15s;
+}
+
+.profileImage:hover img {
+    filter: brightness(.6);
+}
+
+.profileImage label {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: inherit;
+    z-index: 10;
+    display: none;
+    color: white;
+    text-align: center;
+    font-size: large;
+    cursor: pointer;
+}
+
+.profileImage:hover label {
+    display: block;
+    transition: .15s;
+}
+
+.profileImage input {
+    display: None;
+}
+
+
+/*------User info---------------------------------------------*/
+
+.profileInfo {
+    margin: 1rem;
+    padding: .5rem 0 .5rem;
+}
+
+.profileInfo > div {
+    cursor: default;
+}
+
+.profileInfo > div:first-child {
+    margin-bottom: .3rem;
+}
+
+.profileInfo > input {
+    border: none;
+    font-size: xx-large;
+}

@@ -1,7 +1,8 @@
 .homeGrid {
+    position: relative;
     height: 100vh;
     display: grid;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto min-content;
 }
 
 .mainContent {
@@ -9,4 +10,15 @@
     flex-direction: row;
     justify-content: stretch;
     overflow-y: hidden;
+}
+
+.profileButton {
+    position: absolute;
+    top: .7rem;
+    right: 1rem;
+    z-index: 5;
+    padding: .7rem;
+}
+.profileButton:disabled {
+    display: none;
 }
