@@ -1,7 +1,7 @@
 import React from "react"
 import "../../styles/profile.css"
 
-const pencil = require("../../assets/pencil.svg")
+import pencil from "../../assets/pencil.svg"
 
 /*
 *   Helper react component for a switch

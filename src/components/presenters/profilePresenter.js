@@ -3,6 +3,8 @@ import { useFirebase } from "react-redux-firebase"
 import { useNavigate } from "react-router-dom"
 import ProfileView from "../views/profileView"
 
+import spinner from "../../assets/spinner.gif"
+
 const emptyUsername = /^\s+$/
 
 function ProfilePresenter() {
@@ -17,7 +19,7 @@ function ProfilePresenter() {
     async function uploadImage(e) {
         const file = e.target.files[0]
         const path = "/users/" + user.uid
-        setPhoto(require("../../assets/spinner.gif"))
+        setPhoto(spinner)
         const snapshot = await firebase.storage().ref(path).put(file)
         const url = await snapshot.ref.getDownloadURL()
         user.updateProfile({photoURL: url})
@@ -34,8 +36,8 @@ function ProfilePresenter() {
         console.log("Toggle dark mode!")
     }
 
-    function logout() {
-        firebase.logout()
+    async function logout() {
+        await firebase.logout()
         nav("/sign-in")
     }
 
