@@ -12,7 +12,7 @@ function HomeView(props){
     const navigate = useNavigate()
     const user = useFirebase().auth().currentUser
     return <div className="homeGrid">
-        <button onClick={() => navigate("/home/profile")} className="profileButton" disabled={window.location.pathname == "/home/profile"}>{user.displayName}</button>
+        <button onClick={() => navigate("/home/profile")} className="profileButton" disabled={window.location.pathname == "/home/profile"}>{user.displayName ? user.displayName : "Profile"}</button>
         <div className="mainContent">
             <Sidebar/>
             <Routes>
