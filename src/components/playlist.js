@@ -4,8 +4,10 @@ import { useNavigate, useSearchParams } from "react-router-dom"
 import { spotifyGet, spotifyPlayTrack, spotifyQueueTrack } from "../utilities/apiUtils"
 
 import TrackListPresenter from "./presenters/trackListPresenter"
+import spinner from "../assets/spinner.gif"
 
 import "../styles/playlist.css"
+
 
 function Playlist() {
     const [playlist, setPlaylist] = useState()
@@ -28,7 +30,7 @@ function Playlist() {
 
     if (!playlist) {
         if (searchParams.get("id") && !error) {
-            return <div>Loading...</div>
+            return <div className="playlist"><img src={spinner}/></div>
         } else if (error) {
             return <div>{error}</div>
         } else {

@@ -1,11 +1,12 @@
 import React from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
+import { useFirebase } from 'react-redux-firebase'
 import Playlist from "../playlist"
 import Player from "../presenters/playerPresenter"
 import Sidebar from "../Sidebar"
 import Queue from '../presenters/queuePresenter'
 import SearchbarPresenter from '../presenters/searchbarPresenter'
-import { useFirebase } from 'react-redux-firebase'
+import ProfilePresenter from "../presenters/profilePresenter"
 
 function HomeView(props){
     const navigate = useNavigate()

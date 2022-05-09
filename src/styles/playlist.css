@@ -12,3 +12,8 @@
     background-color: white;
     border-bottom: 1px solid lightgrey;
 }
+
+.playlist > img {
+    max-height: 5rem;
+    aspect-ratio: 1/1;
+}
