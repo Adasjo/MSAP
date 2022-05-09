@@ -9,12 +9,16 @@
     top: 0;
     width: 100%;
     background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .searchBar {
     margin: 0.7rem; 
 }
 
-.searchButton {
-    
+.searchHeader img {
+    height: 2.5rem;
+    aspect-ratio: 1/1;
 }

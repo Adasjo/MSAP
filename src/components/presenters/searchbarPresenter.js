@@ -1,13 +1,14 @@
-import React, { useEffect } from "react"
-import {useState} from "react"
+import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import {spotifyGet } from '../utilities/apiUtils.js'
-
-import PlaylistView from "../views/searchbarView"
-
-import "../styles/search.css"
 import { useSearchParams } from "react-router-dom"
-import SearchbarView from "../views/searchbarView.js"
+import { spotifyGet, spotifyPlayTrack, spotifyQueueTrack } from '../../utilities/apiUtils'
+
+import "../../styles/search.css"
+
+import SearchbarView from "../views/searchbarView"
+import TrackListPresenter from "./trackListPresenter"
+
+import spinner from "../../assets/spinner.gif"
 
 const searchOptions = "&type=track&limit=20"
 const searchInit = new URLSearchParams({
@@ -19,12 +20,17 @@ function SearchbarPresenter() {
     const [error, setError] = useState()
     const accessToken = useSelector(state => state.spotify.accessToken)
     const [searchParams, setSearchParams] = useSearchParams(searchInit)
+    const [loading, setLoading] = useState()
 
     let searchText = searchParams.get("search")
 
     function search() {
         const searchString = "/search?q=$" + searchText.replace(" ", "%20") + searchOptions
-        spotifyGet(searchString, accessToken).then(setSearchResult).catch(setError)
+        setLoading(true)
+        spotifyGet(searchString, accessToken).then(res => {
+            setSearchResult(res)
+            setLoading(false)
+        }).catch(setError)
     }
 
     function updateSearchText(string) {
@@ -40,18 +46,27 @@ function SearchbarPresenter() {
 
 
     function promiseNoData() {
-        if (!searchResult) {
-            if (!error) {
-                return <div>Loading...</div>
-            } else {
-                return <div>{error}</div>
-            }
+        if (error) {
+            return <div>{error}</div>
+        } else if (!searchResult) {
+            return <img src={spinner}/>
         }
         return false
     }
 
     return <SearchbarView
-    promiseNoData = {promiseNoData}/>
+        updateSearchText = {updateSearchText}
+        loading = {loading}
+        trackListElement = {
+            promiseNoData() ||
+            <TrackListPresenter 
+                tracks = {searchResult.tracks.items} 
+                artistRedirect = {artistRedirect} 
+                playTrack = {track => spotifyPlayTrack(accessToken, track.uri)} 
+                addToQueue = {uri => spotifyQueueTrack(accessToken, uri)}
+            />
+        }
+    />
 }
 
 

@@ -5,13 +5,15 @@ import { spotifyGet } from "../utilities/apiUtils"
 
 import "../styles/sidebar.css"
 
+import spinner from "../assets/spinner.gif"
+
 const initData = {items: []}
 
 function Sidebar() {
     const navigate = useNavigate()
     const accessToken = useSelector(state => state.spotify.accessToken)
     const spotifyState = useSelector(state => state.spotify.currentState)
-    const [data, setData] = useState(() => initData)
+    const [data, setData] = useState()
 
     useEffect(() => spotifyGet("/me/playlists", accessToken).then(res => setData(res)), [])
 
@@ -21,21 +23,24 @@ function Sidebar() {
         image = spotifyState.track_window.current_track.album.images[0].url
     }
 
+    function renderPlaylists() {
+        return data.items.map(playlist => 
+            <div key={playlist.id}>
+                <button className="playlistButton" onClick={() => navigate("/home/playlist?id=" + playlist.id)}>{playlist.name}</button>
+            </div>
+        )
+    } 
+
     return <div className="sidebar">
         <div>
             <div className="sidebarHeader">
                 <button className="sidebarButton" onClick={() => navigate("/home")}>Home</button>
-                <button className="sidebarButton" onClick={() => navigate("/home/search")}>Search</button>
             </div>
             <div className="sidebarList">
-                {data.items.map(playlist => {
-                    return <div key={playlist.id}>
-                        <button className="playlistButton" onClick={() => navigate("/home/playlist?id=" + playlist.id)}>{playlist.name}</button><br></br>
-                    </div>
-                })}
+                {data ? renderPlaylists() : <img src={spinner}/>}
             </div>
         </div>
-        {image ? <img className="currentlyPlaying" src={image}/> : ""}
+        {<img className="currentlyPlaying" src={image ? image : spinner}/>}
     </div>
 }
 

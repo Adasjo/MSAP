@@ -1,15 +1,14 @@
-import TrackListPresenter from "./presenters/trackListPresenter"
-import {spotifyPlayTrack, spotifyQueueTrack} from '../utilities/apiUtils.js'
+import React from "react"
 
-function SearchbarView(props){
+import spinner from "../../assets/spinner.gif"
+
+function SearchbarView({updateSearchText, loading, trackListElement}) {
     return <div className="searchComponent">
         <div className="searchHeader">
             <input className="searchBar" type="text" placeholder="Search..." onChange={e => updateSearchText(e.target.value)}/>
-            <button className="searchButton" onClick={search}>Search</button>
+            {loading ? <img src={spinner}/> : ""}
         </div>
-        {props.promiseNoData() ||
-        <TrackListPresenter tracks={searchResult.tracks.items} artistRedirect={artistRedirect} playTrack={track => spotifyPlayTrack(accessToken, track.uri)} addToQueue={uri => spotifyQueueTrack(accessToken, uri)}/>
-        }
+        {trackListElement}
     </div>
 }
 export default SearchbarView
