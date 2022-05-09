@@ -66,9 +66,9 @@ function PlayerPresenter() {
         return () => clearInterval(interval)
       }, [state])
 
-
+    //Return empty "player" if not loaded
     if (!player || !state) {
-        return null
+        return <div className="player"/>
     }
 
     // Seek in the current track

@@ -32,7 +32,7 @@ function Sidebar() {
     } 
 
     return <div className="sidebar">
-        <div>
+        <div className="sidebarContainer">
             <div className="sidebarHeader">
                 <button className="sidebarButton" onClick={() => navigate("/home")}>Home</button>
             </div>
