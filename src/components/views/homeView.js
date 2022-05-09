@@ -6,11 +6,13 @@ import Player from "../presenters/playerPresenter"
 import Sidebar from "../Sidebar"
 import Queue from '../presenters/queuePresenter'
 import ProfilePresenter from '../presenters/profilePresenter'
+import { useFirebase } from 'react-redux-firebase'
 
 function HomeView(props){
     const navigate = useNavigate()
+    const user = useFirebase().auth().currentUser
     return <div className="homeGrid">
-        <button onClick={() => navigate("/home/profile")} className="profileButton" disabled={window.location.pathname == "/home/profile"}>Profile</button>
+        <button onClick={() => navigate("/home/profile")} className="profileButton" disabled={window.location.pathname == "/home/profile"}>{user.displayName}</button>
         <div className="mainContent">
             <Sidebar/>
             <Routes>

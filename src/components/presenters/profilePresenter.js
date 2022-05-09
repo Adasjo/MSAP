@@ -1,8 +1,12 @@
 import React, { useState } from "react"
 import { useFirebase } from "react-redux-firebase"
+import { useNavigate } from "react-router-dom"
 import ProfileView from "../views/profileView"
 
+const emptyUsername = /^\s+$/
+
 function ProfilePresenter() {
+    const nav = useNavigate()
     const firebase = useFirebase()
     const user = firebase.auth().currentUser
     const [photo, setPhoto] = useState(user.photoURL)
@@ -22,16 +26,27 @@ function ProfilePresenter() {
 
     function changeName(e) {
         const newName = e.target.value
-        if (newName == user.displayName) return
+        if (newName == user.displayName || newName.test(emptyUsername)) return
         user.updateProfile({displayName: newName})
     }
 
+    function toggleDark() {
+        console.log("Toggle dark mode!")
+    }
+
+    function logout() {
+        firebase.logout()
+        nav("/sign-in")
+    }
+
     return <ProfileView 
-        username={name ? name : "<username>"} 
+        username={name ? name : "specify username..."} 
         email={email} 
         photoURL={photo} 
         uploadImage={uploadImage} 
         changeName={changeName}
+        toggleDark={toggleDark}
+        logout={logout}
     />
 }
 
