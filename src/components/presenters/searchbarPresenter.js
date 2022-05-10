@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useSearchParams } from "react-router-dom"
 import { spotifyGet, spotifyPlayTrack, spotifyQueueTrack } from '../../utilities/apiUtils'
+import { debounce } from "../../utilities/utils"
 
 import "../../styles/search.css"
 
@@ -14,6 +15,7 @@ const searchOptions = "&type=track&limit=20"
 const searchInit = new URLSearchParams({
     search: ""
 })
+const DEBOUNCE_TIMEOUT = 600
 
 function SearchbarPresenter() {
     const [searchResult, setSearchResult] = useState()
@@ -33,8 +35,10 @@ function SearchbarPresenter() {
         }).catch(setError)
     }
 
+    const setSearchDebounced = debounce(setSearchParams, DEBOUNCE_TIMEOUT)
+
     function updateSearchText(string) {
-        setSearchParams(new URLSearchParams({search: string}))
+        setSearchDebounced(new URLSearchParams({search: string}))
     }
     
     function artistRedirect(e, artist) {
