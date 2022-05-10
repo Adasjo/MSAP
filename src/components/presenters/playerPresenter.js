@@ -27,32 +27,25 @@ function PlayerPresenter() {
     const [state, setState] = useState()
     const navigate = useNavigate()
 
-    // Initialize a new spotify Web SDK player
+    /*
+    *   The lifecycle of the player.
+    *   On mount, initialize the Spotify web SDK
+    *   On dismount, disconnect the player
+    */
     useEffect(() => {
-        if (accessToken) 
-            dispatch(initSpotifyPlayerSDK())
-    }, [accessToken])
-
-    // If the player is initialized, add event listeners and connect the player
-    useEffect(() => {
-        if (player) {
-            player.addListener("ready", ({device_id}) => {
-                spotifyTransferPlayBack(accessToken, device_id)
+        dispatch(initSpotifyPlayerSDK({
+            "ready": ({device_id}) => {
                 setReady(true)
-            })
-
-            player.addListener("not_ready", _ => {
-                setReady(false)
-            })
-
-            player.addListener("player_state_changed", newState => {
+                setTimeout(() => spotifyTransferPlayBack(accessToken, device_id), 100)
+            },
+            "not_ready": _ => setReady(false),
+            "player_state_changed": newState => {
                 dispatch({type: "spotify/updateState", payload: newState})
                 setState({...newState})
-            })
-            
-            player.connect()
-        }
-    }, [player])
+            }
+        }))
+        return () => player.disconnect()
+    }, [])
 
     //Update player every second  
     useEffect(() => {
@@ -83,8 +76,6 @@ function PlayerPresenter() {
         setVolume(proc)
     }
     
-    
-
     const track = state.track_window.current_track
     const duration = formatDuration(state.duration)
     const position = formatDuration(state.position)

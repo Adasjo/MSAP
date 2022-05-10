@@ -135,11 +135,11 @@ function refreshToken(refresh_token) {
 */
 function getNewToken() {
     return async (dispatch, getState, getFirebase) => {
-        const firebase = getFirebase()
-        const uid = firebase.auth().currentUser.uid
+        const database = getFirebase().database()
+        const uid = getState().firebase.auth.uid
         let token = getState().spotify.refreshToken
         if (!token) {
-            const res = await firebase.database().ref("users/" + uid + "/refreshToken").get()
+            const res = await database.ref("users/" + uid + "/refreshToken").get()
             token = res.val()
             if (!token) {
                 return dispatch({type: "spotify/setLoadStatus"})
@@ -149,7 +149,7 @@ function getNewToken() {
         if (!res.refresh_token) {
             res.refresh_token = token
         } else {
-            firebase.database().ref("users/" + uid + "/refreshToken").set(res.refresh_token)
+            database.ref("users/" + uid + "/refreshToken").set(res.refresh_token)
         }
         dispatch({type: "spotify/updateTokens", payload: res})
     }
@@ -211,15 +211,17 @@ function spotifyPlayTrack(accessToken, uri) {
 /*
 *   Redux thunk for initializing the Spotify playback SDK.
 *   The thunk will dispatch the initialized `Spotify.Player` component to the redux state
+*   
+*   ´listeners´ should contain key value pairs of player events and their callbacks
 */
-function initSpotifyPlayerSDK() {
+function initSpotifyPlayerSDK(listeners) {
     return async (dispatch, getState) => {
         const script = document.createElement("script")
         script.src = "https://sdk.scdn.co/spotify-player.js"
+        script.id = "spotifySDK"
         script.async = true
-
         document.body.appendChild(script)
-        
+
         const accessToken = getState().spotify.accessToken
         if (!accessToken) {
             console.log("Accesstoken not found!")
@@ -231,6 +233,14 @@ function initSpotifyPlayerSDK() {
                 getOAuthToken: cb => {cb(accessToken)},
                 volume: 0.5
             })
+            
+            Object.entries(listeners).forEach(listener => {
+                const event = listener[0]
+                const callback = listener[1]
+                player.addListener(event, callback)
+            })
+
+            player.connect()
             
             dispatch({type: "spotify/addPlayer", payload: player})
         }

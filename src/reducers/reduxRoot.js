@@ -1,14 +1,23 @@
-import {combineReducers} from "redux"
-import {firebaseReducer} from 'react-redux-firebase'
+import { combineReducers } from "redux"
+import { firebaseReducer } from 'react-redux-firebase'
+import storage from 'redux-persist/lib/storage/session'
+import stateReconciler from 'redux-persist/lib/stateReconciler/hardSet'
+import { persistReducer } from "redux-persist"
 
 // Custom reducers
 import spotifyReducer from "./spotifyReducer"
 
-/*
-*   The root reducer is separated into to steps to enable a redux state reset
-*/
+const persistOptions = key => {return {
+    key: key, 
+    storage,
+    stateReconciler
+}}
+
 const rootReducer = combineReducers({
-    firebase: firebaseReducer,
+    firebase: persistReducer(
+        persistOptions("firebase"),
+        firebaseReducer
+    ),
     spotify: spotifyReducer
 })
 
