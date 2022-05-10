@@ -227,7 +227,7 @@ function initSpotifyPlayerSDK() {
 
         window.onSpotifyWebPlaybackSDKReady = () => {
             const player = new window.Spotify.Player({
-                name: "Test",
+                name: "MSAP",
                 getOAuthToken: cb => {cb(accessToken)},
                 volume: 0.5
             })
