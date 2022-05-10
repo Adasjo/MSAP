@@ -6,15 +6,6 @@ const nextButton = require("../../assets/next.svg")
 const prevButton = require("../../assets/prev.svg")
 import "../../styles/player.css"
 
-
-function ContextButton(props) {
-    return <label className="contextButton" onClick={props.onClick}>
-        <div className="buttonDot"/>
-        <div className="buttonDot"/>
-        <div className="buttonDot"/>
-    </label>
-}
-
 function PlayerView(props){
 
     return <div className="player">
