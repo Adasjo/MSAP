@@ -1,6 +1,6 @@
 import { combineReducers } from "redux"
 import { firebaseReducer } from 'react-redux-firebase'
-import storage from 'redux-persist/lib/storage/session'
+import storage from 'redux-persist/lib/storage'
 import stateReconciler from 'redux-persist/lib/stateReconciler/hardSet'
 import { persistReducer } from "redux-persist"
 

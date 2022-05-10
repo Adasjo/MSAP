@@ -4,7 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension"
 import rootReducer from "./reducers/reduxRoot"
 import { getFirebase } from "react-redux-firebase"
 import { persistStore, persistReducer } from "redux-persist"
-import storage from "redux-persist/lib/storage/session"
+import storage from "redux-persist/lib/storage"
 
 const middleware = [thunk.withExtraArgument(getFirebase)]
 
