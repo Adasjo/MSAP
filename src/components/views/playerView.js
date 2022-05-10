@@ -1,5 +1,5 @@
 import React from 'react'
-import { renderArtists } from "../trackList" //This line need changes
+import { renderArtists } from "../presenters/trackListPresenter" //This line need changes
 const playButton = require("../../assets/play.svg")
 const pauseButton = require("../../assets/pause.svg")
 const nextButton = require("../../assets/next.svg")
