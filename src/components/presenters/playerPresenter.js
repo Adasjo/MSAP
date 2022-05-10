@@ -5,7 +5,6 @@ import { initSpotifyPlayerSDK, spotifyTransferPlayBack } from "../../utilities/a
 import PlayerView from "../views/playerView"
 
 import "../../styles/player.css"
-import Queue from "./queuePresenter"
 import { useNavigate } from "react-router-dom"
 
 
@@ -64,7 +63,7 @@ function PlayerPresenter() {
             }
         }, 1000)
         return () => clearInterval(interval)
-      }, [state])
+    }, [state])
 
     //Return empty "player" if not loaded
     if (!player || !state) {

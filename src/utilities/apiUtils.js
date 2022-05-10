@@ -227,7 +227,7 @@ function initSpotifyPlayerSDK() {
 
         window.onSpotifyWebPlaybackSDKReady = () => {
             const player = new window.Spotify.Player({
-                name: "Test",
+                name: "MSAP",
                 getOAuthToken: cb => {cb(accessToken)},
                 volume: 0.5
             })
@@ -251,6 +251,17 @@ async function isActive(accessToken, id) {
     return false
 }
 
+function unmountSpotifyPlayerSDK() {
+    return async (dispatch, getState) => {
+        const player = getState().spotify.player
+        const listeners = ["ready", "not_ready", "player_state_changed"]
+        listeners.forEach(listener => player.removeListener(listener))
+        player.disconnect()
+        dispatch({type: "spotify/clearState"})
+
+    }
+} 
+
 export {
     spotifyAuthorize, 
     handleRedirect, 
@@ -260,5 +271,6 @@ export {
     spotifyTransferPlayBack, 
     spotifyQueueTrack, 
     spotifyPlayTrack, 
-    isActive
+    isActive,
+    unmountSpotifyPlayerSDK
 }

@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
 import { composeWithDevTools } from "redux-devtools-extension"
-import rootReducer from "./reducers/root"
+import rootReducer from "./reducers/reduxRoot"
 import { getFirebase } from "react-redux-firebase"
 
 const middleware = [thunk.withExtraArgument(getFirebase)]

@@ -23,7 +23,8 @@ export const spotifySlice = createSlice({
         },
         updateState: (state, action) => {
             state.currentState = {...action.payload}
-        }
+        },
+        clearState: () => initialState
     }
 })
 
