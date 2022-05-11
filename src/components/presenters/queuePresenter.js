@@ -1,7 +1,7 @@
 import React from "react"
 import { useSelector } from "react-redux"
 import "../../styles/queue.css"
-import TrackListPresenter from "./trackListPresenter"
+import TrackListView from "../views/trackListView"
 
 function removeDupes(array) {
     return array.filter((a, index) => 
@@ -12,7 +12,7 @@ function removeDupes(array) {
 function QueuePresenter() {
     const queue = useSelector(state => state.spotify.currentState.track_window.next_tracks)
     return <div className="queue">
-        <TrackListPresenter tracks={removeDupes(queue)}/>
+        <TrackListView tracks={removeDupes(queue)}/>
     </div>
 }
 
