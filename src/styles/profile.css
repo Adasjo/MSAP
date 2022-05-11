@@ -1,7 +1,18 @@
+  body {
+    background: var(--backg);
+  }
+  
+  h1
+  p {
+    color: var(--text-color);
+  }
+  
+
 .profile {
     padding: 1rem;
     padding-top: 5rem;
     width: 100%;
+    color: var(--text-color);
 }
 
 .profileHeader {
@@ -10,6 +21,7 @@
     align-items: center;
     width: 100%;
     padding-bottom: 1rem;
+    color: var(--text-color);
 }
 
 /*------Profile image---------------------------------------------*/
@@ -174,3 +186,6 @@
 .buttonLogout:active {
     background: rgb(231, 117, 117);
 }
+
+
+

@@ -29,7 +29,7 @@
     position: sticky;
     top: 0;
     border-bottom: 1px solid black;
-    background: white;
+    background: var(--backg);
 }
 
 .sidebarList {
@@ -57,11 +57,11 @@
 
 .playlistButton:hover, .sidebarButton:hover {
     /*background: rgb(205, 236, 215);*/
-    color: grey;
+    color: var(--hovcol);
 }
 
 .playlistButton:active, .sidebarButton:active {
-    color: black;
+    color:  var(--textcol);
 }
 
 .currentlyPlaying {
