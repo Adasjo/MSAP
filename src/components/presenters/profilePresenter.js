@@ -33,8 +33,7 @@ function ProfilePresenter() {
 
     function changeName(e) {
         const newName = e.target.value
-        console.log(newName)
-        if (newName == user.displayName || newName.test(emptyUsername)) return
+        if (newName == user.displayName || emptyUsername.test(newName)) return
         user.updateProfile({displayName: newName})
     }
     //const btn = document.querySelector(".btn-toggle");
