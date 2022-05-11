@@ -6,6 +6,7 @@ import "../../styles/sidebar.css"
 import SidebarView from "../views/sidebarView"
 
 function SidebarPresenter() {
+    const navigate = useNavigate()
     const accessToken = useSelector(state => state.spotify.accessToken)
     const spotifyState = useSelector(state => state.spotify.currentState)
     const [data, setData] = useState()
@@ -21,7 +22,7 @@ function SidebarPresenter() {
     function renderPlaylists() {
         return data.items.map(playlist => 
             <div key={playlist.id}>
-                <button className="playlistButton" onClick={() => useNavigate("/home/playlist?id=" + playlist.id)}>{playlist.name}</button>
+                <button className="playlistButton" onClick={() => navigate("/home/playlist?id=" + playlist.id)}>{playlist.name}</button>
             </div>
         )
     } 
