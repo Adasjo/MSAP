@@ -40,7 +40,7 @@
     justify-self: flex-start;
 }
 
-.playlistButton, .sidebarButton {
+.playlistButton, .sidebarHeader button {
     width: 100%;
     background: none;
     border: none;
