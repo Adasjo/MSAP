@@ -75,6 +75,11 @@ function PlayerPresenter() {
         player.setVolume(proc/100)
         setVolume(proc)
     }
+
+    function artistRedirect(e, artist) {
+        const params = new URLSearchParams({search: artist})
+        navigate("/home?" + params) 
+    }
     
     const track = state.track_window.current_track
     const duration = formatDuration(state.duration)
@@ -92,6 +97,7 @@ function PlayerPresenter() {
         nextTrack = {player.nextTrack}
         togglePlay = {player.togglePlay}
         onQueueClick = {window.location.pathname != "/home/queue" ? () => navigate("/home/queue") : null}
+        artistRedirect = {artistRedirect}
     />
 }
 
