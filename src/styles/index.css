@@ -1,6 +1,13 @@
 /* Opinionated CSS defaults based on:
   ! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css 
 */
+:root{
+  --backg: white;
+  --hovcol: rgb(223, 223, 223);
+  --textcol: black;
+  --sectextcol: grey;
+  --imgcol: invert(0%)
+}
 
 html {
   line-height: 1.2; 

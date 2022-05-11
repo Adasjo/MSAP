@@ -1,7 +1,26 @@
+  body {
+    background: var(--backg);
+  }
+  
+  h1
+  p {
+    color: var(--textcol);
+  }
+  
+
 .profile {
     padding: 1rem;
     padding-top: 5rem;
     width: 100%;
+    color: var(--textcol);
+    background: var(--backg);
+}
+.profileName{
+    background: var(--backg);
+    color: var(--textcol);
+}
+.profilePen{
+    filter: var(--imgcol);
 }
 
 .profileHeader {
@@ -10,6 +29,7 @@
     align-items: center;
     width: 100%;
     padding-bottom: 1rem;
+    color: var(--textcol);
 }
 
 /*------Profile image---------------------------------------------*/
@@ -174,3 +194,6 @@
 .buttonLogout:active {
     background: rgb(231, 117, 117);
 }
+
+
+
