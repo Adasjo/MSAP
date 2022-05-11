@@ -1,10 +1,10 @@
 .player {
-    border-top: 1px solid lightgrey;
+    border-top: 1px solid var(--bordercol);
     display: grid;
     grid-template-columns: 30% 40% 30%;
     align-items: center;
     padding: 1rem;
-    background-color: var(--backg);
+    background-color: var(--bg3);
     height: 4rem;
     min-width: 30rem;
     color: var(--textcol);

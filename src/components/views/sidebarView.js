@@ -2,6 +2,8 @@ import spinner from "../../assets/spinner.gif"
 import "../../styles/sidebar.css"
 import React from "react"
 
+import homeButton from "../../assets/home.svg"
+
 function SidebarView({playlists, navigate, imageCurrent}){
 
     function renderPlaylists() {
@@ -16,7 +18,10 @@ function SidebarView({playlists, navigate, imageCurrent}){
     <div className="sidebarContainer">
         <div className="sidebarHeader">
             <h3>MSAP</h3>
-            <button onClick={navigate.home}>Home</button>
+            <label>
+                <img src={homeButton}/>
+                <button onClick={navigate.home}>Home</button>
+            </label>
         </div>
         <div className="sidebarList">
             {playlists ? renderPlaylists() : <img src={spinner}/>}
