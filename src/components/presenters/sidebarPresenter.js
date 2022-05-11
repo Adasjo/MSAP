@@ -19,18 +19,14 @@ function SidebarPresenter() {
         image = spotifyState.track_window.current_track.album.images[0].url
     }
 
-    function renderPlaylists() {
-        return data.items.map(playlist => 
-            <div key={playlist.id}>
-                <button className="playlistButton" onClick={() => navigate("/home/playlist?id=" + playlist.id)}>{playlist.name}</button>
-            </div>
-        )
-    } 
-
     return <SidebarView
-    renderPlaylists={renderPlaylists}
-    data={data}
-    image={image}    />
+        playlists={data ? data.items : null}
+        imageCurrent={image}
+        navigate={{
+            home: () => navigate("/home"), 
+            playlist: playlist => navigate("/home/playlist?id=" + playlist.id)
+        }}
+    />
 }
 
 export default SidebarPresenter

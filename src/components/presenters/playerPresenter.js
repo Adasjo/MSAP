@@ -44,7 +44,7 @@ function PlayerPresenter() {
                 setState({...newState})
             }
         }))
-        return player ? () => player.disconnect() : () => {}
+        return () => {if (player) player.disconnect()}
     }, [])
 
     //Update player every second  
