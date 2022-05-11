@@ -1,4 +1,5 @@
 import {client_id, client_secret} from "../config/spotifyConfig"
+import { isLoaded } from "react-redux-firebase"
 
 const BASE_URL = "https://accounts.spotify.com"
 const API_URL = "https://api.spotify.com/v1"
@@ -164,9 +165,16 @@ function handleRedirect(navigate) {
         const res = await getAccessToken(code)
         dispatch({type: "spotify/updateTokens", payload: res})
         const firebase = getFirebase()
-        const uid = firebase.auth().currentUser.uid
-        firebase.database().ref("users/" + uid + "/refreshToken").set(res.refresh_token)
-        navigate("../home", {replace: true})
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                const uid = user.uid
+                firebase.database().ref("users/" + uid + "/refreshToken").set(res.refresh_token)
+                navigate("../home", {replace: true})
+            }
+        })
+        
+        
+        
     } 
 }
 
