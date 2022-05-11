@@ -20,13 +20,14 @@
 .resultNo {
     grid-area: a;
     margin-right: 1.5rem;
-    color: var(--hovcol);
+    color: var(--textcol);
+    opacity: .8;
     font-size: large;
     cursor: default;
 }
 
 .track:hover .resultNo {
-    color: rgba(0, 0, 0, 0);
+    opacity: 0;
 }
 
 .trackPlayIcon {
@@ -34,6 +35,7 @@
     width: 1rem;
     opacity: 0;
     transform: translateX(-1.5rem);
+    filter: var(--imgcol);
 } 
 
 .track:hover .trackPlayIcon {
@@ -53,7 +55,7 @@
 }
 
 .track:hover {
-    background: var(--hovcol);
+    background: var(--hovertrack);
 }
 
 .nameAndImage {
@@ -73,6 +75,7 @@
 
 .trackName {
     font-size: medium;
+    color: var(--textcol);
     /*cursor: pointer;*/
     cursor: default;
 }   
@@ -86,7 +89,7 @@
 .trackArtist {
     cursor: pointer;
     font-size: small;
-    color: var(--sectextcol);
+    color: var(--textlight);
 }
 
 .trackArtist:hover {
@@ -159,7 +162,7 @@ input:checked + .dropdown {
 
 .track > button:hover {
     /*background: rgb(205, 236, 215);*/
-    color: var(--sectextcol);
+    color: var(--texthov);
 }
 
 .track > button:active {

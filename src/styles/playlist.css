@@ -9,9 +9,10 @@
     top: 0;
     padding: 1rem;
     margin: 1rem;
-    background-color: var(--backg);
+    background-color: var(--bg1);
     color: var(--textcol);
     border-bottom: 1px solid lightgrey;
+    z-index: 2;
 }
 
 .playlist > img {

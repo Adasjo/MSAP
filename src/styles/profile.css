@@ -1,26 +1,9 @@
-  body {
-    background: var(--backg);
-  }
-  
-  h1
-  p {
-    color: var(--textcol);
-  }
-  
-
 .profile {
     padding: 1rem;
     padding-top: 5rem;
     width: 100%;
     color: var(--textcol);
-    background: var(--backg);
-}
-.profileName{
-    background: var(--backg);
-    color: var(--textcol);
-}
-.profilePen{
-    filter: var(--imgcol);
+    background: var(--bg1);
 }
 
 .profileHeader {
@@ -83,6 +66,7 @@
 .profileInfo {
     margin: 1rem;
     padding: .5rem 0 .5rem;
+    color: var(--textcol)
 }
 
 .profileInfo > div {
@@ -95,8 +79,15 @@
 
 .profileInfo input {
     border: none;
+    border-radius: .4rem;
     width: max-content;
     font-size: xx-large;
+    color: var(--textcol);
+    background: var(--bg1);
+}
+
+.profileInfo input:where(:focus, :hover) {
+    background: var(--bg2);
 }
 
 .profileInfo input + img {
@@ -104,9 +95,10 @@
     height: 1.5rem;
     opacity: 0;
     transition: .1s;
+    filter: var(--imgcol);
 }
 
-.profileInfo input:is(:hover, :focus) + img {
+.profileInfo input:is(:hover, :focus) + img, .profileInfo:hover input + img {
     opacity: .8;
 }
 
@@ -170,29 +162,30 @@
 }
 
 .profileSettings .switch input:checked + span {
-    background: rgb(51, 182, 84);
+    background: var(--green);
 }
 
 .profileSettings .switch input:checked:hover + span {
-    background: rgb(65, 211, 101);
+    background: var(--greenhover);
 }
 
 /*------Misc---------------------------------------------*/
 
 .buttonLogout {
     border: none;
-    background: rgb(248, 97, 97);
+    background: var(--red);
     color: white;
     padding: .4rem;
     cursor: pointer;
+    border-radius: .3rem;
 }
 
 .buttonLogout:hover {
-    background: rgb(248, 134, 134);
+    background: var(--redhover);
 }
 
 .buttonLogout:active {
-    background: rgb(231, 117, 117);
+    background: var(--redactive);
 }
 
 

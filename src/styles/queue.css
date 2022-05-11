@@ -1,4 +1,5 @@
 .queue {
     height: 90vh;
     width: inherit;
+    background: var(--bg1)
 }

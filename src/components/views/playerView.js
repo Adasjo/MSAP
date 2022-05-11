@@ -1,10 +1,13 @@
 import React from 'react'
-import { renderArtists } from "../trackList" //This line need changes
+
+import ArtistList from "./artistList"
+
+import "../../styles/player.css"
+
 const playButton = require("../../assets/play.svg")
 const pauseButton = require("../../assets/pause.svg")
 const nextButton = require("../../assets/next.svg")
 const prevButton = require("../../assets/prev.svg")
-import "../../styles/player.css"
 
 // Help component for playlist view
 function TrackInfo({empty, track, artistRedirect}) {
@@ -12,7 +15,7 @@ function TrackInfo({empty, track, artistRedirect}) {
 
     return <div>
         <span>{track.name}</span><br/>
-        {renderArtists(track, artistRedirect)}
+        <ArtistList artists={track.artists} redirect={artistRedirect}/>
     </div>
 }
 

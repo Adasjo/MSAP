@@ -4,20 +4,15 @@
     width: 18rem;
     min-width: 11rem;
     max-width: 22rem;
-    margin-top: 0.7rem;
     resize: horizontal;
     overflow: hidden;
-    border-right: 1px solid lightgrey;
+    border-right: 1px solid var(--bordercol);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.13);
     z-index: 10;
-}
-
-.siderbar::-webkit-resizer {
-    background: red;
-    border-right: 1px solid red;
+    background: var(--bg2);
 }
 
 .sidebarContainer {
@@ -26,17 +21,41 @@
 }
 
 .sidebarHeader {
+    padding-top: 0.7rem;
     position: sticky;
     top: 0;
     border-bottom: 1px solid black;
-    background: var(--backg);
     text-align: center;
 }
 
 .sidebarHeader h3 {
     margin-top: .3rem;
-    margin-bottom: .3rem;
-    color: var(--textcol)
+    margin-bottom: 1rem;
+    color: var(--textcol);
+    cursor: default;
+}
+
+.sidebarHeader > label {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.sidebarHeader > label > img {
+    height: 1.1rem;
+    aspect-ratio: 1 / 1;
+    filter: var(--imgcol)
+}
+
+.sidebarHeader > label:hover > img {
+    opacity: .5;
+}
+
+.sidebarHeader > label:active > img {
+    opacity: 1;
 }
 
 .sidebarList {
@@ -48,12 +67,10 @@
 }
 
 .playlistButton, .sidebarHeader button {
-    width: 100%;
     background: none;
     border: none;
     cursor: pointer;
     color: var(--textcol);
-    background: var(--backg);
 }
 
 .sidebarHeader button {
@@ -64,13 +81,13 @@
     text-align: left;
 }
 
-.playlistButton:hover, .sidebarHeader button:hover {
+.playlistButton:hover, .sidebarHeader > label:hover > button {
     /*background: rgb(205, 236, 215);*/
-    color: var(--hovcol);
+    color: var(--texthov);
 }
 
-.playlistButton:active, .sidebarHeader button:active {
-    color:  var(--textcol);
+.playlistButton:active, .sidebarHeader > label:active > button {
+    color: var(--textcol);
 }
 
 .currentlyPlaying {

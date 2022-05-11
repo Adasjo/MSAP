@@ -7,19 +7,52 @@ function debounce(func, timeout = 500) {
 }
 
 function setTheme(theme) {
+    let properties
     if(theme == "dark") {
-        document.documentElement.style.setProperty("--backg", "black")
-        document.documentElement.style.setProperty("--hovcol", "grey")
-        document.documentElement.style.setProperty("--textcol", "white")
-        document.documentElement.style.setProperty("--sectextcol", "rgb(223, 223, 223)")
-        document.documentElement.style.setProperty("--imgcol", "invert(100%)")
+        properties = {
+            "--bg1": "rgb(10, 10, 10)",
+            "--bg2": "rgb(20, 20, 20)",
+            "--bg3": "rgb(31, 31, 31)",
+            "--bg4": "rgb(46, 46, 46)",
+            "--bordercol": "none",
+            "--hovcol": "rgb(100, 100, 100)",
+            "--textcol": "rgb(230, 230, 230)",
+            "--textlight": "rgb(150, 150, 150)",
+            "--sectextcol": "rgb(223, 223, 223)",
+            "--imgcol": "invert(100%)",
+            "--hovertrack": "rgb(31, 31, 31)",
+            "--green": "#2ba54a",
+            "--greenhover": "#3bc268",
+            "--greenactive": "rgb(9, 172, 58)",
+            "--red": "rgb(185, 80, 80)",
+            "--redhover": "rgb(210, 100, 100)",
+            "--redactive": "rgb(170, 88, 88)",
+        }
     } else {
-        document.documentElement.style.setProperty("--backg", "white")
-        document.documentElement.style.setProperty("--hovcol", "rgb(223, 223, 223)")
-        document.documentElement.style.setProperty("--textcol", "black")
-        document.documentElement.style.setProperty("--sectextcol", "grey")
-        document.documentElement.style.setProperty("--imgcol", "invert(0%)")
+        properties = {
+            "--bg1": "white",
+            "--bg2": "white",
+            "--bg3": "white",
+            "--bg4": "rgb(243, 243, 243)",
+            "--bordercol": "lightgrey",
+            "--hovcol": "rgb(223, 223, 223)",
+            "--textcol": "black",
+            "--texthov": "rgb(160, 160, 160)",
+            "--textlight": "rgb(100, 100, 100)",
+            "--sectextcol": "grey",
+            "--imgcol": "invert(0%)",
+            "--hovertrack": "rgb(220, 220, 220)",
+            "--green": "rgb(47, 175, 85)",
+            "--greenhover": "rgb(72, 224, 118)",
+            "--greenactive": "rgb(41, 167, 79)",
+            "--red": "rgb(248, 97, 97)",
+            "--redhover": "rgb(248, 134, 134)",
+            "--redactive": "rgb(231, 117, 117)",
+        }
     }
+    Object.entries(properties).forEach(([key, value]) => {
+        document.body.style.setProperty(key, value)
+    })
 }
 
 export {
