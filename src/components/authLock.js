@@ -10,8 +10,8 @@ function AuthLock() {
 
     if (auth.isLoaded && auth.uid) {
         return <Outlet/>
-    } else if (auth.isLoaded) {
-        return <div>Loading...</div>
+    } else if (auth.isLoaded && !auth.isEmpty) {
+        return <div>Waiting for auth...</div>
     }
     
     return <Navigate to={"/sign-in"}/>  

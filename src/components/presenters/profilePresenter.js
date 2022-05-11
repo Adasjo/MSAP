@@ -1,15 +1,19 @@
 import React, { useState } from "react"
+import { useDispatch } from "react-redux"
 import { useFirebase } from "react-redux-firebase"
 import { useNavigate } from "react-router-dom"
-import ProfileView from "../views/profileView"
+import { persistor } from "../../store"
 
+import ProfileView from "../views/profileView"
 import spinner from "../../assets/spinner.gif"
+import { unmountSpotifyPlayerSDK } from "../../utilities/apiUtils"
 
 const emptyUsername = /^\s+$/
 
 function ProfilePresenter() {
-    const nav = useNavigate()
+    const dispatch = useDispatch()
     const firebase = useFirebase()
+    const nav = useNavigate()
     const user = firebase.auth().currentUser
     const [photo, setPhoto] = useState(user.photoURL)
     const name = user.displayName
@@ -61,8 +65,10 @@ function ProfilePresenter() {
     }
 
     async function logout() {
-        await firebase.logout()
         nav("/sign-in")
+        await firebase.logout()
+        dispatch(unmountSpotifyPlayerSDK())
+        persistor.purge()
     }
 
     return <ProfileView 

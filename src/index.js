@@ -10,10 +10,15 @@ import firebase from 'firebase/app'
 import "firebase/auth"
 import "firebase/database"
 import "firebase/storage"
-import store from "./store"
+import { store, persistor } from "./store"
 import { BrowserRouter } from 'react-router-dom'
+import { PersistGate } from "redux-persist/integration/react"
 
 firebase.initializeApp(fbConfig)
+
+if (window.location.pathname == "/") {
+  window.location.pathname = "/home"
+}
 
 const rrfProps = {
   firebase,
@@ -23,13 +28,15 @@ const rrfProps = {
 }
 
 const render = () => ReactDOM.render(
-  <BrowserRouter>
     <Provider store={store}>
       <FirebaseProvider {...rrfProps}>
-        <App/>
+        <PersistGate loading={null} persistor={persistor}>
+          <BrowserRouter>
+            <App/>
+          </BrowserRouter>
+        </PersistGate>
       </FirebaseProvider>
-    </Provider>
-  </BrowserRouter>,
+    </Provider>,
   document.getElementById('root')
 );
 

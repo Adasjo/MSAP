@@ -5,7 +5,6 @@ import { initSpotifyPlayerSDK, spotifyTransferPlayBack } from "../../utilities/a
 import PlayerView from "../views/playerView"
 
 import "../../styles/player.css"
-import Queue from "./queuePresenter"
 import { useNavigate } from "react-router-dom"
 
 
@@ -28,32 +27,25 @@ function PlayerPresenter() {
     const [state, setState] = useState()
     const navigate = useNavigate()
 
-    // Initialize a new spotify Web SDK player
+    /*
+    *   The lifecycle of the player.
+    *   On mount, initialize the Spotify web SDK
+    *   On dismount, disconnect the player
+    */
     useEffect(() => {
-        if (accessToken) 
-            dispatch(initSpotifyPlayerSDK())
-    }, [accessToken])
-
-    // If the player is initialized, add event listeners and connect the player
-    useEffect(() => {
-        if (player) {
-            player.addListener("ready", ({device_id}) => {
-                spotifyTransferPlayBack(accessToken, device_id)
+        dispatch(initSpotifyPlayerSDK({
+            "ready": ({device_id}) => {
                 setReady(true)
-            })
-
-            player.addListener("not_ready", _ => {
-                setReady(false)
-            })
-
-            player.addListener("player_state_changed", newState => {
+                setTimeout(() => spotifyTransferPlayBack(accessToken, device_id), 200)
+            },
+            "not_ready": _ => setReady(false),
+            "player_state_changed": newState => {
                 dispatch({type: "spotify/updateState", payload: newState})
                 setState({...newState})
-            })
-            
-            player.connect()
-        }
-    }, [player])
+            }
+        }))
+        return player ? () => player.disconnect() : () => {}
+    }, [])
 
     //Update player every second  
     useEffect(() => {
@@ -64,11 +56,11 @@ function PlayerPresenter() {
             }
         }, 1000)
         return () => clearInterval(interval)
-      }, [state])
+    }, [state])
 
     //Return empty "player" if not loaded
     if (!player || !state) {
-        return <div className="player"/>
+        return <PlayerView empty={true}/>
     }
 
     // Seek in the current track
@@ -83,9 +75,12 @@ function PlayerPresenter() {
         player.setVolume(proc/100)
         setVolume(proc)
     }
-    
-    
 
+    function artistRedirect(e, artist) {
+        const params = new URLSearchParams({search: artist})
+        navigate("/home?" + params) 
+    }
+    
     const track = state.track_window.current_track
     const duration = formatDuration(state.duration)
     const position = formatDuration(state.position)
@@ -98,9 +93,11 @@ function PlayerPresenter() {
         seek = {seek}
         changeVolume = {changeVolume}
         state = {state}
-        ready = {ready}
-        player = {player}
+        previousTrack = {player.previousTrack}
+        nextTrack = {player.nextTrack}
+        togglePlay = {player.togglePlay}
         onQueueClick = {window.location.pathname != "/home/queue" ? () => navigate("/home/queue") : null}
+        artistRedirect = {artistRedirect}
     />
 }
 
