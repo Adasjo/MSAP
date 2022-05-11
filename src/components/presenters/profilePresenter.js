@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom"
 
 import { persistor } from "../../store"
 import { unmountSpotifyPlayerSDK } from "../../utilities/apiUtils"
-import { setTheme } from "../../utilities/utils"
 
 import ProfileView from "../views/profileView"
 import spinner from "../../assets/spinner.gif"
@@ -34,6 +33,7 @@ function ProfilePresenter() {
 
     function changeName(e) {
         const newName = e.target.value
+        console.log(newName)
         if (newName == user.displayName || newName.test(emptyUsername)) return
         user.updateProfile({displayName: newName})
     }
@@ -42,8 +42,7 @@ function ProfilePresenter() {
     
     function toggleDark() {
         const newTheme = theme == "light" ? "dark" : "light"
-        setTheme(newTheme)
-        dispatch({type: "settings/setTheme", action: newTheme})
+        dispatch({type: "settings/setTheme", payload: newTheme})
         firebase.database().ref(`users/${user.uid}/theme`).set(newTheme)
     }
 

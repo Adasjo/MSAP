@@ -19,10 +19,7 @@ const rootReducer = combineReducers({
         persistOptions("firebase"),
         firebaseReducer
     ),
-    settings: persistReducer(
-        persistOptions("settings"),
-        settingsReducer
-    ),
+    settings: settingsReducer,
     spotify: spotifyReducer
 })
 

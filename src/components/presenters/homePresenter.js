@@ -18,17 +18,16 @@ function HomePresenter() {
     const theme = useSelector(state => state.settings.theme)
 
     // Listen to the theme property in firebase to sync the users prefered theme with the state
-    useEffect(() => {
+    useEffect(async () => {
         const ref = database.ref(`users/${uid}/theme`)
-        ref.on("value", snapshot => {
-            const newTheme = snapshot.val()
-            if (newTheme && newTheme != theme) {
-                dispatch({type: "settings/setTheme", payload: newTheme})
-                setTheme(newTheme)
-            }
-        })
-        return () => ref.off("value")
+        const snapshot = await ref.get()
+        dispatch({type: "settings/setTheme", payload: snapshot.val()})
     }, [])
+
+    // Update theme on change
+    useEffect(() => {
+        setTheme(theme)
+    }, [theme])
 
     // Check whether there is a Spotify access token in the state. 
     // If not present, try fetch from firebase
