@@ -1,6 +1,6 @@
 import React from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
-import Playlist from "../playlist"
+import Playlist from "../presenters/playlistPresenter"
 import Player from "../presenters/playerPresenter"
 import Sidebar from "../presenters/sidebarPresenter"
 import Queue from '../presenters/queuePresenter'
