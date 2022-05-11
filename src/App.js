@@ -6,7 +6,7 @@ import Home from './components/presenters/homePresenter'
 import SignIn from './components/presenters/signInPresenter'
 import SignUp from './components/presenters/signUpPresenter'
 import Spotify from './components/spotify'
-import NoPage from './components/presenters/noPagePresenter'
+import NoPage from './components/views/noPageView'
 import GettingStarted from './components/presenters/gettingStartedPresenter'
 import AuthLock from './components/authLock'
 
