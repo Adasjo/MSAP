@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { spotifyGet } from "../utilities/apiUtils"
+import { spotifyGet } from "../../utilities/apiUtils"
+import "../../styles/sidebar.css"
+import SidebarView from "../views/sidebarView"
 
-import "../styles/sidebar.css"
-
-import spinner from "../assets/spinner.gif"
-
-const initData = {items: []}
-
-function Sidebar() {
+function SidebarPresenter() {
     const navigate = useNavigate()
     const accessToken = useSelector(state => state.spotify.accessToken)
     const spotifyState = useSelector(state => state.spotify.currentState)
@@ -31,17 +27,10 @@ function Sidebar() {
         )
     } 
 
-    return <div className="sidebar">
-        <div className="sidebarContainer">
-            <div className="sidebarHeader">
-                <button onClick={() => navigate("/home")}>Home</button>
-            </div>
-            <div className="sidebarList">
-                {data ? renderPlaylists() : <img src={spinner}/>}
-            </div>
-        </div>
-        {<img className="currentlyPlaying" src={image ? image : spinner}/>}
-    </div>
+    return <SidebarView
+    renderPlaylists={renderPlaylists}
+    data={data}
+    image={image}    />
 }
 
-export default Sidebar
+export default SidebarPresenter

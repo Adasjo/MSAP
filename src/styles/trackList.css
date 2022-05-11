@@ -20,7 +20,7 @@
 .resultNo {
     grid-area: a;
     margin-right: 1.5rem;
-    color: grey;
+    color: var(--hovcol);
     font-size: large;
     cursor: default;
 }
@@ -53,7 +53,7 @@
 }
 
 .track:hover {
-    background: rgba(207, 207, 207, 0.185);
+    background: var(--hovcol);
 }
 
 .nameAndImage {
@@ -86,11 +86,11 @@
 .trackArtist {
     cursor: pointer;
     font-size: small;
-    color: rgb(114, 114, 114);
+    color: var(--sectextcol);
 }
 
 .trackArtist:hover {
-    color: black;
+    color: var(--textcol);
     text-decoration: underline;
 }
 
@@ -150,7 +150,7 @@ input:checked + .dropdown {
 .track > button {
     background: none;
     border: none;
-    color: black;
+    color: var(--textcol);
     cursor: pointer;
     opacity: 0;
     transition: .1s;
@@ -159,12 +159,12 @@ input:checked + .dropdown {
 
 .track > button:hover {
     /*background: rgb(205, 236, 215);*/
-    color: rgb(46, 173, 95);
+    color: var(--sectextcol);
 }
 
 .track > button:active {
     /*background: rgb(205, 236, 215);*/
-    color: rgb(23, 100, 52);
+    color: var(--textcol);
 }
 
 .track:hover > button {
