@@ -84,7 +84,7 @@ function PlayerPresenter() {
     const track = state.track_window.current_track
     const duration = formatDuration(state.duration)
     const position = formatDuration(state.position)
-    
+
     return <PlayerView
         track = {track}
         duration = {duration}
@@ -93,9 +93,9 @@ function PlayerPresenter() {
         seek = {seek}
         changeVolume = {changeVolume}
         state = {state}
-        previousTrack = {player.previousTrack}
-        nextTrack = {player.nextTrack}
-        togglePlay = {player.togglePlay}
+        previousTrack = {() => player.previousTrack()}
+        nextTrack = {() => player.nextTrack()}
+        togglePlay = {() => player.togglePlay()}
         onQueueClick = {window.location.pathname != "/home/queue" ? () => navigate("/home/queue") : null}
         artistRedirect = {artistRedirect}
     />
