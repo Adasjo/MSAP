@@ -1,6 +1,7 @@
 /* Opinionated CSS defaults based on:
   ! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css 
 */
+/*
 :root{
   --bg1: white;
   --bg2: white;
@@ -20,7 +21,7 @@
   --red: rgb(248, 97, 97);
   --redhover: rgb(248, 134, 134);
   --redactive: rgb(231, 117, 117);
-}
+}*/
 
 html {
   line-height: 1.2; 

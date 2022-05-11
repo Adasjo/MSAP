@@ -37,6 +37,7 @@ function setTheme(theme) {
             "--bordercol": "lightgrey",
             "--hovcol": "rgb(223, 223, 223)",
             "--textcol": "black",
+            "--texthov": "rgb(160, 160, 160)",
             "--textlight": "rgb(100, 100, 100)",
             "--sectextcol": "grey",
             "--imgcol": "invert(0%)",
@@ -49,8 +50,8 @@ function setTheme(theme) {
             "--redactive": "rgb(231, 117, 117)",
         }
     }
-    Object.entries(properties).forEach(entry => {
-        document.documentElement.style.setProperty(entry[0], entry[1])
+    Object.entries(properties).forEach(([key, value]) => {
+        document.body.style.setProperty(key, value)
     })
 }
 
