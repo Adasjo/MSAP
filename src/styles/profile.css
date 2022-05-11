@@ -4,7 +4,7 @@
   
   h1
   p {
-    color: var(--text-color);
+    color: var(--textcol);
   }
   
 
@@ -12,7 +12,15 @@
     padding: 1rem;
     padding-top: 5rem;
     width: 100%;
-    color: var(--text-color);
+    color: var(--textcol);
+    background: var(--backg);
+}
+.profileName{
+    background: var(--backg);
+    color: var(--textcol);
+}
+.profilePen{
+    filter: var(--imgcol);
 }
 
 .profileHeader {
@@ -21,7 +29,7 @@
     align-items: center;
     width: 100%;
     padding-bottom: 1rem;
-    color: var(--text-color);
+    color: var(--textcol);
 }
 
 /*------Profile image---------------------------------------------*/

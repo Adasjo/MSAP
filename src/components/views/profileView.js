@@ -29,8 +29,8 @@ function ProfileView({username, email, photoURL, uploadImage, changeName, toggle
             <div className="profileInfo">
                 <div>Profile</div>
                 <div>
-                    <input defaultValue={username} onBlur={changeName}/>
-                    <img src={pencil}/>
+                    <input className="profileName" defaultValue={username} onBlur={changeName}/>
+                    <img className="profilePen" src={pencil}/>
                 </div>
                 <div>{email}</div>
             </div>

@@ -10,6 +10,7 @@
     padding: 1rem;
     margin: 1rem;
     background-color: var(--backg);
+    color: var(--textcol);
     border-bottom: 1px solid lightgrey;
 }
 
