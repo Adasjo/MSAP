@@ -36,7 +36,7 @@ function PlayerPresenter() {
         dispatch(initSpotifyPlayerSDK({
             "ready": ({device_id}) => {
                 setReady(true)
-                setTimeout(() => spotifyTransferPlayBack(accessToken, device_id), 100)
+                setTimeout(() => spotifyTransferPlayBack(accessToken, device_id), 200)
             },
             "not_ready": _ => setReady(false),
             "player_state_changed": newState => {
@@ -44,7 +44,7 @@ function PlayerPresenter() {
                 setState({...newState})
             }
         }))
-        return () => player.disconnect()
+        return player ? () => player.disconnect() : () => {}
     }, [])
 
     //Update player every second  
@@ -60,7 +60,7 @@ function PlayerPresenter() {
 
     //Return empty "player" if not loaded
     if (!player || !state) {
-        return <div className="player"/>
+        return <PlayerView empty={true}/>
     }
 
     // Seek in the current track
@@ -88,8 +88,9 @@ function PlayerPresenter() {
         seek = {seek}
         changeVolume = {changeVolume}
         state = {state}
-        ready = {ready}
-        player = {player}
+        previousTrack = {player.previousTrack}
+        nextTrack = {player.nextTrack}
+        togglePlay = {player.togglePlay}
         onQueueClick = {window.location.pathname != "/home/queue" ? () => navigate("/home/queue") : null}
     />
 }
