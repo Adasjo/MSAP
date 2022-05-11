@@ -15,6 +15,7 @@ function SidebarView({playlists, navigate, imageCurrent}){
     return <div className="sidebar">
     <div className="sidebarContainer">
         <div className="sidebarHeader">
+            <h3>MSAP</h3>
             <button onClick={navigate.home}>Home</button>
         </div>
         <div className="sidebarList">

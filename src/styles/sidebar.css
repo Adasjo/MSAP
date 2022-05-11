@@ -30,6 +30,13 @@
     top: 0;
     border-bottom: 1px solid black;
     background: var(--backg);
+    text-align: center;
+}
+
+.sidebarHeader h3 {
+    margin-top: .3rem;
+    margin-bottom: .3rem;
+    color: var(--textcol)
 }
 
 .sidebarList {

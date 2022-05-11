@@ -45,13 +45,17 @@
     width: 100%;
     height: 2.5em;
     border: none;
-    background-color: rgb(50, 110, 165);
+    background-color: rgb(45, 153, 99);
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.116) 1px 1px 8px;
 }
 
+.formButton:hover {
+    background-color: rgb(59, 168, 114);
+}
+
 .formButton:active {
-    background-color: rgb(60, 103, 146);
+    background-color: rgb(37, 124, 80);
 }
 
 .error {
