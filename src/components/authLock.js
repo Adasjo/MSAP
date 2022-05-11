@@ -8,9 +8,9 @@ import { Navigate, Outlet } from "react-router-dom"
 function AuthLock() {
     const auth = useSelector(state => state.firebase.auth)
 
-    if (auth.isLoaded && auth.uid) {
+    if (auth && auth.isLoaded && auth.uid) {
         return <Outlet/>
-    } else if (auth.isLoaded && !auth.isEmpty) {
+    } else if (auth && auth.isLoaded && !auth.isEmpty) {
         return <div>Waiting for auth...</div>
     }
     
