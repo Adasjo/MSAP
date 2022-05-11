@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector } from "react-redux"
 import { useSearchParams } from "react-router-dom"
 import { spotifyGet, spotifyPlayTrack, spotifyQueueTrack } from '../../utilities/apiUtils'
@@ -11,7 +12,7 @@ import TrackListView from "../views/trackListView"
 
 import spinner from "../../assets/spinner.gif"
 
-const searchOptions = "&type=track&limit=20"
+const searchOptions = "&type=track&limit=20&offset=0"
 const searchInit = new URLSearchParams({
     search: ""
 })
@@ -47,7 +48,16 @@ function SearchbarPresenter() {
     }
 
     useEffect(search, [searchParams])
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
 
+      function handleScroll() {
+        console.log('Scrolling hell');
+        if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
+        console.log('Fetch more list items!');
+      }
 
     function promiseNoData() {
         if (error) {
@@ -57,18 +67,21 @@ function SearchbarPresenter() {
         }
         return false
     }
-
+    console.log("START");
+    console.log(searchResult);
+    console.log("END")
     return <SearchbarView
         updateSearchText = {updateSearchText}
         loading = {loading}
         trackListElement = {
             promiseNoData() ||
-            <TrackListView
-                tracks = {searchResult.tracks.items} 
-                artistRedirect = {artistRedirect} 
-                playTrack = {track => spotifyPlayTrack(accessToken, track.uri)} 
-                addToQueue = {uri => spotifyQueueTrack(accessToken, uri)}
-            />
+            <InfiniteScroll 
+                dataLength={searchResult.tracks.items.length}
+                next={handleScroll}
+                hasMore={true}
+                loader={<h4>Loading...</h4>}
+            
+            >{searchResult.tracks.items}</InfiniteScroll>            
         }
     />
 }

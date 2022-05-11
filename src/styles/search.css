@@ -1,6 +1,7 @@
 .searchComponent {
     height: 90vh;
     width: 100%;
+    display: grid;
     overflow: hidden scroll;
 }
 
