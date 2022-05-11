@@ -6,6 +6,7 @@ import { persistReducer } from "redux-persist"
 
 // Custom reducers
 import spotifyReducer from "./spotifyReducer"
+import settingsReducer from "./settingsReducer"
 
 const persistOptions = key => {return {
     key: key, 
@@ -17,6 +18,10 @@ const rootReducer = combineReducers({
     firebase: persistReducer(
         persistOptions("firebase"),
         firebaseReducer
+    ),
+    settings: persistReducer(
+        persistOptions("settings"),
+        settingsReducer
     ),
     spotify: spotifyReducer
 })

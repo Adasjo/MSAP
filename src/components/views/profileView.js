@@ -6,17 +6,17 @@ import pencil from "../../assets/pencil.svg"
 /*
 *   Helper react component for a switch
 */
-function Switch({description, onToggle}) {
+function Switch({description, onToggle, theme}) {
     return <div>
         {description}
         <label className="switch">
-            <input type="checkbox" onChange={onToggle}/>
+            <input type="checkbox" onChange={onToggle} checked={theme == "dark"}/>
             <span/>
         </label>
     </div>
 }
 
-function ProfileView({username, email, photoURL, uploadImage, changeName, toggleDark, logout}) {
+function ProfileView({username, email, photoURL, theme, uploadImage, changeName, toggleDark, logout}) {
     return <div className="profile">
         <div className="profileHeader">
             <div className="profileImage">
@@ -37,7 +37,7 @@ function ProfileView({username, email, photoURL, uploadImage, changeName, toggle
         </div>
         <div className="profileSettings">
             <h3>Preferences</h3>
-            <Switch description={"Dark mode"} onToggle={toggleDark}/>
+            <Switch description={"Dark mode"} onToggle={toggleDark} theme={theme}/>
         </div>
         <button className="buttonLogout" onClick={logout}>Log Out</button>
     </div>

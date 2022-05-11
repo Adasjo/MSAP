@@ -1,12 +1,14 @@
 import React, { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useFirebase } from "react-redux-firebase"
 import { useNavigate } from "react-router-dom"
+
 import { persistor } from "../../store"
+import { unmountSpotifyPlayerSDK } from "../../utilities/apiUtils"
+import { setTheme } from "../../utilities/utils"
 
 import ProfileView from "../views/profileView"
 import spinner from "../../assets/spinner.gif"
-import { unmountSpotifyPlayerSDK } from "../../utilities/apiUtils"
 
 const emptyUsername = /^\s+$/
 
@@ -18,7 +20,7 @@ function ProfilePresenter() {
     const [photo, setPhoto] = useState(user.photoURL)
     const name = user.displayName
     const email = user.email
-    const [trueer, setTrueer] = useState(0);
+    const theme = useSelector(state => state.settings.theme)
 
     async function uploadImage(e) {
         const file = e.target.files[0]
@@ -35,33 +37,14 @@ function ProfilePresenter() {
         if (newName == user.displayName || newName.test(emptyUsername)) return
         user.updateProfile({displayName: newName})
     }
-    const btn = document.querySelector(".btn-toggle");
-    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: light)");
+    //const btn = document.querySelector(".btn-toggle");
+    //const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: light)");
     
     function toggleDark() {
-        if(trueer === 0) {
-            document.documentElement.style.setProperty("--backg", "black")
-            document.documentElement.style.setProperty("--hovcol", "grey")
-            document.documentElement.style.setProperty("--textcol", "white")
-            document.documentElement.style.setProperty("--sectextcol", "rgb(223, 223, 223)")
-            document.documentElement.style.setProperty("--imgcol", "invert(100%)")
-            setTrueer(1);
-        }else{
-            document.documentElement.style.setProperty("--backg", "white")
-            document.documentElement.style.setProperty("--hovcol", "rgb(223, 223, 223)")
-            document.documentElement.style.setProperty("--textcol", "black")
-            document.documentElement.style.setProperty("--sectextcol", "grey")
-            document.documentElement.style.setProperty("--imgcol", "invert(0%)")
-            setTrueer(0);
-        }
-
-        
-        //console.log("Toggle dark mode!");
-        //if (prefersDarkScheme.matches) {
-        //    document.body.classList.toggle("light-theme");
-        //  } else {
-        //    document.body.classList.toggle("dark-theme");
-        //  }
+        const newTheme = theme == "light" ? "dark" : "light"
+        setTheme(newTheme)
+        dispatch({type: "settings/setTheme", action: newTheme})
+        firebase.database().ref(`users/${user.uid}/theme`).set(newTheme)
     }
 
     async function logout() {
@@ -75,6 +58,7 @@ function ProfilePresenter() {
         username={name ? name : "specify username..."} 
         email={email} 
         photoURL={photo} 
+        theme={theme}
         uploadImage={uploadImage} 
         changeName={changeName}
         toggleDark={toggleDark}
