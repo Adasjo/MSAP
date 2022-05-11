@@ -14,7 +14,7 @@ const persistOptions = key => {return {
     stateReconciler
 }}
 
-const rootReducer = combineReducers({
+const rootReducer = () => combineReducers({
     firebase: persistReducer(
         persistOptions("firebase"),
         firebaseReducer

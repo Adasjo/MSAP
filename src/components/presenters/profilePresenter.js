@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { useFirebase } from "react-redux-firebase"
 import { useNavigate } from "react-router-dom"
 
-import { persistor } from "../../store"
 import { unmountSpotifyPlayerSDK } from "../../utilities/apiUtils"
 
 import ProfileView from "../views/profileView"
@@ -49,7 +48,6 @@ function ProfilePresenter() {
         nav("/sign-in")
         await firebase.logout()
         dispatch(unmountSpotifyPlayerSDK())
-        persistor.purge()
     }
 
     return <ProfileView 

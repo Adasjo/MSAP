@@ -10,7 +10,7 @@ import firebase from 'firebase/app'
 import "firebase/auth"
 import "firebase/database"
 import "firebase/storage"
-import { store, persistor } from "./store"
+import createStore from "./store"
 import { BrowserRouter } from 'react-router-dom'
 import { PersistGate } from "redux-persist/integration/react"
 
@@ -19,6 +19,8 @@ firebase.initializeApp(fbConfig)
 if (window.location.pathname == "/") {
   window.location.pathname = "/home"
 }
+
+const {store, persistor} = createStore()
 
 const rrfProps = {
   firebase,

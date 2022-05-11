@@ -6,11 +6,11 @@ import Sidebar from "../presenters/sidebarPresenter"
 import Queue from '../presenters/queuePresenter'
 import SearchbarPresenter from '../presenters/searchbarPresenter'
 import ProfilePresenter from "../presenters/profilePresenter"
-import { useSelector } from 'react-redux'
+import { useFirebase } from 'react-redux-firebase'
 
 function HomeView(props){
     const navigate = useNavigate()
-    const username = useSelector(state => state.firebase.auth.displayName)
+    const username = useFirebase().auth().currentUser.displayName
     return <div className="homeGrid">
         <button onClick={() => navigate("/home/profile")} className="profileButton" disabled={window.location.pathname == "/home/profile"}>{username ? username : "Profile"}</button>
         <div className="mainContent">

@@ -16,11 +16,11 @@ function App() {
       <Route path="/register" element={<SignUp/>}/>
       <Route path="/spotify" element={<Spotify/>}/>
       <Route path="/" element={<AuthLock/>}>
-        <Route path="/home/*" element={<Home/>}/>
-        <Route path="/getting-started" element={<GettingStarted/>}/>
+          <Route path="/home/*" element={<Home/>}/>
+          <Route path="/getting-started" element={<GettingStarted/>}/>
       </Route>
       <Route path="*" element={<NoPage/>}/>
-    </Routes>
+  </Routes>
 }
   
 export default App;

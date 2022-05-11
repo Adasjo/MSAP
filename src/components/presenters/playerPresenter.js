@@ -36,7 +36,7 @@ function PlayerPresenter() {
         dispatch(initSpotifyPlayerSDK({
             "ready": ({device_id}) => {
                 setReady(true)
-                setTimeout(() => spotifyTransferPlayBack(accessToken, device_id), 200)
+                setTimeout(() => spotifyTransferPlayBack(accessToken, device_id), 300)
             },
             "not_ready": _ => setReady(false),
             "player_state_changed": newState => {

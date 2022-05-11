@@ -13,16 +13,17 @@ function HomePresenter() {
     const dispatch = useDispatch()
     const accessToken = useSelector(state => state.spotify.accessToken)
     const triedLoad = useSelector(state => state.spotify.triedLoad)
-    const database = getFirebase().database()
     const uid = useSelector(state => state.firebase.auth.uid)
     const theme = useSelector(state => state.settings.theme)
 
     // Listen to the theme property in firebase to sync the users prefered theme with the state
-    useEffect(async () => {
-        const ref = database.ref(`users/${uid}/theme`)
-        const snapshot = await ref.get()
-        dispatch({type: "settings/setTheme", payload: snapshot.val()})
-    }, [])
+    useEffect(() => {
+        if (!uid) return
+        const ref = getFirebase().database().ref(`users/${uid}/theme`)
+        ref.get()
+            .then(snapshot => dispatch({type: "settings/setTheme", payload: snapshot.val()}))
+            .catch()
+    }, [uid])
 
     // Update theme on change
     useEffect(() => {
