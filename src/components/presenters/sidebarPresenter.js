@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { spotifyGet } from "../utilities/apiUtils"
+import { spotifyGet } from "../../utilities/apiUtils"
 import "../../styles/sidebar.css"
 import SidebarView from "../views/sidebarView"
 
