@@ -47,7 +47,7 @@
     cursor: pointer;
 }
 
-.sidebarButton {
+.sidebarHeader button {
     margin-bottom: 0.5rem;
 }
 
@@ -55,12 +55,12 @@
     text-align: left;
 }
 
-.playlistButton:hover, .sidebarButton:hover {
+.playlistButton:hover, .sidebarHeader button:hover {
     /*background: rgb(205, 236, 215);*/
     color: grey;
 }
 
-.playlistButton:active, .sidebarButton:active {
+.playlistButton:active, .sidebarHeader button:active {
     color: black;
 }
 

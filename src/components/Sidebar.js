@@ -34,7 +34,7 @@ function Sidebar() {
     return <div className="sidebar">
         <div className="sidebarContainer">
             <div className="sidebarHeader">
-                <button className="sidebarButton" onClick={() => navigate("/home")}>Home</button>
+                <button onClick={() => navigate("/home")}>Home</button>
             </div>
             <div className="sidebarList">
                 {data ? renderPlaylists() : <img src={spinner}/>}
