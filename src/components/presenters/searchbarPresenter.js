@@ -7,7 +7,7 @@ import { debounce } from "../../utilities/utils"
 import "../../styles/search.css"
 
 import SearchbarView from "../views/searchbarView"
-import TrackListPresenter from "./trackListPresenter"
+import TrackListView from "../views/trackListView"
 
 import spinner from "../../assets/spinner.gif"
 
@@ -63,7 +63,7 @@ function SearchbarPresenter() {
         loading = {loading}
         trackListElement = {
             promiseNoData() ||
-            <TrackListPresenter 
+            <TrackListView
                 tracks = {searchResult.tracks.items} 
                 artistRedirect = {artistRedirect} 
                 playTrack = {track => spotifyPlayTrack(accessToken, track.uri)} 

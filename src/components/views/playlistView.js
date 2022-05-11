@@ -1,14 +1,10 @@
-import TrackListPresenter from "../presenters/trackListPresenter"
 import React from "react"
-function PlaylistView(props){
+
+
+function PlaylistView({playlistName, trackList}){
     return <div className="playlist">
-        <h1 className="playlistHeader">{props.playlist.name}</h1>
-        <TrackListPresenter 
-            tracks={props.tracks} 
-            artistRedirect={props.artistRedirect} 
-            playTrack={props.playTrack}
-            addToQueue={props.addToQueue}
-        />
+        <h1 className="playlistHeader">{playlistName}</h1>
+        {trackList}
     </div> 
 }
 export default PlaylistView

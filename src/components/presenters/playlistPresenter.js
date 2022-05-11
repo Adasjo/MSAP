@@ -7,6 +7,7 @@ import { spotifyGet, spotifyPlayTrack, spotifyQueueTrack } from "../../utilities
 import spinner from "../../assets/spinner.gif"
 import PlaylistView from "../views/playlistView"
 import "../../styles/playlist.css"
+import TrackListView from "../views/trackListView"
 
 
 function PlaylistPresenter() {
@@ -42,11 +43,15 @@ function PlaylistPresenter() {
     const tracks = playlist.tracks.items.map(trackRes => trackRes.track).filter(track => track.track)
 
     return <PlaylistView
-    tracks={tracks} 
-    artistRedirect={artistRedirect} 
-    playTrack={track => spotifyPlayTrack(token, track.uri)}
-    addToQueue={uri => spotifyQueueTrack(token, uri)}
-    playlist={playlist}/>
+        playlistName={playlist.name}
+        trackList={<TrackListView
+            tracks={tracks} 
+            artistRedirect={artistRedirect} 
+            playTrack={track => spotifyPlayTrack(token, track.uri)}
+            addToQueue={uri => spotifyQueueTrack(token, uri)}
+        />}
+        
+    />
 }
 
 export default PlaylistPresenter
