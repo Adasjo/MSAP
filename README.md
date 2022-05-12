@@ -1,3 +1,5 @@
+### Due to limitations on Spotify's API, if you wish to try the site you have to send your email to adamsjo@kth.se so he can add you
+
 # MSAP
 ### A music streaming web app for iProg, by Adam Sjöberg & Samuel Falk
 
@@ -57,7 +59,7 @@ You will need to setup firebase and spotify by yourself.
 2. Run `npm install` to install dependencies.
 3. Run `npm start` to start the development server
 
-# Project information
+# Project information (Mid-project review)
 ## What we have done:
 
 - Set up basic project structure with react redux
