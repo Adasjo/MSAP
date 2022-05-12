@@ -31,7 +31,7 @@ handle these types of data from the API:s
 A config folder with 2 files
 - fbConfig.js 
 ```js
-const fbConfig = {
+export const fbConfig = {
     apiKey: <APIKEY>,
     authDomain: <FIREBASE-AUTH-DOMAIN>,
     projectId: <PROJECT-ID>,
@@ -41,19 +41,13 @@ const fbConfig = {
     measurementId: <MEASUREMENT-ID>,
     databaseURL: <DATABASE-URL>
   };
-  const rrfConfig = {
-  userProfile: 'users'
- }
- export {fbConfig, rrfConfig}
 ```
 - spotifyConfig.js 
 ```js
-export const {BASE_URL, client_id, client_secret, response_type, redirect_uri, scope} = {
-BASE_URL: "https://accounts.spotify.com",
+export const {client_id, client_secret,redirect_uri} = {
 client_id: <CLIENT-ID>,
 client_secret: <CLIENT-SECRET>,
 redirect_uri: <REDIRECT-URL>,
-scope: "streaming user-library-read playlist-read-private user-read-private user-modify-playback-state user-read-playback-state user-read-currently-playing user-read-email user-read-playback-position",
 }
 ```
 You will need to setup firebase and spotify by yourself.
