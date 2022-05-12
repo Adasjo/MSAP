@@ -1,8 +1,9 @@
 .searchComponent {
     height: 90vh;
     width: 100%;
-    display: grid;
-    overflow: hidden scroll;
+    display: flex;
+    overflow: auto;
+    flex-direction: column;
 }
 
 .searchHeader {
@@ -25,6 +26,7 @@
     color: var(--textcol);
     border-radius: .5rem;
     padding-left: 1rem;
+    overflow: auto;
 }
 
 .searchHeader img {
