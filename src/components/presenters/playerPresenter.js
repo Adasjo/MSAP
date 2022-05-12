@@ -47,6 +47,15 @@ function PlayerPresenter() {
         return () => {if (player) player.disconnect()}
     }, [])
 
+    // Set values for custom sliders 
+    useEffect(() => {
+        if (!player || !state) return
+        document.getElementById("progress")
+            .style.setProperty("--track-progress", `${Math.round(state.position / state.duration * 100)}%`)
+        document.getElementById("volume")
+            .style.setProperty("--track-progress", `${volume}%`)
+    }, [state])
+
     //Update player every second  
     useEffect(() => {
         const interval = setInterval(async () => {

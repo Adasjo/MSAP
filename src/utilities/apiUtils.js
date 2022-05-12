@@ -1,5 +1,4 @@
 import {client_id, client_secret} from "../config/spotifyConfig"
-import { isLoaded } from "react-redux-firebase"
 
 const BASE_URL = "https://accounts.spotify.com"
 const API_URL = "https://api.spotify.com/v1"

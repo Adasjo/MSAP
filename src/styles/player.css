@@ -45,14 +45,17 @@
 }
 
 .sliderContainer {
+    position: relative;
     margin: 0.5em;
     height: 10px;
     width: 100%;
 }
 
 .slider {
+    appearance: none;
     width: 100%;
     border-radius: 6px;
+    --track-progress: 0;
 }
 
 .playerButton {
@@ -110,3 +113,44 @@
 .queueButton:disabled div:first-child {
     border: 2px solid rgb(167, 167, 167);
 }
+
+.slider::-webkit-slider-runnable-track {
+    appearance: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: 0;
+    height: .3rem;
+    border-radius: 1rem;
+    background: linear-gradient(90deg, var(--textcol) var(--track-progress), var(--bg4) var(--track-progress));
+}
+
+.sliderContainer:hover > .slider::-webkit-slider-runnable-track {
+    height: .5rem;
+    background: linear-gradient(90deg, var(--green) var(--track-progress), var(--hovcol) var(--track-progress));
+}
+
+.slider::-webkit-slider-thumb {
+    appearance: none;
+    border: none;
+    height: .8rem;
+    aspect-ratio: 1 / 1;
+    background: var(--textcol);
+    border-radius: 50%;
+    transform: translate(-.4rem, -.15rem);
+    display: none;
+}
+
+.sliderContainer:hover > .slider::-webkit-slider-thumb {
+    display: block;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    background: var(--greenhover);
+}
+
+.slider::-webkit-slider-thumb:active {
+    background: var(--greenactive);
+}
+
