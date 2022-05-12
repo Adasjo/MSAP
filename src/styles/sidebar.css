@@ -26,6 +26,7 @@
     top: 0;
     border-bottom: 1px solid black;
     text-align: center;
+    background: var(--bg2);
 }
 
 .sidebarHeader h3 {
@@ -64,6 +65,7 @@
     margin-top: 0.7rem;
     padding-top: 0.7rem;
     justify-self: flex-start;
+    overflow: hidden;
 }
 
 .playlistButton, .sidebarHeader button {
