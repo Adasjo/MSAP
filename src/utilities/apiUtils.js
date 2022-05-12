@@ -1,4 +1,4 @@
-import {client_id, client_secret} from "../config/spotifyConfig"
+import {client_id, client_secret, redirect_uri} from "../config/spotifyConfig"
 
 const BASE_URL = "https://accounts.spotify.com"
 const API_URL = "https://api.spotify.com/v1"
