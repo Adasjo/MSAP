@@ -12,7 +12,7 @@ function SignInView(props){
             </div>
             <div className="formFieldDiv">
                 <label htmlFor="pw">Password</label>
-                <input className="formField" type="password" onChange={e => props.setPW(e.target.value)}></input>
+                <input className="formField" type="password" onChange={e => props.setPW(e.target.value)} onKeyDown={props.onKeyDown}></input>
                 <a onClick={props.resetPW} style={{cursor:"pointer"}}>Forgot password?</a>
                 {props.error ? <div className="error">{props.error}</div> : ""}
                 {props.message ? <div>{props.message}</div> : ""}

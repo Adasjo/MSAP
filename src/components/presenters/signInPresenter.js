@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useFirebase } from "react-redux-firebase"
 import SignInView from "../views/signInView"
@@ -20,6 +20,11 @@ function SignInPresenter() {
                 setError("Incorrect email or password")
                 firebase.initializeAuth()
             })
+    }
+
+    function onKeyDown(e) {
+        if (e.key != "Enter") return
+        onSubmit()
     }
 
     /*
@@ -45,7 +50,9 @@ function SignInPresenter() {
         setEmail = {setEmail}
         setPW = {setPW}
         resetPW = {reset}
-        onSubmit = {onSubmit}/>
+        onSubmit = {onSubmit}
+        onKeyDown = {onKeyDown}
+    />
 
 }
 

@@ -24,7 +24,8 @@ function SignUpPresenter() {
         setEmail = {setEmail}
         setPW = {setPW}
         onSubmit = {onSubmit}
-        error = {error}/>
+        error = {error}
+    />
 }
 
 export default SignUpPresenter
