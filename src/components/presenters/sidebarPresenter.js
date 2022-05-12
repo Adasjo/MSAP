@@ -11,7 +11,7 @@ function SidebarPresenter() {
     const spotifyState = useSelector(state => state.spotify.currentState)
     const [data, setData] = useState()
 
-    useEffect(() => spotifyGet("/me/playlists", accessToken).then(res => setData(res)), [])
+    useEffect(() => spotifyGet("/me/playlists?limit=50", accessToken).then(res => setData(res)), [])
 
     let image = undefined
 
