@@ -26,7 +26,44 @@ Finally if we want the user to be able to search for artists, albums etc, we wil
 handle these types of data from the API:s
 
 -------------------------
+# Setup the project 
+## Environment
+A config folder with 2 files
+- fbConfig.js 
+```js
+const fbConfig = {
+    apiKey: <APIKEY>,
+    authDomain: <FIREBASE-AUTH-DOMAIN>,
+    projectId: <PROJECT-ID>,
+    storageBucket: <STORAGE-BUCKET>,
+    messagingSenderId: <SENDER-ID>,
+    appId: <APP-ID>,
+    measurementId: <MEASUREMENT-ID>,
+    databaseURL: <DATABASE-URL>
+  };
+  const rrfConfig = {
+  userProfile: 'users'
+ }
+ export {fbConfig, rrfConfig}
+```
+- spotifyConfig.js 
+```js
+export const {BASE_URL, client_id, client_secret, response_type, redirect_uri, scope} = {
+BASE_URL: "https://accounts.spotify.com",
+client_id: <CLIENT-ID>,
+client_secret: <CLIENT-SECRET>,
+redirect_uri: <REDIRECT-URL>,
+scope: "streaming user-library-read playlist-read-private user-read-private user-modify-playback-state user-read-playback-state user-read-currently-playing user-read-email user-read-playback-position",
+}
+```
+You will need to setup firebase and spotify by yourself.
 
+## Start development
+1. Setup the environment.
+2. Run `npm install` to install dependencies.
+3. Run `npm start` to start the development server
+
+# Project information
 ## What we have done:
 
 - Set up basic project structure with react redux
