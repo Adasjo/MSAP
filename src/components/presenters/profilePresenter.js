@@ -15,14 +15,15 @@ function ProfilePresenter() {
     const firebase = useFirebase()
     const nav = useNavigate()
     const user = firebase.auth().currentUser
-    const [photo, setPhoto] = useState(user.photoURL)
+    const [photo, setPhoto] = useState(()=>user.photoURL)
     const name = user.displayName
     const email = user.email
     const theme = useSelector(state => state.settings.theme)
 
     useEffect(() => {
-        fetch(photo).then()
-            .catch(() => setPhoto("https://www.oseyo.co.uk/wp-content/uploads/2020/05/empty-profile-picture-png-2.png"))
+        const img = new Image();
+        img.src = photo;
+        img.onerror = () => setPhoto("https://www.oseyo.co.uk/wp-content/uploads/2020/05/empty-profile-picture-png-2.png");
     }, [photo])
 
     async function uploadImage(e) {
