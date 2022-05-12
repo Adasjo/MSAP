@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useFirebase, isEmpty} from "react-redux-firebase"
 import { useNavigate } from "react-router-dom"
@@ -19,6 +19,11 @@ function ProfilePresenter() {
     const name = user.displayName
     const email = user.email
     const theme = useSelector(state => state.settings.theme)
+
+    useEffect(() => {
+        fetch(photo).then()
+            .catch(() => setPhoto("https://www.oseyo.co.uk/wp-content/uploads/2020/05/empty-profile-picture-png-2.png"))
+    }, [photo])
 
     async function uploadImage(e) {
         const file = e.target.files[0]
@@ -49,10 +54,11 @@ function ProfilePresenter() {
         await firebase.logout()
         dispatch(unmountSpotifyPlayerSDK())
     }
+
     return <ProfileView 
         username={name ? name : "specify username..."} 
         email={email} 
-        photoURL={isEmpty(photo) ? photo: "https://www.oseyo.co.uk/wp-content/uploads/2020/05/empty-profile-picture-png-2.png"} 
+        photoURL={photo} 
         theme={theme}
         uploadImage={uploadImage} 
         changeName={changeName}
