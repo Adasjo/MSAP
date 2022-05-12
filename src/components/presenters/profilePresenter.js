@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useFirebase } from "react-redux-firebase"
+import { useFirebase, isEmpty} from "react-redux-firebase"
 import { useNavigate } from "react-router-dom"
 
 import { unmountSpotifyPlayerSDK } from "../../utilities/apiUtils"
@@ -49,11 +49,10 @@ function ProfilePresenter() {
         await firebase.logout()
         dispatch(unmountSpotifyPlayerSDK())
     }
-
     return <ProfileView 
         username={name ? name : "specify username..."} 
         email={email} 
-        photoURL={photo} 
+        photoURL={isEmpty(photo) ? photo: "https://www.oseyo.co.uk/wp-content/uploads/2020/05/empty-profile-picture-png-2.png"} 
         theme={theme}
         uploadImage={uploadImage} 
         changeName={changeName}

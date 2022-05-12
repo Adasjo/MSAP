@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import { ReactReduxFirebaseProvider as FirebaseProvider } from 'react-redux-firebase'
 import './styles/index.css'
 import App from './App'
-import { fbConfig, rrfConfig } from "./config/fbConfig"
+import { fbConfig } from "./config/fbConfig"
 import firebase from 'firebase/app'
 import "firebase/auth"
 import "firebase/database"

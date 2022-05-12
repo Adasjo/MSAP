@@ -49,7 +49,7 @@ function PlaylistPresenter() {
     function handleScroll() {
         const newOffset = offset + limit
         setOffset(newOffset)
-        console.log("FIPPEL", tracks)
+
         spotifyGet("/playlists/" + searchParams.get("id") + "/tracks?limit=" + limit + "&offset=" + newOffset, accessToken).then(res => {
             const newTracks = [...tracks, ...res.items.map(trackRes => trackRes.track).filter(track => track.track)]
             setTracks([...newTracks])

@@ -19,6 +19,7 @@
 .profileImage {
     position: relative;
     width: 10rem;
+    height: 10rem;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     display: grid;
@@ -27,8 +28,8 @@
 }
 
 .profileImage img {
-    height: 100%;
-    width: 100%;
+    width: 10rem;
+    height: 10rem;
     object-fit: cover;
     border-radius: inherit;
     transition: .15s;
