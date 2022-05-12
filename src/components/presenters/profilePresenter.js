@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useFirebase, isEmpty} from "react-redux-firebase"
+import { useFirebase } from "react-redux-firebase"
 import { useNavigate } from "react-router-dom"
 
 import { unmountSpotifyPlayerSDK } from "../../utilities/apiUtils"
@@ -20,6 +20,7 @@ function ProfilePresenter() {
     const email = user.email
     const theme = useSelector(state => state.settings.theme)
 
+    // Check if photo is valid
     useEffect(() => {
         const img = new Image();
         img.src = photo;
@@ -41,8 +42,6 @@ function ProfilePresenter() {
         if (newName == user.displayName || emptyUsername.test(newName)) return
         user.updateProfile({displayName: newName})
     }
-    //const btn = document.querySelector(".btn-toggle");
-    //const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: light)");
     
     function toggleDark() {
         const newTheme = theme == "light" ? "dark" : "light"
