@@ -8,9 +8,6 @@ const spotifyApiHeaders = {
     "Content-Type": "application/x-www-form-urlencoded"
 }
 
-const redirect_uri = "http://localhost:8080/spotify"
-//const redirect_uri = "https://msap-429e1.web.app/spotify"
-
 // Scopes for Spotify authorization 
 const scope = [
     //Spotify Connect

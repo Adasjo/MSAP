@@ -22,6 +22,12 @@ if (window.location.pathname == "/") {
 
 const {store, persistor} = createStore()
 
+// react-redux-firebase config
+const rrfConfig = {
+  userProfile: 'users'
+}
+
+// Props for react redux provider
 const rrfProps = {
   firebase,
   config: rrfConfig,
