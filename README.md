@@ -1,4 +1,6 @@
-### Due to limitations on Spotify's API, if you wish to try the site you have to send your email to adamsjo@kth.se so he can add you
+### https://msap-429e1.web.app/
+
+### Due to limitations on Spotify's API, if you wish to try the site you have to send your email to adamsjo(at)kth.se so he can add you
 
 # MSAP
 ### A music streaming web app for iProg, by Adam Sjöberg & Samuel Falk
